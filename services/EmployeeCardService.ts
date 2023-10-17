@@ -1,4 +1,4 @@
-import EmployeeCardRepository, { IEmployeeCard } from "../repositories/EmployeeCardRepository";
+import  EmployeeCardRepository, { IEmployeeCard } from "../repositories/EmployeeCardRepository";
 
 
 class EmployeeCardService{
@@ -7,7 +7,9 @@ class EmployeeCardService{
 
         try{
             
-            const allEmployeeCard = await EmployeeCardRepository.GetAllEmployeeCard;
+            const allEmployeeCard =  EmployeeCardRepository.GetAllEmployeeCard();
+
+            
 
             return {status: 0, message: "OK", response: allEmployeeCard}
     

@@ -13,7 +13,7 @@ class EmployeeCardRepository{
 
         try{
 
-            const employeeCards = EmployeeCardModel.find({});
+            const employeeCards = await EmployeeCardModel.find({});
 
             return employeeCards;
 
@@ -45,4 +45,4 @@ class EmployeeCardRepository{
 
 }
 
-export default new EmployeeCardRepository;
+export default new EmployeeCardRepository();

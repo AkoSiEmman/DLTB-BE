@@ -46,9 +46,10 @@ export async function GetAllEmployeeCardController(request: Request, response: R
 
     const responseDate = GetCurrentDateSTR();
 
+    
     try{
 
-        const employeeCards = await EmployeeCardService.GetAllEmployeeCard();
+        const employeeCards = await EmployeeCardService.GetAllEmployeeCard()
 
         if(employeeCards.status === 0 ){
             response.status(200).json({messages : [{
@@ -56,7 +57,7 @@ export async function GetAllEmployeeCardController(request: Request, response: R
                 message: "OK",
                 dateTime: responseDate,
                 }],
-                response: employeeCards.response
+                response : employeeCards.response
             })
         }else{
             response.status(201).json({messages : [{
