@@ -7,9 +7,7 @@ class EmployeeCardService{
 
         try{
             
-            const allEmployeeCard =  EmployeeCardRepository.GetAllEmployeeCard();
-
-            
+            const allEmployeeCard = await EmployeeCardRepository.GetAllEmployeeCard();
 
             return {status: 0, message: "OK", response: allEmployeeCard}
     
