@@ -9,6 +9,8 @@ interface IDirections{
 
     destination: string,
 
+    route_code: string,
+
 }
 
 class Directions{

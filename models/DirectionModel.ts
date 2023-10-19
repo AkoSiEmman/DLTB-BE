@@ -5,21 +5,24 @@ const directionSchema = new mongoose.Schema({
     bound:{
         type: String,
         index: true,
-        default: "SOUTH",
         required: true
     },
 
     origin:{
         type: String,
         index: true,
-        default:"PITX",
         required: true
     },
 
     destination:{
         type:String,
         index: true,
-        default:"TAYABAS",
+        required: true
+    },
+
+    route_code:{
+        type: String,
+        index: true,
         required: true
     },
 

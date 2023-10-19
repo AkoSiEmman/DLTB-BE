@@ -36,6 +36,8 @@ import EmployeeCardRouter from "./routes/EmployeeCardRoutes";
 // DATABASE
 ///////////////////////////
 import connectToMongoDB from './databases/DbConnection';
+import VehicleRouter from "./routes/VehicleRoutes";
+import DispatchRouter from "./routes/DispatchRoutes";
 
 
 //////////////////////////////////////////////////
@@ -95,6 +97,11 @@ app.use(urlBackend, TORInspectionRouter);
 app.use(urlBackend, TORViolationRouter);
 
 app.use(urlBackend, TORTroubleRouter);
+
+app.use(urlBackend, VehicleRouter);
+
+app.use(urlBackend, DispatchRouter);
+
 
 /////////////////////////
 // DATABASE CONNECTION
