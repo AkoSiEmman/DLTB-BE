@@ -9,7 +9,6 @@ class DispatchService{
             
             const dispatches = await DispatchRepository.GetAllDispatch();
 
-
             return {status: 0, message: "OK", response: dispatches}
 
         }catch(e){

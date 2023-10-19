@@ -25,9 +25,11 @@ class DispatchRepository{
 
         try{
 
-            const dispatch = new  DispatchModel(newDispatch);
+            const dispatch = new DispatchModel(newDispatch);
 
-            return dispatch;
+            const saveDispatch = dispatch.save();
+
+            return saveDispatch;
 
         }catch(e){
             console.log(`Error in add dispatch repository: ${e}`)
@@ -41,6 +43,8 @@ class DispatchRepository{
         try{
 
             const allDispatch = await DispatchModel.find({});
+
+            console.log(allDispatch)
 
             return allDispatch;
 

@@ -16,7 +16,7 @@ export async function GetAllDispatch(request : Request, response : Response){
                 message: "OK",
                 dateTime: responseDate,
                 }],
-                response : dispatch.response
+                response : dispatch
             })
         }else{
             response.status(201).json({messages : [{
@@ -24,7 +24,7 @@ export async function GetAllDispatch(request : Request, response : Response){
                 message: dispatch.message,
                 dateTime: responseDate,
                 }],
-                response: dispatch.response
+                response: dispatch
             })
         }
 
