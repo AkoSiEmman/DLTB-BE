@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const employeeCardSchema = new mongoose.Schema({
 
-    employeeId:{
+    empNo:{
         type: String,
         unique: true,
         required: true,
