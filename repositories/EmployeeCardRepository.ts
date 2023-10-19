@@ -2,7 +2,7 @@ import EmployeeCardModel from "../models/EmployeeCards"
 
 export interface IEmployeeCard{
     
-    employeeId : String,
+    empNo : String,
     cardId : String, 
 
 }
