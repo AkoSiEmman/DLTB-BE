@@ -35,9 +35,11 @@ import EmployeeCardRouter from "./routes/EmployeeCardRoutes";
 ////////////////////////////
 // DATABASE
 ///////////////////////////
-import connectToMongoDB from './databases/DbConnection';
+import {connectToMongoDB, connectToFilipayDB} from './databases/DbConnection';
 import VehicleRouter from "./routes/VehicleRoutes";
 import DispatchRouter from "./routes/DispatchRoutes";
+import RiderWalletRouter from "./routes/RiderWalletRoutes";
+import RiderRouter from "./routes/RiderRoutes";
 
 
 //////////////////////////////////////////////////
@@ -102,15 +104,24 @@ app.use(urlBackend, VehicleRouter);
 
 app.use(urlBackend, DispatchRouter);
 
+app.use(urlBackend, RiderWalletRouter);
+
+app.use(urlBackend, RiderRouter);
+
 
 /////////////////////////
 // DATABASE CONNECTION
 ////////////////////////
 
 const url : string  = process.env.DB_CONNECTION_STRING? process.env.DB_CONNECTION_STRING : '';
-connectToMongoDB(url);
+const filipayUrl : string = process.env.DB_FILIPAY_CONNECTION_STRING ? process.env.DB_FILIPAY_CONNECTION_STRING : '';
 
-console.log(url);
+
+connectToMongoDB(url);
+//connectToFilipayDB(filipayUrl);
+
+console.log();
+console.log();
 ////////////////////
 // ESTABLISH
 ///////////////////
