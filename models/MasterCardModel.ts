@@ -1,8 +1,22 @@
-import mongoose from "mongoose";
+import mongoose , {Document} from "mongoose";
+
+export interface IMasterCard extends Document {
+    cardId: string,
+    riderId : String,
+    balance: number,
+    createdAt: Date,
+    updatedAt: Date,
+}
 
 const masterSchema = new mongoose.Schema({
 
-    UID:{
+    riderId:{
+        type: String,
+        unique: true,
+        required: true,
+    },
+
+    cardId:{
         type: String,
         unique: true,
         required: true,

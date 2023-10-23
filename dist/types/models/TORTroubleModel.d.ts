@@ -1,0 +1,157 @@
+import mongoose from "mongoose";
+declare const TORTroubleModel: mongoose.Model<{
+    fieldData: mongoose.Types.DocumentArray<{
+        UUID: string;
+        route: string;
+        control_no: string;
+        tor_no: string;
+        date_of_trip: Date;
+        bus_no: string;
+        route_code: string;
+        bound: string;
+        trip_no: number;
+        timestamp: Date;
+        lat: string;
+        long: string;
+        inspector_emp_no: string;
+        inspector_emp_name: string;
+        onboard_time: string;
+        onboard_place: string;
+        onboard_km_post: number;
+        trouble_description: string;
+        device_id?: string | undefined;
+    }>;
+    recordId?: string | undefined;
+    modId?: string | undefined;
+    portalId?: any;
+}, {}, {}, {}, mongoose.Document<unknown, {}, {
+    fieldData: mongoose.Types.DocumentArray<{
+        UUID: string;
+        route: string;
+        control_no: string;
+        tor_no: string;
+        date_of_trip: Date;
+        bus_no: string;
+        route_code: string;
+        bound: string;
+        trip_no: number;
+        timestamp: Date;
+        lat: string;
+        long: string;
+        inspector_emp_no: string;
+        inspector_emp_name: string;
+        onboard_time: string;
+        onboard_place: string;
+        onboard_km_post: number;
+        trouble_description: string;
+        device_id?: string | undefined;
+    }>;
+    recordId?: string | undefined;
+    modId?: string | undefined;
+    portalId?: any;
+}> & {
+    fieldData: mongoose.Types.DocumentArray<{
+        UUID: string;
+        route: string;
+        control_no: string;
+        tor_no: string;
+        date_of_trip: Date;
+        bus_no: string;
+        route_code: string;
+        bound: string;
+        trip_no: number;
+        timestamp: Date;
+        lat: string;
+        long: string;
+        inspector_emp_no: string;
+        inspector_emp_name: string;
+        onboard_time: string;
+        onboard_place: string;
+        onboard_km_post: number;
+        trouble_description: string;
+        device_id?: string | undefined;
+    }>;
+    recordId?: string | undefined;
+    modId?: string | undefined;
+    portalId?: any;
+} & {
+    _id: mongoose.Types.ObjectId;
+}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+    fieldData: mongoose.Types.DocumentArray<{
+        UUID: string;
+        route: string;
+        control_no: string;
+        tor_no: string;
+        date_of_trip: Date;
+        bus_no: string;
+        route_code: string;
+        bound: string;
+        trip_no: number;
+        timestamp: Date;
+        lat: string;
+        long: string;
+        inspector_emp_no: string;
+        inspector_emp_name: string;
+        onboard_time: string;
+        onboard_place: string;
+        onboard_km_post: number;
+        trouble_description: string;
+        device_id?: string | undefined;
+    }>;
+    recordId?: string | undefined;
+    modId?: string | undefined;
+    portalId?: any;
+}, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
+    fieldData: mongoose.Types.DocumentArray<{
+        UUID: string;
+        route: string;
+        control_no: string;
+        tor_no: string;
+        date_of_trip: Date;
+        bus_no: string;
+        route_code: string;
+        bound: string;
+        trip_no: number;
+        timestamp: Date;
+        lat: string;
+        long: string;
+        inspector_emp_no: string;
+        inspector_emp_name: string;
+        onboard_time: string;
+        onboard_place: string;
+        onboard_km_post: number;
+        trouble_description: string;
+        device_id?: string | undefined;
+    }>;
+    recordId?: string | undefined;
+    modId?: string | undefined;
+    portalId?: any;
+}>> & mongoose.FlatRecord<{
+    fieldData: mongoose.Types.DocumentArray<{
+        UUID: string;
+        route: string;
+        control_no: string;
+        tor_no: string;
+        date_of_trip: Date;
+        bus_no: string;
+        route_code: string;
+        bound: string;
+        trip_no: number;
+        timestamp: Date;
+        lat: string;
+        long: string;
+        inspector_emp_no: string;
+        inspector_emp_name: string;
+        onboard_time: string;
+        onboard_place: string;
+        onboard_km_post: number;
+        trouble_description: string;
+        device_id?: string | undefined;
+    }>;
+    recordId?: string | undefined;
+    modId?: string | undefined;
+    portalId?: any;
+}> & {
+    _id: mongoose.Types.ObjectId;
+}>>;
+export default TORTroubleModel;

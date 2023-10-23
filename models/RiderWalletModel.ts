@@ -1,13 +1,23 @@
-import mongoose  from "mongoose";
+import mongoose, {Document}  from "mongoose";
 import { connectToFilipayDB } from "../databases/DbConnection";
 
 const filipayUrl : string = process.env.DB_FILIPAY_CONNECTION_STRING ? process.env.DB_FILIPAY_CONNECTION_STRING : '';
 
+export interface IRiderWallet extends Document{
+
+    riderId: String,
+    currencyId: String,
+    address: String,
+    privateKey: String,
+    balance: number
+
+}
 
 const riderWalletSchema = new mongoose.Schema({
 
     riderId : {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Rider',
         required: true,
         index: true
     },

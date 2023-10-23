@@ -47,6 +47,50 @@ export async function GetAllRiderWalletController(request : Request , response :
 
 }
 
+export async function GetRiderWalletPerIdController ( request : Request, response : Response){
+
+    try{
+
+        const riderWallet = await RiderWalletService.GetRiderWalletCardIdPerId(request.params.cardId);
+
+        if(riderWallet.status === 0 ){
+            response.status(200).json({messages : [{
+                code: "0",
+                message: "OK",
+                dateTime: GetCurrentDateSTR,
+                }],
+                response : riderWallet.response
+            })
+        }else{
+            response.status(201).json({messages : [{
+                code: riderWallet.status,
+                message: riderWallet.message,
+                dateTime: GetCurrentDateSTR,
+                }],
+                response: riderWallet.response
+            })
+        }
+
+
+
+    }catch(e){
+
+        console.error("Error in controller: "+e);
+
+        response.status(500).json({messages : [{
+            code: "1",
+            message: ""+e,
+            dateTime: GetCurrentDateSTR(),
+            }],
+            response: {}
+        })
+
+    }
+
+
+
+}
+
 export async function AddRiderWalletController( request : Request, response : Response ){
 
     const responseDate = GetCurrentDateSTR();
@@ -85,6 +129,62 @@ export async function AddRiderWalletController( request : Request, response : Re
             response: {}
         })
 
+    }
+
+}
+
+export async function UpdateRiderWalletBalanceController( request : Request, response : Response){
+
+    const increaseAmountValue : number = request.body.increaseAmount? request.body.increaseAmount : 0;
+    const decreaseAmountValue : number =  request.body.decreaseAmount? request.body.decreaseAmount : 0;
+
+    try{
+
+      
+    
+        const updateRiderWallet = await RiderWalletService.UpdateRiderWalletByCardId(request.body.cardId, decreaseAmountValue, increaseAmountValue, request.body.cardType);
+
+        if(updateRiderWallet?.status === 0 ){
+            response.status(200).json({messages : [{
+                code: "0",
+                message: "OK",
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response : {}
+            })
+        }
+
+        if(updateRiderWallet?.status === 1){
+            response.status(201).json({messages : [{
+                code: "1",
+                message: updateRiderWallet.message,
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response : updateRiderWallet.response
+            })
+        }
+
+        if(updateRiderWallet?.status === 500){
+            response.status(201).json({messages : [{
+                code: "500",
+                message: "INTERNAL SERVER ERROR",
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response : updateRiderWallet.response
+            })
+        }
+
+
+    }catch(e){
+            
+            console.error("Error in controller: "+e);
+            response.status(500).json({messages : [{
+                code: "1",
+                message: ""+e,
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response: {}
+            })
     }
 
 }

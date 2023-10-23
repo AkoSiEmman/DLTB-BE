@@ -393,29 +393,29 @@ class TORMainService{
 
     async SyncTORMainService(){
 
-        try{
-
+        try {
             const torMains = await TORMainRepository.GetAllTORMain();
-        
-            const torsMains = await torMains?.map(async (torMain : any) => {
-                if(torMain.fieldData[0]){
-                    if(await this.CheckIfUUIDAllowedToInsertService(torMain)){
-
-                      const request =  await this.CreateTORMAinToOtherServerService(torMain.fieldData[0]);
-
-                    }else{
-                        console.log("UUID NOT ALLOWED TO INSERT")
+    
+            if (torMains && Array.isArray(torMains)) {
+                for (const torMain of torMains) {
+                    if (torMain.fieldData && Array.isArray(torMain.fieldData) && torMain.fieldData.length > 0) {
+                        for (const fieldData of torMain.fieldData) {
+                            if (await this.CheckIfUUIDAllowedToInsertService(fieldData)) {
+                                const request = await this.CreateTORMAinToOtherServerService(fieldData);
+                            } else {
+                                console.log("UUID NOT ALLOWED TO INSERT");
+                            }
+                        }
+                    } else {
+                        console.log("SHET");
                     }
-                }else{
-                    console.log("SHET");
                 }
-               
-             
-            })
-
-        }catch(e){
-            console.error("Error in sync tor main service: "+e);
-            return {status: 500, message: "Error in sync tor main service: "+e};
+            } else {
+                console.log("No torMains found or it's not an array.");
+            }
+        } catch (e) {
+            console.error("Error in sync tor main service: " + e);
+            return { status: 500, message: "Error in sync tor main service: " + e };
         }
 
     }

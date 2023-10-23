@@ -1,4 +1,6 @@
+import { ObjectId } from "mongodb";
 import RiderWalletModel from "../models/RiderWalletModel";
+const mongoose = require('mongoose');
 
 export interface IRiderWallet{
 
@@ -12,7 +14,7 @@ export interface IRiderWallet{
 
     privateKey: String,
 
-    balance: Number
+    balance: number
 
 }
 
@@ -55,6 +57,96 @@ class RiderWalletRepository{
         }
 
     }
+
+    async UpdateRiderWalletBalanceByCardId( cardId : string, decreaseAmount : Number, increaseAmount : Number ){
+
+        try{
+
+            const increaseBalancePerId = await RiderWalletModel.updateOne({"currencyId": cardId}, {$inc: {"balance": increaseAmount}} , {new: true});
+
+            const decreaseBalancePerId = await  RiderWalletModel.updateOne({"currencyId": cardId}, {$inc: {"balance": -decreaseAmount}} , {new: true});
+
+            return decreaseBalancePerId;
+
+        }catch(e){
+
+            console.log(`Error in repository ${e}`);
+            return e;
+
+        }
+
+    }
+
+    async UpdateRiderWalletByRiderId(riderId : string, increaseAmount : number, decreaseAmount : number){
+
+        const newRiderId =  new ObjectId(riderId);
+
+        try{
+
+            const fckShet = await RiderWalletModel.findOne({"riderId" : riderId});
+
+            const increaseBalancePerId = await RiderWalletModel.findOneAndUpdate({"riderId": riderId}, {$inc: {"balance": increaseAmount}} , {new: true});
+
+            const decreaseBalancePerId = await  RiderWalletModel.findOneAndUpdate({"riderId": riderId}, {$inc: {"balance": -decreaseAmount}} , {new: true});
+
+            return decreaseBalancePerId;
+
+        }catch(e){
+
+            console.log(`Error in repository ${e}`);
+            return e;
+
+        }
+
+    }
+
+    async GetRiderWalletByRiderId(riderId : String){
+    
+        try{
+
+            const riderWallet = await RiderWalletModel.findOne({"riderId": Object(riderId)});
+
+            return riderWallet;
+
+        }catch(e){
+
+            console.log(`Error in repository ${e}`);
+            
+            return e
+
+        }
+
+    }
+
+
+    async FindCardInRiderWallet( cardId : string ) : Promise <IRiderWallet | boolean | string>{ 
+    
+        try{
+
+ 
+
+            const searchCardId = await RiderWalletModel.findOne({"currencyId": cardId});
+
+            console.log(searchCardId)
+
+            if(searchCardId !== null){
+                return searchCardId;
+            }else{
+                return false
+            }
+
+           
+
+        }catch(e : any){
+         
+            console.log(`Error in repository ${e}`)
+            let errorMessage: string = e.message;
+            return errorMessage
+        
+        }
+
+    }
+
 
 }
 

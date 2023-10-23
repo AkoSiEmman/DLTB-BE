@@ -35,6 +35,8 @@ class RiderRepository{
 
     }
 
+    
+
     async GetRiderByCardId(cardId : String){
 
         try{

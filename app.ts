@@ -40,6 +40,7 @@ import VehicleRouter from "./routes/VehicleRoutes";
 import DispatchRouter from "./routes/DispatchRoutes";
 import RiderWalletRouter from "./routes/RiderWalletRoutes";
 import RiderRouter from "./routes/RiderRoutes";
+import StationRouter from "./routes/StationRoutes";
 
 
 //////////////////////////////////////////////////
@@ -47,7 +48,7 @@ import RiderRouter from "./routes/RiderRoutes";
 //////////////////////////////////////////////////
 const app = express();
 
-const port = 3005;
+const port = process.env.PORT || 3000;
 
 //////////////////////////
 // MIDDLEWARES
@@ -108,6 +109,8 @@ app.use(urlBackend, RiderWalletRouter);
 
 app.use(urlBackend, RiderRouter);
 
+app.use(urlBackend, StationRouter);
+
 
 /////////////////////////
 // DATABASE CONNECTION
@@ -120,8 +123,8 @@ const filipayUrl : string = process.env.DB_FILIPAY_CONNECTION_STRING ? process.e
 connectToMongoDB(url);
 //connectToFilipayDB(filipayUrl);
 
-console.log();
-console.log();
+console.log(url);
+console.log(filipayUrl);
 ////////////////////
 // ESTABLISH
 ///////////////////
