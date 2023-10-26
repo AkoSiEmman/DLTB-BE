@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { IStation } from "../models/StationModel";
 import StationRepository from "../repositories/StationRepository";
 
@@ -21,9 +22,9 @@ class StationService{
     }
 
     async AddStation( newStation : IStation){
-        
+       
         try{
-            const addNewStation = {...newStation , routeId : "ObjectId("+newStation.routeId+")"}
+            const addNewStation = {...newStation , routeId : new ObjectId(newStation.routeId)}
             const addStation = await StationRepository.AddStation(newStation);
 
             return {status: 0, message: "OK", response: addStation}

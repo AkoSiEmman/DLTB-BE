@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { GetCurrentDateSTR } from "../common/GetCurrentDate";
 import AuthService from "../services/AuthService";
+import UserService from "../services/UserService";
 
 interface IAuthResponse{
     status: number,
@@ -14,10 +15,10 @@ export async function AuthenticationController(request: Request, response: Respo
 
     try{
 
-        const authUser = await AuthService.CheckIfCardUserMatch(request.body);
+        const authUser = await AuthService.Auth(request.body);
 
-        if(authUser === true){
-            const token = request.body.username;
+        if(authUser.status === 0){
+            const token = request.body.email;
            response.cookie('authToken',token, {
             httpOnly: true,
             maxAge: 3600000,
@@ -26,15 +27,21 @@ export async function AuthenticationController(request: Request, response: Respo
             path: '/',
             domain: 'localhost', // Set to the appropriate domain
         })
-        response.status(200).json({messages : [
-            { code : "0", dateTime : responseDate, message : "OK"}
-        ]});
+         response.status(200).json({messages : [{
+                code: "0",
+                message: "OK",
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response : authUser.response
+            })
         }else{
             response.status(201).json({messages : [{
-                code: "212",
-                message: "Invalid user account or password",
-                dateTime: responseDate,
-            }]});
+                code: authUser.status,
+                message: authUser.message,
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response: authUser.response
+            })
         }
 
         
@@ -46,6 +53,46 @@ export async function AuthenticationController(request: Request, response: Respo
             code: "212",
             message: "Authentication failed!",
             dateTime: responseDate,
+        }]});
+    }
+
+}
+
+export async function GetUserByEmailController(request : Request, response : Response){
+
+    try{
+
+        const user = await UserService.GetUserByEmail(request.body.email);
+
+        if(user.status === 0){
+          
+         
+         response.status(200).json({messages : [{
+                code: "0",
+                message: "OK",
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response : user.response
+            })
+        }else{
+            response.status(201).json({messages : [{
+                code: user.status,
+                message: user.message,
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response: user.response
+            })
+        }
+
+
+
+    }catch(e){
+        console.error("Error in authentication controller " + e);
+      
+        response.status(500).json({messages : [{
+            code: "212",
+            message: "Authentication failed!",
+            dateTime: GetCurrentDateSTR(),
         }]});
     }
 

@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { AuthenticationController } from "../controllers/AuthenticationController";
+import { AuthenticationController, GetUserByEmailController } from "../controllers/AuthenticationController";
+import { CheckTokenMiddleware } from "../middlewares/CheckTokenMiddleware";
 
 const AuthRouter = Router();
 
@@ -10,5 +11,7 @@ const AuthRouter = Router();
 
 
 AuthRouter.post('/auth',  AuthenticationController)
+
+AuthRouter.get('/auth/:email', CheckTokenMiddleware, GetUserByEmailController);
 
 export default AuthRouter;

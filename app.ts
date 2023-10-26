@@ -41,6 +41,7 @@ import DispatchRouter from "./routes/DispatchRoutes";
 import RiderWalletRouter from "./routes/RiderWalletRoutes";
 import RiderRouter from "./routes/RiderRoutes";
 import StationRouter from "./routes/StationRoutes";
+import UserRouter from "./routes/UserRoutes";
 
 
 //////////////////////////////////////////////////
@@ -110,6 +111,8 @@ app.use(urlBackend, RiderWalletRouter);
 app.use(urlBackend, RiderRouter);
 
 app.use(urlBackend, StationRouter);
+
+app.use(urlBackend, UserRouter);
 
 
 /////////////////////////
