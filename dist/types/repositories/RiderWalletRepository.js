@@ -12,7 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const mongodb_1 = require("mongodb");
 const RiderWalletModel_1 = __importDefault(require("../models/RiderWalletModel"));
+const mongoose = require('mongoose');
 class RiderWalletRepository {
     GetAllRiderWallet() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -53,19 +55,49 @@ class RiderWalletRepository {
             }
         });
     }
-    FindCardInRiderWallet(cardId) {
+    UpdateRiderWalletByRiderId(riderId, increaseAmount, decreaseAmount) {
         return __awaiter(this, void 0, void 0, function* () {
+            const newRiderId = new mongodb_1.ObjectId(riderId);
             try {
-                const searchCardId = yield RiderWalletModel_1.default.find({ "currencyId": cardId });
-                let isCardIdExist = false;
-                if (searchCardId.length > 0) {
-                    isCardIdExist = true;
-                }
-                return isCardIdExist;
+                const fckShet = yield RiderWalletModel_1.default.findOne({ "riderId": riderId });
+                const increaseBalancePerId = yield RiderWalletModel_1.default.findOneAndUpdate({ "riderId": riderId }, { $inc: { "balance": increaseAmount } }, { new: true });
+                const decreaseBalancePerId = yield RiderWalletModel_1.default.findOneAndUpdate({ "riderId": riderId }, { $inc: { "balance": -decreaseAmount } }, { new: true });
+                return decreaseBalancePerId;
             }
             catch (e) {
                 console.log(`Error in repository ${e}`);
                 return e;
+            }
+        });
+    }
+    GetRiderWalletByRiderId(riderId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const riderWallet = yield RiderWalletModel_1.default.findOne({ "riderId": Object(riderId) });
+                return riderWallet;
+            }
+            catch (e) {
+                console.log(`Error in repository ${e}`);
+                return e;
+            }
+        });
+    }
+    FindCardInRiderWallet(cardId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const searchCardId = yield RiderWalletModel_1.default.findOne({ "currencyId": cardId });
+                console.log(searchCardId);
+                if (searchCardId !== null) {
+                    return searchCardId;
+                }
+                else {
+                    return false;
+                }
+            }
+            catch (e) {
+                console.log(`Error in repository ${e}`);
+                let errorMessage = e.message;
+                return errorMessage;
             }
         });
     }

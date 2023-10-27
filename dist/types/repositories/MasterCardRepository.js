@@ -42,16 +42,18 @@ class MasterCardRepository {
     FindCardIdInMasterCard(cardId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const searchCardId = yield MasterCardModel_1.default.find({ "cardId": cardId });
-                let isCardIdExist = false;
-                if (searchCardId.length > 0) {
-                    isCardIdExist = true;
+                const searchCardId = yield MasterCardModel_1.default.findOne({ "cardId": cardId });
+                if (searchCardId) {
+                    return searchCardId;
                 }
-                return isCardIdExist;
+                else {
+                    return false;
+                }
             }
             catch (e) {
                 console.log(`Error in repository ${e}`);
-                return e;
+                let errorMessage = e.message;
+                return errorMessage;
             }
         });
     }

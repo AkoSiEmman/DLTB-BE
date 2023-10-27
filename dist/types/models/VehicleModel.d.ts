@@ -1,37 +1,37 @@
 import mongoose from "mongoose";
 declare const VehicleModel: mongoose.Model<{
-    bus_no: string;
     createdAt: Date;
     updatedAt: Date;
+    bus_no: string;
     plate_no: string;
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
-    bus_no: string;
     createdAt: Date;
     updatedAt: Date;
+    bus_no: string;
     plate_no: string;
-}> & {
-    bus_no: string;
+}> & Omit<{
     createdAt: Date;
     updatedAt: Date;
+    bus_no: string;
     plate_no: string;
 } & {
     _id: mongoose.Types.ObjectId;
-}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
-    bus_no: string;
+}, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
     createdAt: Date;
     updatedAt: Date;
+    bus_no: string;
     plate_no: string;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
-    bus_no: string;
     createdAt: Date;
     updatedAt: Date;
+    bus_no: string;
     plate_no: string;
-}>> & mongoose.FlatRecord<{
-    bus_no: string;
+}>> & Omit<mongoose.FlatRecord<{
     createdAt: Date;
     updatedAt: Date;
+    bus_no: string;
     plate_no: string;
 }> & {
     _id: mongoose.Types.ObjectId;
-}>>;
+}, never>>>;
 export default VehicleModel;

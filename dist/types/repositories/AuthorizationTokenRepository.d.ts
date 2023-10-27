@@ -28,12 +28,12 @@ declare class AuthorizationTokenRepository {
     FindToken(findToken: string): Promise<false | (import("mongoose").Document<unknown, {}, {
         token: string;
         dateCreated: Date;
-    }> & {
+    }> & Omit<{
         token: string;
         dateCreated: Date;
     } & {
         _id: import("mongoose").Types.ObjectId;
-    }) | null>;
+    }, never>) | null>;
     CheckIfExistToken(findToken: string | undefined): Promise<boolean>;
     DeleteToken(findToken: string | undefined): Promise<boolean>;
 }

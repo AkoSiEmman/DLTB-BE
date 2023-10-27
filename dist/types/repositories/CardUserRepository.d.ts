@@ -37,7 +37,7 @@ declare class CardUserRepository {
         password?: string | undefined;
         recordId?: string | undefined;
         cardId?: string | undefined;
-    }> & {
+    }> & Omit<{
         dateCreated: Date;
         username?: string | undefined;
         password?: string | undefined;
@@ -45,7 +45,7 @@ declare class CardUserRepository {
         cardId?: string | undefined;
     } & {
         _id: import("mongoose").Types.ObjectId;
-    }) | null>;
+    }, never>) | null>;
 }
 export declare const cardUserRepo: CardUserRepository;
 export {};

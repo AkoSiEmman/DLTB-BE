@@ -8,7 +8,8 @@ const DbConnection_1 = require("../databases/DbConnection");
 const filipayUrl = process.env.DB_FILIPAY_CONNECTION_STRING ? process.env.DB_FILIPAY_CONNECTION_STRING : '';
 const riderWalletSchema = new mongoose_1.default.Schema({
     riderId: {
-        type: String,
+        type: mongoose_1.default.Schema.Types.ObjectId,
+        ref: 'Rider',
         required: true,
         index: true
     },

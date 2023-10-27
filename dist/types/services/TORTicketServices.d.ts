@@ -94,7 +94,7 @@ declare class TORTicketServices {
             UUID?: string | undefined;
         }>;
         portalData: any[];
-    }> & {
+    }> & Omit<{
         recordId: string;
         modId: string;
         fieldData: import("mongoose").Types.DocumentArray<{
@@ -130,7 +130,7 @@ declare class TORTicketServices {
         portalData: any[];
     } & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }, never>)[]>;
     SyncGetAllTORTicketService(): Promise<any>;
     SyncTORTicketService(): Promise<{
         status: number;

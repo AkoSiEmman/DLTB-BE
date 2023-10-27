@@ -6,7 +6,7 @@ class StationRepository{
     
         try{
 
-            const stations = await StationModel.find({});
+            const stations : any= await StationModel.find({});
             return stations;
 
         }catch(e : any ){

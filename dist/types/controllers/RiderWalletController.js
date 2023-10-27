@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateRiderWalletBalanceController = exports.AddRiderWalletController = exports.GetAllRiderWalletController = void 0;
+exports.UpdateRiderWalletBalanceController = exports.AddRiderWalletController = exports.GetRiderWalletPerIdController = exports.GetAllRiderWalletController = void 0;
 const GetCurrentDate_1 = require("../common/GetCurrentDate");
 const RiderWalletService_1 = __importDefault(require("../services/RiderWalletService"));
 function GetAllRiderWalletController(request, response) {
@@ -52,6 +52,42 @@ function GetAllRiderWalletController(request, response) {
     });
 }
 exports.GetAllRiderWalletController = GetAllRiderWalletController;
+function GetRiderWalletPerIdController(request, response) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const riderWallet = yield RiderWalletService_1.default.GetRiderWalletCardIdPerId(request.params.cardId);
+            if (riderWallet.status === 0) {
+                response.status(200).json({ messages: [{
+                            code: "0",
+                            message: "OK",
+                            dateTime: GetCurrentDate_1.GetCurrentDateSTR,
+                        }],
+                    response: riderWallet.response
+                });
+            }
+            else {
+                response.status(201).json({ messages: [{
+                            code: riderWallet.status,
+                            message: riderWallet.message,
+                            dateTime: GetCurrentDate_1.GetCurrentDateSTR,
+                        }],
+                    response: riderWallet.response
+                });
+            }
+        }
+        catch (e) {
+            console.error("Error in controller: " + e);
+            response.status(500).json({ messages: [{
+                        code: "1",
+                        message: "" + e,
+                        dateTime: (0, GetCurrentDate_1.GetCurrentDateSTR)(),
+                    }],
+                response: {}
+            });
+        }
+    });
+}
+exports.GetRiderWalletPerIdController = GetRiderWalletPerIdController;
 function AddRiderWalletController(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         const responseDate = (0, GetCurrentDate_1.GetCurrentDateSTR)();
@@ -108,6 +144,15 @@ function UpdateRiderWalletBalanceController(request, response) {
                 response.status(201).json({ messages: [{
                             code: "1",
                             message: updateRiderWallet.message,
+                            dateTime: (0, GetCurrentDate_1.GetCurrentDateSTR)(),
+                        }],
+                    response: updateRiderWallet.response
+                });
+            }
+            if ((updateRiderWallet === null || updateRiderWallet === void 0 ? void 0 : updateRiderWallet.status) === 500) {
+                response.status(201).json({ messages: [{
+                            code: "500",
+                            message: "INTERNAL SERVER ERROR",
                             dateTime: (0, GetCurrentDate_1.GetCurrentDateSTR)(),
                         }],
                     response: updateRiderWallet.response

@@ -11,7 +11,7 @@ declare const CardUserModel: mongoose.Model<{
     password?: string | undefined;
     recordId?: string | undefined;
     cardId?: string | undefined;
-}> & {
+}> & Omit<{
     dateCreated: Date;
     username?: string | undefined;
     password?: string | undefined;
@@ -19,7 +19,7 @@ declare const CardUserModel: mongoose.Model<{
     cardId?: string | undefined;
 } & {
     _id: mongoose.Types.ObjectId;
-}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+}, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
     dateCreated: Date;
     username?: string | undefined;
     password?: string | undefined;
@@ -31,7 +31,7 @@ declare const CardUserModel: mongoose.Model<{
     password?: string | undefined;
     recordId?: string | undefined;
     cardId?: string | undefined;
-}>> & mongoose.FlatRecord<{
+}>> & Omit<mongoose.FlatRecord<{
     dateCreated: Date;
     username?: string | undefined;
     password?: string | undefined;
@@ -39,5 +39,5 @@ declare const CardUserModel: mongoose.Model<{
     cardId?: string | undefined;
 }> & {
     _id: mongoose.Types.ObjectId;
-}>>;
+}, never>>>;
 export default CardUserModel;

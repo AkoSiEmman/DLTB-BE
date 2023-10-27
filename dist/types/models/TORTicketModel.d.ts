@@ -67,7 +67,7 @@ declare const TORTicketModel: mongoose.Model<{
         UUID?: string | undefined;
     }>;
     portalData: any[];
-}> & {
+}> & Omit<{
     recordId: string;
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
@@ -103,7 +103,7 @@ declare const TORTicketModel: mongoose.Model<{
     portalData: any[];
 } & {
     _id: mongoose.Types.ObjectId;
-}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+}, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
     recordId: string;
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
@@ -171,7 +171,7 @@ declare const TORTicketModel: mongoose.Model<{
         UUID?: string | undefined;
     }>;
     portalData: any[];
-}>> & mongoose.FlatRecord<{
+}>> & Omit<mongoose.FlatRecord<{
     recordId: string;
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
@@ -207,5 +207,5 @@ declare const TORTicketModel: mongoose.Model<{
     portalData: any[];
 }> & {
     _id: mongoose.Types.ObjectId;
-}>>;
+}, never>>>;
 export default TORTicketModel;

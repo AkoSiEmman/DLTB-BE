@@ -45,6 +45,8 @@ class UserService{
         try{
             const user = await UserRepository.GetUserPasswordByEmail(email);
 
+            console.log(email)
+
             return {status: 0, message: "OK", response: user}
         }catch(e){
             console.log(`Error in repository: ${e}`)

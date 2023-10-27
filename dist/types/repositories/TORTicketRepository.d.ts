@@ -93,7 +93,7 @@ declare class TORTicketRepository {
             UUID?: string | undefined;
         }>;
         portalData: any[];
-    }> & {
+    }> & Omit<{
         recordId: string;
         modId: string;
         fieldData: import("mongoose").Types.DocumentArray<{
@@ -129,7 +129,7 @@ declare class TORTicketRepository {
         portalData: any[];
     } & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }, never>)[]>;
     CreateTORTicket(torTicket: ITORTicket): Promise<boolean>;
     FindOneAndReplaceTORTicket(tor: ITORTicket): Promise<boolean>;
     FindUUID(UUID: string): Promise<false | undefined>;

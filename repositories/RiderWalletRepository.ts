@@ -125,7 +125,7 @@ class RiderWalletRepository{
 
  
 
-            const searchCardId = await RiderWalletModel.findOne({"currencyId": cardId});
+            const searchCardId : any = await RiderWalletModel.findOne({"currencyId": cardId});
 
             console.log(searchCardId)
 

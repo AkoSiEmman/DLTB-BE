@@ -12,60 +12,60 @@ export interface IRider {
 declare const RiderModel: mongoose.Model<{
     password: string;
     cardId: string;
+    email: string;
     createdAt: Date;
     updatedAt: Date;
     name: string;
     emailStatus: string;
-    email: string;
     sNo: string;
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
     password: string;
     cardId: string;
+    email: string;
     createdAt: Date;
     updatedAt: Date;
     name: string;
     emailStatus: string;
-    email: string;
     sNo: string;
-}> & {
+}> & Omit<{
     password: string;
     cardId: string;
+    email: string;
     createdAt: Date;
     updatedAt: Date;
     name: string;
     emailStatus: string;
-    email: string;
     sNo: string;
 } & {
     _id: mongoose.Types.ObjectId;
-}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+}, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
     password: string;
     cardId: string;
+    email: string;
     createdAt: Date;
     updatedAt: Date;
     name: string;
     emailStatus: string;
-    email: string;
     sNo: string;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     password: string;
     cardId: string;
+    email: string;
     createdAt: Date;
     updatedAt: Date;
     name: string;
     emailStatus: string;
-    email: string;
     sNo: string;
-}>> & mongoose.FlatRecord<{
+}>> & Omit<mongoose.FlatRecord<{
     password: string;
     cardId: string;
+    email: string;
     createdAt: Date;
     updatedAt: Date;
     name: string;
     emailStatus: string;
-    email: string;
     sNo: string;
 }> & {
     _id: mongoose.Types.ObjectId;
-}>>;
+}, never>>>;
 export default RiderModel;

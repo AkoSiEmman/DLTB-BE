@@ -27,7 +27,7 @@ declare const DispatchModel: mongoose.Model<{
     conductorName: string;
     dispatcherName: string;
     trip: string;
-}> & {
+}> & Omit<{
     date: Date;
     designation: string;
     route: string;
@@ -43,7 +43,7 @@ declare const DispatchModel: mongoose.Model<{
     trip: string;
 } & {
     _id: mongoose.Types.ObjectId;
-}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+}, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
     date: Date;
     designation: string;
     route: string;
@@ -71,7 +71,7 @@ declare const DispatchModel: mongoose.Model<{
     conductorName: string;
     dispatcherName: string;
     trip: string;
-}>> & mongoose.FlatRecord<{
+}>> & Omit<mongoose.FlatRecord<{
     date: Date;
     designation: string;
     route: string;
@@ -87,5 +87,5 @@ declare const DispatchModel: mongoose.Model<{
     trip: string;
 }> & {
     _id: mongoose.Types.ObjectId;
-}>>;
+}, never>>>;
 export default DispatchModel;

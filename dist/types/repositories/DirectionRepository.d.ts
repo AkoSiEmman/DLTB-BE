@@ -31,22 +31,22 @@ interface IDirections {
 }
 declare class Directions {
     GetAllDirections(): Promise<false | (import("mongoose").Document<unknown, {}, {
+        createdAt: Date;
+        updatedAt: Date;
         route_code: string;
         bound: string;
         origin: string;
         destination: string;
+    }> & Omit<{
         createdAt: Date;
         updatedAt: Date;
-    }> & {
         route_code: string;
         bound: string;
         origin: string;
         destination: string;
-        createdAt: Date;
-        updatedAt: Date;
     } & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }, never>)[]>;
     AddNewDirection(direction: IDirections): Promise<boolean>;
 }
 export declare const directionRepo: Directions;

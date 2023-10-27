@@ -49,7 +49,7 @@ declare const TORTroubleModel: mongoose.Model<{
     recordId?: string | undefined;
     modId?: string | undefined;
     portalId?: any;
-}> & {
+}> & Omit<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
@@ -76,7 +76,7 @@ declare const TORTroubleModel: mongoose.Model<{
     portalId?: any;
 } & {
     _id: mongoose.Types.ObjectId;
-}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+}, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
@@ -126,7 +126,7 @@ declare const TORTroubleModel: mongoose.Model<{
     recordId?: string | undefined;
     modId?: string | undefined;
     portalId?: any;
-}>> & mongoose.FlatRecord<{
+}>> & Omit<mongoose.FlatRecord<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
@@ -153,5 +153,5 @@ declare const TORTroubleModel: mongoose.Model<{
     portalId?: any;
 }> & {
     _id: mongoose.Types.ObjectId;
-}>>;
+}, never>>>;
 export default TORTroubleModel;

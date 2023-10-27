@@ -42,7 +42,7 @@ export declare function GetAllEmployee(): Promise<false | (import("mongoose").Do
     }>;
     recordId?: string | undefined;
     modId?: string | undefined;
-}> & {
+}> & Omit<{
     fieldData: import("mongoose").Types.DocumentArray<{
         lastName: string;
         firstName: string;
@@ -63,6 +63,6 @@ export declare function GetAllEmployee(): Promise<false | (import("mongoose").Do
     modId?: string | undefined;
 } & {
     _id: import("mongoose").Types.ObjectId;
-})[] | undefined>;
+}, never>)[] | undefined>;
 export declare function AddNewEmployee(data: any): Promise<boolean>;
 export declare function UpdateEmployee(id: string, data: any): Promise<boolean>;

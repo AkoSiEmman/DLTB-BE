@@ -32,7 +32,7 @@ declare class CardUserService {
         password?: string | undefined;
         recordId?: string | undefined;
         cardId?: string | undefined;
-    }> & {
+    }> & Omit<{
         dateCreated: Date;
         username?: string | undefined;
         password?: string | undefined;
@@ -40,7 +40,7 @@ declare class CardUserService {
         cardId?: string | undefined;
     } & {
         _id: import("mongoose").Types.ObjectId;
-    }) | null>;
+    }, never>) | null>;
 }
 declare const _default: CardUserService;
 export default _default;

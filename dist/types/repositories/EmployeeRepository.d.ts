@@ -64,7 +64,7 @@ declare class EmployeeRepository {
         }>;
         recordId?: string | undefined;
         modId?: string | undefined;
-    }> & {
+    }> & Omit<{
         fieldData: import("mongoose").Types.DocumentArray<{
             lastName: string;
             firstName: string;
@@ -85,7 +85,7 @@ declare class EmployeeRepository {
         modId?: string | undefined;
     } & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }, never>)[]>;
     UpdateEmployeeById(id: string, data: IEmployeeData): Promise<(import("mongoose").Document<unknown, {}, {
         fieldData: import("mongoose").Types.DocumentArray<{
             lastName: string;
@@ -105,7 +105,7 @@ declare class EmployeeRepository {
         }>;
         recordId?: string | undefined;
         modId?: string | undefined;
-    }> & {
+    }> & Omit<{
         fieldData: import("mongoose").Types.DocumentArray<{
             lastName: string;
             firstName: string;
@@ -126,7 +126,7 @@ declare class EmployeeRepository {
         modId?: string | undefined;
     } & {
         _id: import("mongoose").Types.ObjectId;
-    }) | null | undefined>;
+    }, never>) | null | undefined>;
     AddEmployee(data: IEmployeeData): Promise<boolean>;
     UpdateEmployeePerEMPNo(data: IEmployeeData): Promise<true | undefined>;
     GetEmployeePerEmpNo(id: number): Promise<any>;

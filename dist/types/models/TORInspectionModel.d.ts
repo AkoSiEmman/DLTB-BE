@@ -65,7 +65,7 @@ declare const TORInspectionModel: mongoose.Model<{
     }>;
     modId?: string | undefined;
     portalData?: any;
-}> & {
+}> & Omit<{
     recordId: string;
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
@@ -100,7 +100,7 @@ declare const TORInspectionModel: mongoose.Model<{
     portalData?: any;
 } & {
     _id: mongoose.Types.ObjectId;
-}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+}, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
     recordId: string;
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
@@ -166,7 +166,7 @@ declare const TORInspectionModel: mongoose.Model<{
     }>;
     modId?: string | undefined;
     portalData?: any;
-}>> & mongoose.FlatRecord<{
+}>> & Omit<mongoose.FlatRecord<{
     recordId: string;
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
@@ -201,5 +201,5 @@ declare const TORInspectionModel: mongoose.Model<{
     portalData?: any;
 }> & {
     _id: mongoose.Types.ObjectId;
-}>>;
+}, never>>>;
 export default TORInspectionModel;

@@ -84,7 +84,7 @@ declare class TORRemittanceRepository {
             cashier_emp_name: string;
         }>;
         portalData?: any;
-    }> & {
+    }> & Omit<{
         recordId: string;
         modId: string;
         fieldData: import("mongoose").Types.DocumentArray<{
@@ -114,7 +114,7 @@ declare class TORRemittanceRepository {
         portalData?: any;
     } & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }, never>)[]>;
 }
 declare const _default: TORRemittanceRepository;
 export default _default;

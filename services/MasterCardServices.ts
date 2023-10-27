@@ -1,5 +1,6 @@
 import axios from "axios";
-import MasterCardRepository, { IMasterCard } from "../repositories/MasterCardRepository";
+import MasterCardRepository from "../repositories/MasterCardRepository";
+import { IMasterCard } from "../models/MasterCardModel";
 
 class MasterCardServices{
 

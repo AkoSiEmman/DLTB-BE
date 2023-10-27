@@ -23,28 +23,25 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-export interface IMasterCard {
-    cardId: string;
-    balance: number;
-    createdAt: Date;
-    updatedAt: Date;
-}
+import { IMasterCard } from "../models/MasterCardModel";
 declare class MasterCardRepository {
     GetAllMasterCard(): Promise<false | (import("mongoose").Document<unknown, {}, {
         cardId: string;
         createdAt: Date;
         updatedAt: Date;
+        riderId: string;
         balance: number;
-    }> & {
+    }> & Omit<{
         cardId: string;
         createdAt: Date;
         updatedAt: Date;
+        riderId: string;
         balance: number;
     } & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }, never>)[]>;
     CreateNewMasterCard(masterCard: IMasterCard): Promise<unknown>;
-    FindCardIdInMasterCard(cardId: string): Promise<unknown>;
+    FindCardIdInMasterCard(cardId: string): Promise<IMasterCard | boolean | string>;
     UpdateMasterCardBalanceByCardId(cardId: string, decreaseAmount: Number, increaseAmount: Number): Promise<unknown>;
 }
 declare const _default: MasterCardRepository;

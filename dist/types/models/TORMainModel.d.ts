@@ -201,7 +201,7 @@ declare const TORMainModel: mongoose.Model<{
     portalId: any[];
     recordId?: string | undefined;
     modId?: string | undefined;
-}> & {
+}> & Omit<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
@@ -304,7 +304,7 @@ declare const TORMainModel: mongoose.Model<{
     modId?: string | undefined;
 } & {
     _id: mongoose.Types.ObjectId;
-}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+}, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
@@ -506,7 +506,7 @@ declare const TORMainModel: mongoose.Model<{
     portalId: any[];
     recordId?: string | undefined;
     modId?: string | undefined;
-}>> & mongoose.FlatRecord<{
+}>> & Omit<mongoose.FlatRecord<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
@@ -609,5 +609,5 @@ declare const TORMainModel: mongoose.Model<{
     modId?: string | undefined;
 }> & {
     _id: mongoose.Types.ObjectId;
-}>>;
+}, never>>>;
 export default TORMainModel;

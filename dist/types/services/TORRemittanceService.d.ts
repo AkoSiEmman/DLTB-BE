@@ -58,7 +58,7 @@ declare class TORRemittanceService {
             cashier_emp_name: string;
         }>;
         portalData?: any;
-    }> & {
+    }> & Omit<{
         recordId: string;
         modId: string;
         fieldData: import("mongoose").Types.DocumentArray<{
@@ -88,7 +88,7 @@ declare class TORRemittanceService {
         portalData?: any;
     } & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }, never>)[]>;
     GenerateSession(): Promise<any>;
     EndSession(token: string | boolean): Promise<boolean>;
 }

@@ -29,7 +29,7 @@ export async function EmployeeGenerateSessionService() : Promise<string | boolea
 
     try{
         
-        const generateSession = await axios.post("https://fms.dltbbus.com.ph/fmi/data/v1/databases/dltb%20company%20database/sessions", {},{
+        const generateSession = await axios.post(" ", {},{
             auth: {
                 username: usernameCred,
                 password: passwordCred,

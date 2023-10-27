@@ -37,7 +37,7 @@ declare const EmployeeModel: mongoose.Model<{
     }>;
     recordId?: string | undefined;
     modId?: string | undefined;
-}> & {
+}> & Omit<{
     fieldData: mongoose.Types.DocumentArray<{
         lastName: string;
         firstName: string;
@@ -58,7 +58,7 @@ declare const EmployeeModel: mongoose.Model<{
     modId?: string | undefined;
 } & {
     _id: mongoose.Types.ObjectId;
-}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+}, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
     fieldData: mongoose.Types.DocumentArray<{
         lastName: string;
         firstName: string;
@@ -96,7 +96,7 @@ declare const EmployeeModel: mongoose.Model<{
     }>;
     recordId?: string | undefined;
     modId?: string | undefined;
-}>> & mongoose.FlatRecord<{
+}>> & Omit<mongoose.FlatRecord<{
     fieldData: mongoose.Types.DocumentArray<{
         lastName: string;
         firstName: string;
@@ -117,5 +117,5 @@ declare const EmployeeModel: mongoose.Model<{
     modId?: string | undefined;
 }> & {
     _id: mongoose.Types.ObjectId;
-}>>;
+}, never>>>;
 export default EmployeeModel;

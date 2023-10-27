@@ -9,14 +9,14 @@ declare const EmployeeCardModel: mongoose.Model<{
     cardId: string;
     createdAt: Date;
     updatedAt: Date;
-}> & {
+}> & Omit<{
     empNo: string;
     cardId: string;
     createdAt: Date;
     updatedAt: Date;
 } & {
     _id: mongoose.Types.ObjectId;
-}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+}, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
     empNo: string;
     cardId: string;
     createdAt: Date;
@@ -26,12 +26,12 @@ declare const EmployeeCardModel: mongoose.Model<{
     cardId: string;
     createdAt: Date;
     updatedAt: Date;
-}>> & mongoose.FlatRecord<{
+}>> & Omit<mongoose.FlatRecord<{
     empNo: string;
     cardId: string;
     createdAt: Date;
     updatedAt: Date;
 }> & {
     _id: mongoose.Types.ObjectId;
-}>>;
+}, never>>>;
 export default EmployeeCardModel;

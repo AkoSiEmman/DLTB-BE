@@ -23,21 +23,23 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { IMasterCard } from "../repositories/MasterCardRepository";
+import { IMasterCard } from "../models/MasterCardModel";
 declare class MasterCardServices {
     GetAllMasterCard(): Promise<false | (import("mongoose").Document<unknown, {}, {
         cardId: string;
         createdAt: Date;
         updatedAt: Date;
+        riderId: string;
         balance: number;
-    }> & {
+    }> & Omit<{
         cardId: string;
         createdAt: Date;
         updatedAt: Date;
+        riderId: string;
         balance: number;
     } & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }, never>)[]>;
     CreateNewMasterCard(masterCard: IMasterCard): Promise<any>;
 }
 declare const _default: MasterCardServices;

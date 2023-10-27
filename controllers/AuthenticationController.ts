@@ -62,7 +62,7 @@ export async function GetUserByEmailController(request : Request, response : Res
 
     try{
 
-        const user = await UserService.GetUserByEmail(request.body.email);
+        const user = await UserService.GetUserByEmail(request.params.email);
 
         if(user.status === 0){
           
