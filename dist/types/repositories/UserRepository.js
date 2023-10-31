@@ -74,6 +74,22 @@ class UserRepository {
             }
         });
     }
+    UpdateUser(id, user) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const updateUser = yield UserModel_1.default.findByIdAndUpdate(id, {
+                    $set: user,
+                }, {
+                    new: true,
+                });
+                return updateUser;
+            }
+            catch (e) {
+                console.log(`Error in repository: ${e}`);
+                return e;
+            }
+        });
+    }
 }
 exports.default = new UserRepository();
 //# sourceMappingURL=UserRepository.js.map

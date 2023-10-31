@@ -5,6 +5,7 @@ declare class UserRepository {
     AddUser(newUser: IUser): Promise<unknown>;
     CheckIfEmailExist(email: string): Promise<unknown>;
     GetUserPasswordByEmail(email: string): Promise<unknown>;
+    UpdateUser(id: string, user: IUser): Promise<unknown>;
 }
 declare const _default: UserRepository;
 export default _default;

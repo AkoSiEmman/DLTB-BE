@@ -42,6 +42,7 @@ import RiderWalletRouter from "./routes/RiderWalletRoutes";
 import RiderRouter from "./routes/RiderRoutes";
 import StationRouter from "./routes/StationRoutes";
 import UserRouter from "./routes/UserRoutes";
+import CooperativeEmployeeRouter from "./routes/CooperativeEmployeeRoutes";
 
 
 //////////////////////////////////////////////////
@@ -113,6 +114,8 @@ app.use(urlBackend, RiderRouter);
 app.use(urlBackend, StationRouter);
 
 app.use(urlBackend, UserRouter);
+
+app.use(urlBackend, CooperativeEmployeeRouter);
 
 
 /////////////////////////

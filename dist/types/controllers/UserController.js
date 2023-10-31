@@ -12,9 +12,45 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AddUserContorller = exports.GetUserByIdController = exports.GetAllUserController = void 0;
+exports.AddUserContorller = exports.GetUserByIdController = exports.GetAllUserController = exports.UpdateUserByIdController = void 0;
 const GetCurrentDate_1 = require("../common/GetCurrentDate");
 const UserService_1 = __importDefault(require("../services/UserService"));
+function UpdateUserByIdController(request, response) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const updateUser = yield UserService_1.default.UpdateUser(request.params.id, request.body);
+            if (updateUser.status === 0) {
+                response.status(200).json({ messages: [{
+                            code: "0",
+                            message: "OK",
+                            dateTime: GetCurrentDate_1.GetCurrentDateSTR,
+                        }],
+                    response: updateUser.response
+                });
+            }
+            else {
+                response.status(201).json({ messages: [{
+                            code: updateUser.status,
+                            message: updateUser.message,
+                            dateTime: GetCurrentDate_1.GetCurrentDateSTR,
+                        }],
+                    response: updateUser.response
+                });
+            }
+        }
+        catch (e) {
+            console.error("Error in controller: " + e);
+            response.status(500).json({ messages: [{
+                        code: "1",
+                        message: "" + e,
+                        dateTime: GetCurrentDate_1.GetCurrentDateSTR,
+                    }],
+                response: {}
+            });
+        }
+    });
+}
+exports.UpdateUserByIdController = UpdateUserByIdController;
 function GetAllUserController(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         try {

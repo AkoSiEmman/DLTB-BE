@@ -31,6 +31,6 @@ const masterSchema = new mongoose_1.default.Schema({
         required: true,
     }
 });
-const masterCardModel = mongoose_1.default.model("MasterCardRecords", masterSchema);
+const masterCardModel = mongoose_1.default.model("mastercardrecords", masterSchema, { collection: "mastercardrecords" }.collection);
 exports.default = masterCardModel;
 //# sourceMappingURL=MasterCardModel.js.map

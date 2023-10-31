@@ -14,9 +14,27 @@ export interface IUser {
 
     role: string,
 
+    company : string,
+
     password : string,
 
     isEmailVerified : boolean,
+
+    isAllowedToTorMain : boolean,
+
+    isAllowedToTorTicket : boolean,
+    
+    isAllowedToTorFuel : boolean,
+
+    isAllowedToTorRemittance : boolean,
+
+    isAllowedToTorTrip : boolean,
+
+    isAllowedToTorInspection : boolean,
+
+    isAllowedToTorViolation : boolean,
+
+    isAllowedToTorTrouble : boolean,
 
     updatedAt: Date,
 
@@ -57,10 +75,57 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
 
+    company :{
+        type: String,
+        index: true,
+        required: true
+    },
+
     isEmailVerified: {
         type: Boolean,
         index: true,
         default : false,
+    },
+
+    isAllowedToTorMain:{
+        type: Boolean,
+        index: true,
+        default : true,
+    },
+    isAllowedToTorTicket:{
+        type: Boolean,
+        index: true,
+        default : true,
+    },
+    isAllowedToTorFuel:{
+        type: Boolean,
+        index: true,
+        default : true,
+    },
+    isAllowedToTorRemittance:{
+        type: Boolean,
+        index: true,
+        default : true,
+    },
+    isAllowedToTorTrip:{
+        type: Boolean,
+        index: true,
+        default : true,
+    },
+    isAllowedToTorInspection:{
+        type: Boolean,
+        index: true,
+        default : true,
+    },
+    isAllowedToTorViolation:{
+        type: Boolean,
+        index: true,
+        default : true,
+    },
+    isAllowedToTorTrouble:{
+        type: Boolean,
+        index: true,
+        default : true,
     },
 
     role:{

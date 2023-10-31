@@ -24,7 +24,7 @@ function EmployeeGenerateSessionService() {
         console.log("Username credentials " + usernameCred);
         console.log("Password credential " + passwordCred);
         try {
-            const generateSession = yield axios_1.default.post("https://fms.dltbbus.com.ph/fmi/data/v1/databases/dltb%20company%20database/sessions", {}, {
+            const generateSession = yield axios_1.default.post(" ", {}, {
                 auth: {
                     username: usernameCred,
                     password: passwordCred,

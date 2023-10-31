@@ -74,6 +74,21 @@ class UserService{
 
     }
 
+    async UpdateUser(id : string, user : IUser){
+
+        try{
+
+            const updateUser = await UserRepository.UpdateUser(id, user)
+
+            return {status: 0, message: "OK", response: updateUser}
+
+        }catch(e){
+            console.log(`Error in updating vehicle: ${e}`);
+            return {status: 500, message: e, response: {}}
+        }
+
+    }
+
 }
 
 export default new UserService();

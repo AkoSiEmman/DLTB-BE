@@ -36,6 +36,46 @@ const userSchema = new mongoose_1.default.Schema({
         index: true,
         default: false,
     },
+    isAllowedToTorMain: {
+        type: Boolean,
+        index: true,
+        default: true,
+    },
+    isAllowedToTorTicket: {
+        type: Boolean,
+        index: true,
+        default: true,
+    },
+    isAllowedToTorFuel: {
+        type: Boolean,
+        index: true,
+        default: true,
+    },
+    isAllowedToTorRemittance: {
+        type: Boolean,
+        index: true,
+        default: true,
+    },
+    isAllowedToTorTrip: {
+        type: Boolean,
+        index: true,
+        default: true,
+    },
+    isAllowedToTorInspection: {
+        type: Boolean,
+        index: true,
+        default: true,
+    },
+    isAllowedToTorViolation: {
+        type: Boolean,
+        index: true,
+        default: true,
+    },
+    isAllowedToTorTrouble: {
+        type: Boolean,
+        index: true,
+        default: true,
+    },
     role: {
         type: String,
         index: true,

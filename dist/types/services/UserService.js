@@ -66,6 +66,18 @@ class UserService {
             }
         });
     }
+    UpdateUser(id, user) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const updateUser = yield UserRepository_1.default.UpdateUser(id, user);
+                return { status: 0, message: "OK", response: updateUser };
+            }
+            catch (e) {
+                console.log(`Error in updating vehicle: ${e}`);
+                return { status: 500, message: e, response: {} };
+            }
+        });
+    }
 }
 exports.default = new UserService();
 //# sourceMappingURL=UserService.js.map

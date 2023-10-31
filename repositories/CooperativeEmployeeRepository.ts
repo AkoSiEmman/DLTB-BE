@@ -1,4 +1,4 @@
-import CooperativeEmployeeModel, { ICooperativeEmployee } from "../models/CooperativeModel";
+import CooperativeEmployeeModel, { ICooperativeEmployee } from "../models/CooperativeEmployeeModel";
 
 class CooperativeEmployeeRepository{
 

@@ -94,6 +94,27 @@ class UserRepository {
 
     }
 
+    async UpdateUser ( id : string, user : IUser ){
+    
+        try{
+
+            const updateUser = await UserModel.findByIdAndUpdate(id, {
+                $set: user,
+              }, {
+                new: true,
+              });
+            return updateUser;
+
+        }catch(e){
+
+            console.log(`Error in repository: ${e}`)
+
+            return e
+
+        }
+
+    }
+
 }
 
 export default new UserRepository();

@@ -36,6 +36,15 @@ declare class UserService {
         message: unknown;
         response: {};
     }>;
+    UpdateUser(id: string, user: IUser): Promise<{
+        status: number;
+        message: string;
+        response: unknown;
+    } | {
+        status: number;
+        message: unknown;
+        response: {};
+    }>;
 }
 declare const _default: UserService;
 export default _default;

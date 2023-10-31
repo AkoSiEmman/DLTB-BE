@@ -7,5 +7,6 @@ const UserRouter = (0, express_1.Router)();
 UserRouter.get("/user", CheckTokenMiddleware_1.CheckTokenMiddleware, UserController_1.GetAllUserController);
 UserRouter.get("/user/:id", CheckTokenMiddleware_1.CheckTokenMiddleware, UserController_1.GetUserByIdController);
 UserRouter.post("/user", CheckTokenMiddleware_1.CheckTokenMiddleware, UserController_1.AddUserContorller);
+UserRouter.put("/user/:id", CheckTokenMiddleware_1.CheckTokenMiddleware, UserController_1.UpdateUserByIdController);
 exports.default = UserRouter;
 //# sourceMappingURL=UserRoutes.js.map

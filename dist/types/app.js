@@ -32,6 +32,7 @@ const RiderWalletRoutes_1 = __importDefault(require("./routes/RiderWalletRoutes"
 const RiderRoutes_1 = __importDefault(require("./routes/RiderRoutes"));
 const StationRoutes_1 = __importDefault(require("./routes/StationRoutes"));
 const UserRoutes_1 = __importDefault(require("./routes/UserRoutes"));
+const CooperativeEmployeeRoutes_1 = __importDefault(require("./routes/CooperativeEmployeeRoutes"));
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 app.use((0, cookie_parser_1.default)());
@@ -66,6 +67,7 @@ app.use(urlBackend, RiderWalletRoutes_1.default);
 app.use(urlBackend, RiderRoutes_1.default);
 app.use(urlBackend, StationRoutes_1.default);
 app.use(urlBackend, UserRoutes_1.default);
+app.use(urlBackend, CooperativeEmployeeRoutes_1.default);
 const url = process.env.DB_CONNECTION_STRING ? process.env.DB_CONNECTION_STRING : '';
 const filipayUrl = process.env.DB_FILIPAY_CONNECTION_STRING ? process.env.DB_FILIPAY_CONNECTION_STRING : '';
 (0, DbConnection_1.connectToMongoDB)(url);

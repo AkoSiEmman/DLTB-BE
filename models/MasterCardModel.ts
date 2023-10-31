@@ -42,6 +42,6 @@ const masterSchema = new mongoose.Schema({
 
 })
 
-const masterCardModel = mongoose.model("MasterCardRecords", masterSchema);
+const masterCardModel = mongoose.model("mastercardrecords", masterSchema,{ collection: "mastercardrecords" }.collection);
 
 export default masterCardModel;
