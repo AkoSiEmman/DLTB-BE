@@ -136,7 +136,12 @@ const fuelSchema = new mongoose.Schema({
         type: Date,
         index: true,
         default: new Date
-    }
+    },
+    dateCreated:{
+        type: Date,
+        index: true,
+        default: new Date
+    },
 })
 
 const torRemittanceSchema = new mongoose.Schema({
@@ -144,13 +149,13 @@ const torRemittanceSchema = new mongoose.Schema({
     recordId: {
         type: String,
         index: true,
-        required: true
+        default :""
     },
 
     modId:{
         type: String,
         index: true,
-        required: true
+        default :""
     },
     
     fieldData: [fuelSchema]

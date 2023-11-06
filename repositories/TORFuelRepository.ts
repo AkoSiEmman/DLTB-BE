@@ -51,6 +51,22 @@ class TORFuelRepository{
 
     }
 
+    async CreateTORFuel(tor : IFuel){
+    
+        try{
+
+            const newTor = new TORFuelModel(tor);
+
+            return  await newTor.save();
+
+        }catch(e){
+            console.error("Error in create tor repository: "+e);
+            return false;
+        }
+
+
+    }
+
     async GetAllTOURFuel(){
         
         try{

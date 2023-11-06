@@ -42,8 +42,28 @@ class TORRemittanceService{
         }
 
     }
-
+    
     async CreateTORRemittance(newTorRemittance : IRemittance){
+    
+        try{
+            
+            const newRemittance = await TORRemittanceRepository.CreateTORRemittance(newTorRemittance);
+
+            if(newRemittance){
+                return {status: 0, message: "OK"};
+            }else{
+                return {status: 1, message: "FAILED"};
+            }
+
+           
+        }catch(e){
+            console.error("Error in create tor remittance service: "+e);
+            return {status: 500, message: e};
+        }
+
+    }
+
+    async CreateTORRemittanceSync(newTorRemittance : IRemittance){
      
         try{
 

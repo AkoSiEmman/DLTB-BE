@@ -168,7 +168,12 @@ current_balance:{
     type: Number,
     index: true,
     default: 0
-}
+},
+dateCreated:{
+    type: Date,
+    index: true,
+    default: new Date
+},
 })
 
 const torTicketSchema = new mongoose.Schema({

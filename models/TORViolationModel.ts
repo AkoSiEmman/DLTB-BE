@@ -181,7 +181,12 @@ const violationSchema = new mongoose.Schema({
         type: Date,
         index: true,
         default: new Date
-    }
+    },
+    dateCreated:{
+        type: Date,
+        index: true,
+        default: new Date
+    },
 
 })
 

@@ -135,7 +135,14 @@ const torFuel = new mongoose.Schema({
         type: String,
         index: true,
         default:""
-    }
+    },
+
+    dateCreated:{
+        type: Date,
+        index: true,
+        default: new Date
+    },
+    
     
 });
 
@@ -146,14 +153,13 @@ const torFuelSchema = new mongoose.Schema({
         type: String, 
         index: true,
         unique: true,
-        required: true,
         default: ""
     },
 
     modId:{
         type: String,
         index: true,
-        required: true
+        default:"",
     },
 
     fieldData: [torFuel]
