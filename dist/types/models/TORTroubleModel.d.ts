@@ -3,6 +3,7 @@ declare const TORTroubleModel: mongoose.Model<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
+        dateCreated: Date;
         control_no: string;
         tor_no: string;
         date_of_trip: Date;
@@ -28,6 +29,7 @@ declare const TORTroubleModel: mongoose.Model<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
+        dateCreated: Date;
         control_no: string;
         tor_no: string;
         date_of_trip: Date;
@@ -53,6 +55,7 @@ declare const TORTroubleModel: mongoose.Model<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
+        dateCreated: Date;
         control_no: string;
         tor_no: string;
         date_of_trip: Date;
@@ -80,6 +83,7 @@ declare const TORTroubleModel: mongoose.Model<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
+        dateCreated: Date;
         control_no: string;
         tor_no: string;
         date_of_trip: Date;
@@ -105,6 +109,7 @@ declare const TORTroubleModel: mongoose.Model<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
+        dateCreated: Date;
         control_no: string;
         tor_no: string;
         date_of_trip: Date;
@@ -130,6 +135,7 @@ declare const TORTroubleModel: mongoose.Model<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
+        dateCreated: Date;
         control_no: string;
         tor_no: string;
         date_of_trip: Date;

@@ -485,7 +485,12 @@ const torSchema = new mongoose_1.default.Schema({
         type: String,
         index: true,
         default: ""
-    }
+    },
+    dateCreated: {
+        type: Date,
+        index: true,
+        default: new Date
+    },
 });
 const torMainSchema = new mongoose_1.default.Schema({
     portalId: [],

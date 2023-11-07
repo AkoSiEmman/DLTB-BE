@@ -30,12 +30,17 @@ declare class TORRemittanceService {
         status: number;
         message: unknown;
     }>;
+    CreateTORRemittanceSync(newTorRemittance: IRemittance): Promise<{
+        status: number;
+        message: unknown;
+    }>;
     GetAllTORRemittance(): Promise<false | (import("mongoose").Document<unknown, {}, {
         recordId: string;
         modId: string;
         fieldData: import("mongoose").Types.DocumentArray<{
             UUID: string;
             route: string;
+            dateCreated: Date;
             device_id: string;
             control_no: string;
             tor_no: string;
@@ -64,6 +69,7 @@ declare class TORRemittanceService {
         fieldData: import("mongoose").Types.DocumentArray<{
             UUID: string;
             route: string;
+            dateCreated: Date;
             device_id: string;
             control_no: string;
             tor_no: string;

@@ -29,6 +29,10 @@ declare class TORFuelService {
         status: number;
         message: unknown;
     }>;
+    CreateTORFuelServiceSync(torFuel: IFuel): Promise<{
+        status: number;
+        message: unknown;
+    }>;
     GetAllTORFuelService(): Promise<{}>;
     GenerateSession(): Promise<any>;
     EndSession(token: string | boolean): Promise<boolean>;

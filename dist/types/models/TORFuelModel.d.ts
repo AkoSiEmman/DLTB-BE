@@ -4,6 +4,7 @@ declare const TORFuelModel: mongoose.Model<{
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         date_of_trip: Date;
@@ -32,6 +33,7 @@ declare const TORFuelModel: mongoose.Model<{
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         date_of_trip: Date;
@@ -60,6 +62,7 @@ declare const TORFuelModel: mongoose.Model<{
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         date_of_trip: Date;
@@ -90,6 +93,7 @@ declare const TORFuelModel: mongoose.Model<{
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         date_of_trip: Date;
@@ -118,6 +122,7 @@ declare const TORFuelModel: mongoose.Model<{
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         date_of_trip: Date;
@@ -146,6 +151,7 @@ declare const TORFuelModel: mongoose.Model<{
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         date_of_trip: Date;

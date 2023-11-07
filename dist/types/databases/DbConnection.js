@@ -11,7 +11,8 @@ function connectToMongoDB(connectionString) {
     const db = mongoose_1.default.connection;
     db.on('error', (error) => {
         console.error(error);
-        console.log("Reconnecting to database...");
+        console.log("Reconnecting to databasesssssss...");
+        console.log("connectToMongoDB connectionString: " + connectionString);
         setTimeout(connectToMongoDB, 1000);
     });
     db.once('open', () => console.log("Connected to database"));
@@ -20,10 +21,11 @@ exports.connectToMongoDB = connectToMongoDB;
 ;
 function connectToFilipayDB(connectionString) {
     console.log("Connecting to database...");
+    console.log("connectToFilipayDB connectionString: " + connectionString);
     const db = mongoose_1.default.createConnection(connectionString);
     db.on("error", (error) => {
         console.error(error);
-        console.log("Reconnecting to database...");
+        console.log("Reconnecting to databasessssssss...");
         setTimeout(() => connectToFilipayDB(connectionString), 1000);
     });
     db.once("open", () => console.log("Connected to database"));

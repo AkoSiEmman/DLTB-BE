@@ -148,7 +148,12 @@ const inspectionSchema = new mongoose_1.default.Schema({
         type: Date,
         index: true,
         default: new Date
-    }
+    },
+    dateCreated: {
+        type: Date,
+        index: true,
+        default: new Date
+    },
 });
 const torInspectionSchema = new mongoose_1.default.Schema({
     portalData: {},

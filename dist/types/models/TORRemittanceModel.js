@@ -118,19 +118,24 @@ const fuelSchema = new mongoose_1.default.Schema({
         type: Date,
         index: true,
         default: new Date
-    }
+    },
+    dateCreated: {
+        type: Date,
+        index: true,
+        default: new Date
+    },
 });
 const torRemittanceSchema = new mongoose_1.default.Schema({
     portalData: {},
     recordId: {
         type: String,
         index: true,
-        required: true
+        default: ""
     },
     modId: {
         type: String,
         index: true,
-        required: true
+        default: ""
     },
     fieldData: [fuelSchema]
 });

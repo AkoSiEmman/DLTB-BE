@@ -144,7 +144,12 @@ const torSchema = new mongoose_1.default.Schema({
         type: Number,
         index: true,
         default: 0
-    }
+    },
+    dateCreated: {
+        type: Date,
+        index: true,
+        default: new Date
+    },
 });
 const torTicketSchema = new mongoose_1.default.Schema({
     portalData: [],

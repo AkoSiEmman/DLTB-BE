@@ -26,6 +26,18 @@ class TORFuelRepository {
             }
         });
     }
+    CreateTORFuel(tor) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const newTor = new TORFuelModel_1.default(tor);
+                return yield newTor.save();
+            }
+            catch (e) {
+                console.error("Error in create tor repository: " + e);
+                return false;
+            }
+        });
+    }
     GetAllTOURFuel() {
         return __awaiter(this, void 0, void 0, function* () {
             try {

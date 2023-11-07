@@ -38,6 +38,19 @@ class TORRemittanceRepository {
             }
         });
     }
+    CreateTORRemittance(newTorRemittance) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const torRemittance = new TORRemittanceModel_1.default(newTorRemittance);
+                const saveRemittance = yield torRemittance.save();
+                return saveRemittance;
+            }
+            catch (e) {
+                console.error("Error in create tor remittance repository: " + e);
+                return false;
+            }
+        });
+    }
 }
 exports.default = new TORRemittanceRepository();
 //# sourceMappingURL=TORRemittanceRepository.js.map

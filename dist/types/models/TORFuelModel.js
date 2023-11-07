@@ -116,7 +116,12 @@ const torFuel = new mongoose_1.default.Schema({
         type: String,
         index: true,
         default: ""
-    }
+    },
+    dateCreated: {
+        type: Date,
+        index: true,
+        default: new Date
+    },
 });
 const torFuelSchema = new mongoose_1.default.Schema({
     portalData: {},
@@ -124,13 +129,12 @@ const torFuelSchema = new mongoose_1.default.Schema({
         type: String,
         index: true,
         unique: true,
-        required: true,
         default: ""
     },
     modId: {
         type: String,
         index: true,
-        required: true
+        default: "",
     },
     fieldData: [torFuel]
 });
