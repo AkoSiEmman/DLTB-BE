@@ -155,7 +155,12 @@ const violationSchema = new mongoose_1.default.Schema({
         type: Date,
         index: true,
         default: new Date
-    }
+    },
+    dateCreated: {
+        type: Date,
+        index: true,
+        default: new Date
+    },
 });
 const torViolationSchema = new mongoose_1.default.Schema({
     portalId: {},

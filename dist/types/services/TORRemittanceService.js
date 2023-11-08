@@ -45,6 +45,23 @@ class TORRemittanceService {
     CreateTORRemittance(newTorRemittance) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                const newRemittance = yield TORRemittanceRepository_1.default.CreateTORRemittance(newTorRemittance);
+                if (newRemittance) {
+                    return { status: 0, message: "OK" };
+                }
+                else {
+                    return { status: 1, message: "FAILED" };
+                }
+            }
+            catch (e) {
+                console.error("Error in create tor remittance service: " + e);
+                return { status: 500, message: e };
+            }
+        });
+    }
+    CreateTORRemittanceSync(newTorRemittance) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
                 const token = yield this.GenerateSession();
                 const config = {
                     headers: {

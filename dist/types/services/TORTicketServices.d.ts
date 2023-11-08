@@ -65,6 +65,7 @@ declare class TORTicketServices {
         modId: string;
         fieldData: import("mongoose").Types.DocumentArray<{
             route: string;
+            dateCreated: Date;
             device_id: string;
             control_no: string;
             tor_no: string;
@@ -99,6 +100,7 @@ declare class TORTicketServices {
         modId: string;
         fieldData: import("mongoose").Types.DocumentArray<{
             route: string;
+            dateCreated: Date;
             device_id: string;
             control_no: string;
             tor_no: string;

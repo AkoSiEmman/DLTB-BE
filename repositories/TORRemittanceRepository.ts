@@ -90,6 +90,22 @@ class TORRemittanceRepository{
 
     }
 
+    async CreateTORRemittance(newTorRemittance : IRemittance){
+        
+        try{
+
+            const torRemittance = new TORRemittanceModel(newTorRemittance);
+
+            const saveRemittance = await torRemittance.save();
+            return saveRemittance;
+
+        }catch(e){
+            console.error("Error in create tor remittance repository: "+e);
+            return false;
+        }
+
+    }
+
 }
 
 export default new TORRemittanceRepository();

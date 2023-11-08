@@ -45,6 +45,23 @@ class TORFuelService {
     CreateTORFuelService(torFuel) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                const newTorFuel = yield TORFuelRepository_1.default.CreateTORFuel(torFuel);
+                if (newTorFuel) {
+                    return { status: 0, message: "OK" };
+                }
+                else {
+                    return { status: 1, message: "FAILED" };
+                }
+            }
+            catch (e) {
+                console.error("Error in create tor remittance service: " + e);
+                return { status: 500, message: e };
+            }
+        });
+    }
+    CreateTORFuelServiceSync(torFuel) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
                 const token = yield this.GenerateSession();
                 const config = {
                     headers: {

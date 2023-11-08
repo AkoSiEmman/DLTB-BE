@@ -4,6 +4,7 @@ declare const TORInspectionModel: mongoose.Model<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         tor_no: string;
@@ -37,6 +38,7 @@ declare const TORInspectionModel: mongoose.Model<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         tor_no: string;
@@ -70,6 +72,7 @@ declare const TORInspectionModel: mongoose.Model<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         tor_no: string;
@@ -105,6 +108,7 @@ declare const TORInspectionModel: mongoose.Model<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         tor_no: string;
@@ -138,6 +142,7 @@ declare const TORInspectionModel: mongoose.Model<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         tor_no: string;
@@ -171,6 +176,7 @@ declare const TORInspectionModel: mongoose.Model<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         tor_no: string;

@@ -6,6 +6,7 @@ export interface IUser {
     lastName: string;
     email: string;
     role: string;
+    company: string;
     password: string;
     isEmailVerified: boolean;
     isAllowedToTorMain: boolean;
@@ -26,6 +27,7 @@ declare const UserModel: mongoose.Model<{
     middleName: string;
     profileImageUrl: string;
     email: string;
+    company: string;
     isEmailVerified: boolean;
     isAllowedToTorMain: boolean;
     isAllowedToTorTicket: boolean;
@@ -45,6 +47,7 @@ declare const UserModel: mongoose.Model<{
     middleName: string;
     profileImageUrl: string;
     email: string;
+    company: string;
     isEmailVerified: boolean;
     isAllowedToTorMain: boolean;
     isAllowedToTorTicket: boolean;
@@ -64,6 +67,7 @@ declare const UserModel: mongoose.Model<{
     middleName: string;
     profileImageUrl: string;
     email: string;
+    company: string;
     isEmailVerified: boolean;
     isAllowedToTorMain: boolean;
     isAllowedToTorTicket: boolean;
@@ -85,6 +89,7 @@ declare const UserModel: mongoose.Model<{
     middleName: string;
     profileImageUrl: string;
     email: string;
+    company: string;
     isEmailVerified: boolean;
     isAllowedToTorMain: boolean;
     isAllowedToTorTicket: boolean;
@@ -104,6 +109,7 @@ declare const UserModel: mongoose.Model<{
     middleName: string;
     profileImageUrl: string;
     email: string;
+    company: string;
     isEmailVerified: boolean;
     isAllowedToTorMain: boolean;
     isAllowedToTorTicket: boolean;
@@ -123,6 +129,7 @@ declare const UserModel: mongoose.Model<{
     middleName: string;
     profileImageUrl: string;
     email: string;
+    company: string;
     isEmailVerified: boolean;
     isAllowedToTorMain: boolean;
     isAllowedToTorTicket: boolean;

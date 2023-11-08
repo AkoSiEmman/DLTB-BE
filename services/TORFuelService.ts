@@ -80,6 +80,25 @@ class TORFuelService{
     }
 
     async CreateTORFuelService(torFuel : IFuel){
+    
+        try{
+
+            const newTorFuel = await TORFuelRepository.CreateTORFuel(torFuel);
+
+            if(newTorFuel){
+                return {status: 0, message: "OK"};
+            }else{
+                return {status: 1, message: "FAILED"};
+            }
+
+        }catch(e){
+            console.error("Error in create tor remittance service: "+e);
+            return {status: 500, message: e};
+        }
+
+    }
+
+    async CreateTORFuelServiceSync(torFuel : IFuel){
 
         try{
 

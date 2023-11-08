@@ -320,7 +320,12 @@ const tripsSchema = new mongoose.Schema({
         type: String,
         index: true,
         default:""
-    }
+    },
+    dateCreated:{
+        type: Date,
+        index: true,
+        default: new Date
+    },
 
 
 })

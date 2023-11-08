@@ -4,6 +4,7 @@ declare const TORTicketModel: mongoose.Model<{
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         tor_no: string;
@@ -38,6 +39,7 @@ declare const TORTicketModel: mongoose.Model<{
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         tor_no: string;
@@ -72,6 +74,7 @@ declare const TORTicketModel: mongoose.Model<{
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         tor_no: string;
@@ -108,6 +111,7 @@ declare const TORTicketModel: mongoose.Model<{
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         tor_no: string;
@@ -142,6 +146,7 @@ declare const TORTicketModel: mongoose.Model<{
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         tor_no: string;
@@ -176,6 +181,7 @@ declare const TORTicketModel: mongoose.Model<{
     modId: string;
     fieldData: mongoose.Types.DocumentArray<{
         route: string;
+        dateCreated: Date;
         device_id: string;
         control_no: string;
         tor_no: string;

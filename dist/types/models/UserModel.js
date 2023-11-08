@@ -31,6 +31,11 @@ const userSchema = new mongoose_1.default.Schema({
         unique: true,
         required: true,
     },
+    company: {
+        type: String,
+        index: true,
+        required: true
+    },
     isEmailVerified: {
         type: Boolean,
         index: true,
@@ -97,6 +102,6 @@ const userSchema = new mongoose_1.default.Schema({
         default: new Date
     }
 });
-const UserModel = mongoose_1.default.model("userecords", userSchema, { collection: "userecords" }.collection);
+const UserModel = mongoose_1.default.model("userrecords", userSchema, { collection: "userrecords" }.collection);
 exports.default = UserModel;
 //# sourceMappingURL=UserModel.js.map
