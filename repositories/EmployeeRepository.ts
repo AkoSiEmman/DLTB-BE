@@ -3,11 +3,11 @@ import EmployeeModel from "../models/EmployeeModel";
 
 export interface IEmployeeData {
 
-    portalData: [],
+    // portalData: [],
 
-    recordId: number,
+    // recordId: number,
 
-    modId: number,
+    // modId: number,
 
     fieldData:{
 
@@ -71,15 +71,15 @@ class EmployeeRepository{
     async AddEmployee( data : IEmployeeData){
 
         try{
-           const newEmployee = {
-                "portalData" : data.portalData,
-                "recordId": data.recordId,
-                 "modId" : data.modId,
-                 "fieldData" : data.fieldData
-            }
+        //    const newEmployee = {
+        //         "portalData" : data.portalData,
+        //         "recordId": data.recordId,
+        //          "modId" : data.modId,
+        //          "fieldData" : data.fieldData
+        //     }
 
             // console.log(data);
-            const employeeData = new EmployeeModel(newEmployee);
+            const employeeData = new EmployeeModel(data.fieldData);
             const employeeDataSave = await employeeData.save();
 
             return true;
@@ -110,7 +110,7 @@ class EmployeeRepository{
 
         try{
  
-            const employee = await EmployeeModel.findOne({'fieldData[0].empNo' :id})
+            const employee = await EmployeeModel.findOne({'empNo' :id})
 
             return employee
         }catch(e){
@@ -123,7 +123,7 @@ class EmployeeRepository{
     async CheckIfEmployeePerNoExist(id : IEmployeeData) : Promise<boolean>{
         try{
             let ifAllowedToAdd = false;
-            const employee = await EmployeeModel.findOne({'fieldData.empNo' :id})
+            const employee = await EmployeeModel.findOne({'empNo' :id})
 
             if(employee === null){
                 ifAllowedToAdd = true;
@@ -146,7 +146,7 @@ class EmployeeRepository{
        
         try{
             
-            const updateEmployeeData = await EmployeeModel.findOneAndUpdate({'fieldData.empNo' :data.empNo}, data)
+            const updateEmployeeData = await EmployeeModel.findOneAndUpdate({'empNo' :data.empNo}, data)
 
             return true;
         }catch(e){

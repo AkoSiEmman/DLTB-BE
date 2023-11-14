@@ -2,7 +2,11 @@ import mongoose from "mongoose";
 
 const employeeSchema = new mongoose.Schema({
   
-
+    coopId:{
+        type: String,
+        index: true,
+        default: "655321a339c1307c069616e9"
+    },
     lastName: {
         type: String,
         default: '',
@@ -99,20 +103,20 @@ const employeeSchema = new mongoose.Schema({
         default: '',
         index: true,
         required: false
-    }
+    },
 });
 
-const employeeDataSchema = new mongoose.Schema({
-        recordId: {
-        type: String
-       },
-       modId:{
-        type: String
-       },
-       fieldData: [employeeSchema],
-})
+// const employeeDataSchema = new mongoose.Schema({
+//         recordId: {
+//         type: String
+//        },
+//        modId:{
+//         type: String
+//        },
+//        fieldData: [employeeSchema],
+// })
 
 
 
-const EmployeeModel = mongoose.model('EmployeeRecords', employeeDataSchema);
+const EmployeeModel = mongoose.model('EmployeeRecordsv2', employeeSchema);
 export default EmployeeModel;

@@ -14,13 +14,17 @@ export async function EmployeeGenerateSessionService() : Promise<string | boolea
  
     let usernameCred = "filipay";
     let passwordCred ="";
-
+    let baseUrl = ""
     // if(process.env.USERNAME){
     //     usernameCred = process.env.USERNAME;
     // }
 
     if(process.env.PASSWORD){
         passwordCred = process.env.PASSWORD;
+    }
+
+    if(process.env.DLTB_SEARCH_SESSION_EMPLOYEE){
+        baseUrl = process.env.DLTB_SEARCH_SESSION_EMPLOYEE
     }
     
     console.log("Username credentials " + usernameCred);
@@ -29,7 +33,7 @@ export async function EmployeeGenerateSessionService() : Promise<string | boolea
 
     try{
         
-        const generateSession = await axios.post(" ", {},{
+        const generateSession = await axios.post(baseUrl, {},{
             auth: {
                 username: usernameCred,
                 password: passwordCred,

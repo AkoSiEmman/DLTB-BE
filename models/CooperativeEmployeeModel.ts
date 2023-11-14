@@ -1,6 +1,21 @@
-import mongoose, { ObjectId } from "mongoose";
+import mongoose, { ObjectId, Document } from "mongoose";
 
-export interface ICooperativeEmployee extends mongoose.Document {
+export interface ICooperativeEmployeeSchema {
+    firstName: string;
+
+    middleName: string;
+
+    lastName: string;
+
+    position: string;
+
+    companyName: string;
+
+    email: string;
+
+    password : string;
+}
+export interface ICooperativeEmployee extends Document {
 
     firstName: string;
 
@@ -11,6 +26,8 @@ export interface ICooperativeEmployee extends mongoose.Document {
     position: string;
 
     companyName: string;
+
+    email : string;
 
     password : string;
 
@@ -44,7 +61,8 @@ const cooperativeEmployeeSchema = new mongoose.Schema({
 
     position:{
         type: String,
-        required: true,
+        // required: true,
+        default: "Admin",
         index: true
     },
 
@@ -57,6 +75,13 @@ const cooperativeEmployeeSchema = new mongoose.Schema({
     password:{
         type: String,
         required: true,
+        index: true
+    },
+
+    email:{
+        type: String,
+        required: true,
+        unique: true,
         index: true
     },
 

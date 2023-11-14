@@ -14,6 +14,6 @@ const authorizationTokenSchema = new mongoose.Schema({
 
 });
 
-const AuthorizationTokenModel = mongoose.model('AuthorizationTokenRecords', authorizationTokenSchema);
+const AuthorizationTokenModel = mongoose.model('authorizationtokenrecords', authorizationTokenSchema  ,{ collection: "authorizationtokenrecords" }.collection);
 
 export default AuthorizationTokenModel;

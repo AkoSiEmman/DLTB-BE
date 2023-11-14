@@ -13,13 +13,21 @@ export interface IDevice extends Document{
 
 const deviceSchema = new mongoose.Schema({
     deviceId :{
-        type: mongoose.Schema.Types.ObjectId,
+        // type: mongoose.Schema.Types.ObjectId,
+        type : String,
         required: true,
     },
 
     coopId :{
-        type: mongoose.Schema.Types.ObjectId,
+        // type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: true,
+    },
+
+    dateCreated:{
+        type: Date,
+        default: new Date(),
+        index: true,
     }
 
 })

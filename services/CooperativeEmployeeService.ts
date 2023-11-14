@@ -1,4 +1,5 @@
-import { ICooperativeEmployee } from "../models/CooperativeEmployeeModel";
+import { GenerateHashPassword } from "../common/Bcrypt";
+import { ICooperativeEmployee, ICooperativeEmployeeSchema } from "../models/CooperativeEmployeeModel";
 import CooperativeEmployeeRepository from "../repositories/CooperativeEmployeeRepository";
 
 class CooperativeEmployeeService{
@@ -21,13 +22,19 @@ class CooperativeEmployeeService{
 
     }
 
-    async AddCooperativeEmployee(data: ICooperativeEmployee){
+    async AddCooperativeEmployee(data: ICooperativeEmployeeSchema){
 
         try{
+            
+            const hashedPassword = await GenerateHashPassword(data.password)
 
-            const newEmployee = await CooperativeEmployeeRepository.AddCooperativeEmployee(data);
+            const userAccount : ICooperativeEmployeeSchema = {...data , "password" : hashedPassword}
 
-            return {status: 0, message: "OK", response: newEmployee}
+           const saveUser = await CooperativeEmployeeRepository.AddCooperativeEmployee(userAccount)
+
+        //    const saveUser = await CooperativeEmployeeRepository.AddCooperativeEmployee(data)
+
+            return {status: 0, message: "OK", response: saveUser}
 
         }catch(e){
 

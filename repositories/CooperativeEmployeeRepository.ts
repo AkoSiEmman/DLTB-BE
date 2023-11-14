@@ -1,4 +1,4 @@
-import CooperativeEmployeeModel, { ICooperativeEmployee } from "../models/CooperativeEmployeeModel";
+import CooperativeEmployeeModel, { ICooperativeEmployee, ICooperativeEmployeeSchema } from "../models/CooperativeEmployeeModel";
 
 class CooperativeEmployeeRepository{
 
@@ -18,7 +18,7 @@ class CooperativeEmployeeRepository{
 
     }
 
-    async AddCooperativeEmployee(data: ICooperativeEmployee){
+    async AddCooperativeEmployee(data: ICooperativeEmployeeSchema){
 
         try{
 
