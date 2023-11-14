@@ -115,6 +115,25 @@ class UserRepository {
 
     }
 
+    async GetUserByEmail(email : string){
+
+        try{
+
+            const user = await UserModel.findOne({"email" : email})
+
+            return user
+            
+        }catch(e){
+
+
+            console.log(`Error in repository: ${e}`)
+
+            return null;
+
+        }
+
+    }
+
 }
 
 export default new UserRepository();

@@ -265,45 +265,7 @@ class TORMainService{
     }
 
 
-    async CreateTORMAinToOtherServerService(tor: any){
-        
-        try{
-        //     let torTemp : any = {};
-        //     for (const prop in tor) {
-        //       if (prop !== '_id') {
-        //         torTemp[prop] = tor[prop];
-        //       }
-        //     }
-        
-        let torTemp = JSON.parse(JSON.stringify(tor));
-        delete torTemp._id;
-        console.log("NEW TOR")
-        console.log(torTemp)
-        const newTor = {
-          "fieldData": torTemp
-        }
-                const token = await TORGenerateSessionService();
-        
-                const config = {
-                    headers :{
-                        Authorization : `Bearer ${token}`
-                    }
-                }
-                
-                const addNewTorInOtherServer = await axios.post("https://s037817.fmphost.com/fmi/data/v1/databases/filipay_torData/layouts/tor_main/records",
-                newTor, config)
-                const responseAddNewTorInOtherServer = await addNewTorInOtherServer.data;
-          
-                const deleteToken = await TOREndSessionService(token);
-    
-                return true;
-
-        }catch(e){
-            console.error("Error in creating new tor main to other service: "+e);
-            return false;
-        }
-   
-    }
+    e
 
     async CreateTORMainService(fieldData : ITORMAIN) {
 
@@ -406,9 +368,7 @@ class TORMainService{
                                 console.log("UUID NOT ALLOWED TO INSERT");
                             }
                         }
-                    } else {
-                        console.log("SHET");
-                    }
+                    } 
                 }
             } else {
                 console.log("No torMains found or it's not an array.");
