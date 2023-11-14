@@ -1,4 +1,45 @@
-import mongoose from "mongoose";
+import mongoose, { StringExpressionOperatorReturningObject, Document } from "mongoose";
+
+export interface IEmployeeData extends Document {
+
+    // portalData: [],
+
+    // recordId: number,
+
+    // modId: number,
+
+ 
+
+        lastName: string,
+
+        firstName: string,
+
+        middleName: string,
+
+        nameSuffix: string,
+
+        empNo: string,
+
+        empStatus: string,
+
+        empType: string,
+
+        idName: string,
+
+        designation: string,
+
+        idPicture: string,
+
+        idSignature: string,
+
+        JTI_RFID: string,
+
+        accessPrivileges: string,
+
+        JTI_RFID_RequestDate: StringExpressionOperatorReturningObject
+
+}
+
 
 const employeeSchema = new mongoose.Schema({
   

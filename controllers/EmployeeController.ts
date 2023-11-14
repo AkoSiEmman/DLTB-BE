@@ -61,7 +61,7 @@ export async function GetAllEmployeesFilipayServerController(request : Request, 
             message: "OK",
             dateTime: responseDate,
         }],
-        response:[requestForEmployeeList]
+        response: requestForEmployeeList
  });
 
     }catch(e){

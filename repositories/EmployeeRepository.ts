@@ -1,49 +1,7 @@
-import { StringExpressionOperatorReturningObject } from "mongoose";
+
 import EmployeeModel from "../models/EmployeeModel";
 
-export interface IEmployeeData {
-
-    // portalData: [],
-
-    // recordId: number,
-
-    // modId: number,
-
-    fieldData:{
-
-        lastName: string,
-
-        firstName: string,
-
-        middleName: string,
-
-        nameSuffix: string,
-
-        empNo: string,
-
-        empStatus: string,
-
-        empType: string,
-
-        idName: string,
-
-        designation: string,
-
-        idPicture: string,
-
-        idSignature: string,
-
-        JTI_RFID: string,
-
-        accessPrivileges: string,
-
-        JTI_RFID_RequestDate: StringExpressionOperatorReturningObject
-
-    }
-
-}
-
-
+import { IEmployeeData } from "../models/EmployeeModel";
 class EmployeeRepository{
 
     async GetAllEmployee(){
@@ -75,11 +33,11 @@ class EmployeeRepository{
         //         "portalData" : data.portalData,
         //         "recordId": data.recordId,
         //          "modId" : data.modId,
-        //          "fieldData" : data.fieldData
+        //         "fieldData" : data.fieldData 
         //     }
 
             // console.log(data);
-            const employeeData = new EmployeeModel(data.fieldData);
+            const employeeData = new EmployeeModel(data);
             const employeeDataSave = await employeeData.save();
 
             return true;
@@ -97,7 +55,7 @@ class EmployeeRepository{
     
         try{
 
-            const employee = await EmployeeModel.findOneAndReplace({'fieldData[0].empNo' : data.fieldData.empNo}, data )
+            const employee = await EmployeeModel.findOneAndReplace({'empNo' : data.empNo}, data )
 
         }catch(e){
             console.error("Error in employee repository: "+e);

@@ -36,10 +36,13 @@ export async function GetAllEmployeesFromOtherServer(token : string | boolean){
             
             const AllowedToAddTheUser = await employeeRepo.CheckIfEmployeePerNoExist(employee.fieldData.empNo);
 
+            const data = employee.fieldData;
+
             if(AllowedToAddTheUser){
-                const AddUser = await employeeRepo.AddEmployee(employee)
+                
+                const AddUser = await employeeRepo.AddEmployee(data)
             }else{
-                const UpdateUser = await employeeRepo.UpdateEmployeePerEmpNo(employee)
+                const UpdateUser = await employeeRepo.UpdateEmployeePerEmpNo(data)
             }
         })
 
