@@ -2,13 +2,7 @@ import mongoose, { StringExpressionOperatorReturningObject, Document } from "mon
 
 export interface IEmployeeData extends Document {
 
-    // portalData: [],
-
-    // recordId: number,
-
-    // modId: number,
-
- 
+        coopId: string,
 
         lastName: string,
 
@@ -18,7 +12,7 @@ export interface IEmployeeData extends Document {
 
         nameSuffix: string,
 
-        empNo: string,
+        empNo: number,
 
         empStatus: string,
 

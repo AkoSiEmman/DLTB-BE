@@ -4,6 +4,7 @@ import { EmployeeEndSessionService, EmployeeGenerateSessionService } from "../se
 import { GetCurrentDateSTR } from "../common/GetCurrentDate";
 import { GetAllEmployeesFromOtherServer } from "../services/OtherServerFetchEmployeeService";
 import { AddNewEmployee, GetAllEmployee, UpdateEmployee } from "../services/FetchFilipayServerServices";
+import EmployeeService from "../services/EmployeeService";
 
 //Token for every request
 let employeeToken : string | boolean = false
@@ -76,6 +77,46 @@ export async function GetAllEmployeesFilipayServerController(request : Request, 
 
 }
 
+export async function GetEmployeeDataPerCoopIdController(request : Request, response: Response){
+
+    try{
+        
+        const requestForEmployeeList = await EmployeeService.GetDataPerCoopId(request.params.id);
+       
+        if(Object(requestForEmployeeList.response).length === 0){
+            response.status(200).json({messages : [{
+                code: "1",
+                message: "Invalid Coop Id",
+                dateTime: GetCurrentDateSTR(),
+            }],
+            response: {}
+            });
+        }else{
+          
+
+            response.status(200).json({messages : [{
+                code: "0",
+                message: "OK",
+                dateTime: GetCurrentDateSTR(),
+            }],
+            response: requestForEmployeeList.response
+            });
+        }
+
+       
+
+    }catch(e){
+        response.status(500).json({messages : [{
+            code: "212",
+            message: "Error in getting all employees: "+e,
+            dateTime: GetCurrentDateSTR(),
+        }],
+        response:{}
+ });
+    }
+
+}
+
 export async function AddNewEmployeeFilipayServerController(request : Request, response : Response){
     const responseDate = GetCurrentDateSTR();
     try{
@@ -141,3 +182,5 @@ export async function UpdateEmployeeFilipayServerController(request: Request, re
     }
 
 }
+
+

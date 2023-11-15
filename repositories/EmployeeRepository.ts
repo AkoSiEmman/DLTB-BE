@@ -114,6 +114,23 @@ class EmployeeRepository{
         }
 
     } 
+
+    async GetAllPerCoopId(coopId : string){
+
+        try{
+
+            const employee = await EmployeeModel.find({'coopId' : coopId})
+
+            return employee
+
+        }catch(e){
+           
+            console.error("Repository error: "+e);
+            return false;
+            
+        }
+
+    }
 }
 
 export const employeeRepo = new EmployeeRepository();
