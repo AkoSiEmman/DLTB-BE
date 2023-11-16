@@ -4,9 +4,9 @@ import { AddDeviceController, GetAllDeviceController, GetCoopPerDeviceIdControll
 
 const DeviceRouter = Router();
 
-DeviceRouter.get("/device", CheckTokenMiddleware, GetAllDeviceController);
+// DeviceRouter.get("/device", CheckTokenMiddleware, GetAllDeviceController);
 
-// DeviceRouter.post("/device", CheckTokenMiddleware, AddDeviceController);
+DeviceRouter.post("/device", CheckTokenMiddleware, AddDeviceController);
 
 DeviceRouter.get("/device/coop/:id", CheckTokenMiddleware, GetCoopPerDeviceIdController)
 

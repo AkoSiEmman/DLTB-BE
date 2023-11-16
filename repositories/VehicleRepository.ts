@@ -3,7 +3,7 @@ import VehicleModel from "../models/VehicleModel";
 
 export interface IVehicle{
 
-    bus_no: String,
+    vehicle_no: String,
 
     plate_no: String,
 

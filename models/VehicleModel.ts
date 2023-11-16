@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const vehicleSchema = new mongoose.Schema({
 
-    bus_no: {
+    vehicle_no: {
         type: String,
         unique: true,
         required: true
@@ -10,7 +10,8 @@ const vehicleSchema = new mongoose.Schema({
 
     plate_no:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     createdAt:{

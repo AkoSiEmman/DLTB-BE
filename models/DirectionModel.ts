@@ -26,7 +26,7 @@ const directionSchema = new mongoose.Schema({
         required: true
     },
 
-    route_code:{
+    code:{
         type: String,
         index: true,
         required: true

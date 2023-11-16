@@ -4,6 +4,7 @@ export interface IMasterCard extends Document {
     cardId: string,
     riderId : String,
     balance: number,
+    cardType: string,
     createdAt: Date,
     updatedAt: Date,
 }
@@ -26,6 +27,11 @@ const masterSchema = new mongoose.Schema({
         type: Number,
         default: 0.00,
         required: true,
+    },
+
+    cardType:{
+        type: String,
+        default:"mastercard"
     },
 
     createdAt:{

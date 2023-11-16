@@ -7,11 +7,11 @@ import { CheckTokenMiddleware } from '../middlewares/CheckTokenMiddleware';
 const EmployeeRouter = Router();
 
 // get and also sync to our server
-EmployeeRouter.get('/sync/employee', CheckTokenMiddleware, GetAllEmployeesController);
+// EmployeeRouter.get('/sync/employee', CheckTokenMiddleware, GetAllEmployeesController);
 
 EmployeeRouter.post('/employee' ,CheckTokenMiddleware,AddNewEmployeeFilipayServerController);
 
-// EmployeeRouter.get('/employee', CheckTokenMiddleware,GetAllEmployeesFilipayServerController);
+EmployeeRouter.get('/employee', CheckTokenMiddleware,GetAllEmployeesFilipayServerController);
 
 EmployeeRouter.get('/employee/:id', CheckTokenMiddleware, GetEmployeeDataPerCoopIdController);
 
