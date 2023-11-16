@@ -1,4 +1,5 @@
 import { IDevice } from "../models/DeviceModel";
+import CooperativeRepository from "../repositories/CooperativeRepository";
 import DeviceRepository from "../repositories/DeviceRepository"
 
 class DeviceService{
@@ -29,6 +30,27 @@ class DeviceService{
             return {status: 500, message: e, response: {}}
         }
 
+    }
+
+    async GetDataPerCoopId(coopId : string){
+        try{
+
+            const data = await DeviceRepository.GetCoopIdPerDeviceId(coopId);
+
+            if(data !== null ){
+                let dataId : string = data?.coopId;
+                const coops = await CooperativeRepository.GetDataPerId(dataId);
+                return {status: 0, message: "OK", response: coops}
+               
+            }else{
+                
+                return {status: 1, message: "Invalid device id", response: {}}
+            }
+
+        }catch(e){
+            console.log(`Error in adding vehicle: ${e}`);
+            return {status: 500, message: e, response: {}}
+        }
     }
 
 }

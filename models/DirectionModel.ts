@@ -2,6 +2,12 @@ import mongoose from "mongoose";
 
 const directionSchema = new mongoose.Schema({
 
+    coopId:{
+        type: String,
+        index: true,
+        default: "655321a339c1307c069616e9"
+    },
+
     bound:{
         type: String,
         index: true,
@@ -26,6 +32,8 @@ const directionSchema = new mongoose.Schema({
         required: true
     },
 
+ 
+
     createdAt:{
         type:Date,
         index: true,
@@ -41,6 +49,6 @@ const directionSchema = new mongoose.Schema({
 
 });
 
-const DirectionModel = mongoose.model('DirectionRecords', directionSchema)
+const DirectionModel = mongoose.model('directionrecords', directionSchema, { collection: 'directionrecords'}.collection);
 
 export default DirectionModel;

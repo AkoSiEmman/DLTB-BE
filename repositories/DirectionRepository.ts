@@ -3,6 +3,8 @@ import DirectionModel from "../models/DirectionModel";
 
 interface IDirections{
 
+    coopId: string,
+
     bound: string,
 
     origin: string,
@@ -21,6 +23,14 @@ class Directions{
 
             const directions = await DirectionModel.find();
 
+                
+            // directions.map(async (station : any) => {
+               
+            //     console.log(station)
+                
+            //     const updatedStation = await DirectionModel.findOneAndUpdate({_id : station.id} , station, {returnNewDocument: true});
+            //   });
+
             return directions;
 
         }catch(e){
@@ -28,7 +38,6 @@ class Directions{
             return false;
         }
        
-
     }
 
     async AddNewDirection(direction : IDirections){
@@ -44,6 +53,36 @@ class Directions{
             console.error("Error in direction repository: "+e);
             return false;
         }
+    }
+
+    async UpdateDataToCoopId(){
+
+        try{
+
+                await DirectionModel.updateMany({}, { coopId: "655321a339c1307c069616e9" });
+                console.log("Successfully updated all direction records to have a coopId.");
+            return true;
+        }catch(e){
+            console.error(`Error in repository ${e}`);
+            return false;
+        }
+    }
+
+    async GetAllPerCoopId(coopId : string){
+
+        try{
+
+            const employee = await DirectionModel.find({'coopId' : coopId})
+
+            return employee
+
+        }catch(e){
+           
+            console.error("Repository error: "+e);
+            return false;
+            
+        }
+
     }
 
 }

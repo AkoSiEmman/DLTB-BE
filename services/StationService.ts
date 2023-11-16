@@ -35,6 +35,19 @@ class StationService{
         }
 
     }
+
+    async GetAllDataPerCoopId(coopId : string ){
+        try{
+
+            const data = await StationRepository.GetAllPerCoopId(coopId);
+
+            return {status: 0, message: "OK", response: data}
+
+        }catch(e){
+            console.error("Error in services: "+e);
+            return {status: 500, message: e, response: {}}
+        }
+    }
 }
 
 export default new StationService();

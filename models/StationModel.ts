@@ -2,7 +2,9 @@ import { ObjectId } from "mongodb";
 import mongoose, {Document} from "mongoose";
 
 export interface IStation extends Document{
-
+  
+    coopId: string,
+    
     stationName: string,
 
     km: number,
@@ -14,6 +16,12 @@ export interface IStation extends Document{
 }
 
 const stationSchema = new mongoose.Schema({
+
+    coopId:{
+        type: String,
+        index: true,
+        default: "655321a339c1307c069616e9"
+    },
 
     stationName : {
         type: String,

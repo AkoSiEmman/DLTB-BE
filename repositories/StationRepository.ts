@@ -7,6 +7,14 @@ class StationRepository{
         try{
 
             const stations : any= await StationModel.find({});
+            
+            // stations.map(async (station : IStation) => {
+               
+            //     console.log(station)
+                
+            //     const updatedStation = await StationModel.findOneAndUpdate({_id : station.id} , station, {returnNewDocument: true});
+            //   });
+
             return stations;
 
         }catch(e : any ){
@@ -25,6 +33,23 @@ class StationRepository{
 
         }catch(e : any ){
             return e;
+        }
+
+    }
+
+    async GetAllPerCoopId(coopId : string){
+
+        try{
+
+            const employee = await StationModel.find({'coopId' : coopId})
+
+            return employee
+
+        }catch(e){
+           
+            console.error("Repository error: "+e);
+            return false;
+            
         }
 
     }

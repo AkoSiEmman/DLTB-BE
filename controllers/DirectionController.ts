@@ -57,3 +57,45 @@ export async function AddNewDirectionController(request: Request, response: Resp
     }
 
 }
+
+
+export async function GetAllDirectionPerCoopIdController(request: Request, response: Response){
+
+    const responseDate = GetCurrentDateSTR();
+    
+    try{
+
+        const directions = await directionRepo.GetAllPerCoopId(request.params.id);
+
+        if(Object(directions).length === 0){
+            response.status(200).json({messages : [{
+                code: "1",
+                message: "Invalid Coop Id",
+                dateTime: GetCurrentDateSTR(),
+            }],
+            response: {}
+            });
+        }else{
+          
+    
+            response.status(200).json({messages : [{
+                code: "0",
+                message: "OK",
+                dateTime: GetCurrentDateSTR(),
+            }],
+            response: directions
+            });
+        }
+    
+
+
+    }catch(e){
+        console.error("Error in controller");
+        response.status(500).json({messages : [{
+            code: "212",
+            message: "Error in getting all directions: "+e,
+            dateTime: responseDate,
+        }]})
+    }
+
+}

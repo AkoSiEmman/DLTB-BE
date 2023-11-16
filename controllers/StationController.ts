@@ -79,3 +79,42 @@ export async function AddStationController( request: Request, response: Response
     }
 
 }
+
+export async function GetAllStationPerCoopIdController(request : Request, response : Response){
+
+try{
+    const data = await StationService.GetAllDataPerCoopId(request.params.id);
+       
+    if(Object(data.response).length === 0){
+        response.status(200).json({messages : [{
+            code: "1",
+            message: "Invalid Coop Id",
+            dateTime: GetCurrentDateSTR(),
+        }],
+        response: {}
+        });
+    }else{
+      
+
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: GetCurrentDateSTR(),
+        }],
+        response: data.response
+        });
+    }
+
+   
+
+}catch(e){
+    response.status(500).json({messages : [{
+        code: "212",
+        message: "Error in getting all employees: "+e,
+        dateTime: GetCurrentDateSTR(),
+    }],
+    response:{}
+});
+}
+
+}

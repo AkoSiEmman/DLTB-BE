@@ -11,7 +11,7 @@ class CooperativeRepository{
 
         }catch(e){
 
-            console.error("Error in direction repository: "+e)
+            console.error("Error in  repository: "+e)
             return false;
 
         }
@@ -27,11 +27,26 @@ class CooperativeRepository{
 
         }catch(e){
 
-            console.error("Error in direction repository: "+e)
+            console.error("Error in  repository: "+e)
             return false;
 
         }
 
+    }
+
+    async GetDataPerId(id : string){
+        try{
+
+            const data = await CooperativeModel.findOne({"_id" : id});
+            console.log(data)
+            return data;
+
+        }catch(e){
+
+            console.error("Error in  repository: "+e)
+            return false;
+
+        }
     }
 
 }

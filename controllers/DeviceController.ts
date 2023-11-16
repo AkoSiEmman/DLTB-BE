@@ -42,6 +42,38 @@ export async function GetAllDeviceController( request : Request, response : Resp
 
 }
 
+export async function GetCoopPerDeviceIdController( request : Request, response : Response){
+
+    try{
+
+        const data = await DeviceService.GetDataPerCoopId(request.params.id);
+
+      
+            response.status(200).json({messages : [{
+                code: data.status,
+                message: data.message,
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response : data.response
+            })
+        
+
+    }catch(e){
+
+        console.error("Error in controller: "+e);
+
+        response.status(500).json({messages : [{
+            code: "1",
+            message: ""+e,
+            dateTime: GetCurrentDateSTR(),
+            }],
+            response: {}
+        })
+
+    }
+
+}
+
 export async function AddDeviceController(request:  Request , response : Response){
       
     try{

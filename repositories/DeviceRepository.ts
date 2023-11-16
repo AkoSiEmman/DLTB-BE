@@ -32,6 +32,21 @@ class DeviceRepository{
 
     }
 
+    async GetCoopIdPerDeviceId(deviceId : string){
+        
+        try{
+
+            const findCoopId = await DeviceModel.findOne({"deviceId" : deviceId})
+
+            return findCoopId;
+
+        }catch(e){
+            console.error(`Error in repository ${e}`);
+            return "";
+        }
+
+    }
+
 }
 
 export default new DeviceRepository();
