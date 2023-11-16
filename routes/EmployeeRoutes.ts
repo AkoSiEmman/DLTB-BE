@@ -11,7 +11,7 @@ const EmployeeRouter = Router();
 
 EmployeeRouter.post('/employee' ,CheckTokenMiddleware,AddNewEmployeeFilipayServerController);
 
-EmployeeRouter.get('/employee', CheckTokenMiddleware,GetAllEmployeesFilipayServerController);
+// EmployeeRouter.get('/employee', CheckTokenMiddleware,GetAllEmployeesFilipayServerController);
 
 EmployeeRouter.get('/employee/:id', CheckTokenMiddleware, GetEmployeeDataPerCoopIdController);
 
