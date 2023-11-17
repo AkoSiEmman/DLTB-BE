@@ -1,4 +1,4 @@
-import masterSchemaModel, { IMasterCard } from "../models/MasterCardModel";
+import masterCardModel, { IMasterCard } from "../models/MasterCardModel";
 
 
 
@@ -10,7 +10,20 @@ class MasterCardRepository{
 
         try{
 
-            const masterCard = masterSchemaModel.find({});
+            const masterCard : any = await masterCardModel.find({});
+
+            return masterCard;
+
+        }catch(e){
+            console.error("Error in master card repository: "+e);
+            return false;
+        }
+    }
+
+    async GetCardByCoopId(coopId: string){
+        try{
+
+            const masterCard : any = await masterCardModel.find({"coopId" : coopId});
 
             return masterCard;
 
@@ -24,7 +37,7 @@ class MasterCardRepository{
         
         try{
 
-            const newMasterCard = new masterSchemaModel(masterCard);
+            const newMasterCard = new masterCardModel(masterCard);
 
             const saveMasterCard = await newMasterCard.save();
 
@@ -41,7 +54,7 @@ class MasterCardRepository{
     
         try{
 
-            const searchCardId : IMasterCard | null = await masterSchemaModel.findOne({ "cardId": cardId });
+            const searchCardId : IMasterCard | null = await masterCardModel.findOne({ "cardId": cardId });
 
 
             if(searchCardId){
@@ -64,9 +77,9 @@ class MasterCardRepository{
 
         try{
 
-            const increaseBalancePerId = await masterSchemaModel.updateOne({"cardId": cardId}, {$inc: {"balance": increaseAmount}} , {new: true});
+            const increaseBalancePerId = await masterCardModel.updateOne({"cardId": cardId}, {$inc: {"balance": increaseAmount}} , {new: true});
 
-            const decreaseBalancePerId = await  masterSchemaModel.updateOne({"cardId": cardId}, {$inc: {"balance": -decreaseAmount}} , {new: true});
+            const decreaseBalancePerId = await  masterCardModel.updateOne({"cardId": cardId}, {$inc: {"balance": -decreaseAmount}} , {new: true});
 
             return decreaseBalancePerId;
 

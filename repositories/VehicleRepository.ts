@@ -17,6 +17,27 @@ class VehicleRepository{
 
             const vehicles = await VehicleModel.find({})
 
+            // vehicles.map(async (station : any) => {
+               
+            //     const updatedStation = await VehicleModel.findOneAndUpdate({_id : station.id} , station, {returnNewDocument: true});
+                
+            // });
+
+            return vehicles;
+
+        }catch(e){
+            console.log(`Error in getting vehicles ${e}`)
+            return e;
+        }
+
+    }
+
+    async GetAllDataPerCoopId(coopId : string){
+
+        try{
+
+            const vehicles = await VehicleModel.find({"coopId" : coopId})
+
             return vehicles;
 
         }catch(e){

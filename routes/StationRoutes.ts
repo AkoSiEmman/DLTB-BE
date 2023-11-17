@@ -4,7 +4,7 @@ import { AddStationController, GetAllStationController, GetAllStationPerCoopIdCo
 
 const StationRouter = Router();
 
-StationRouter.get("/station", CheckTokenMiddleware, GetAllStationController)
+// StationRouter.get("/station", CheckTokenMiddleware, GetAllStationController)
 
 StationRouter.get("/station/:id", CheckTokenMiddleware, GetAllStationPerCoopIdController);
 

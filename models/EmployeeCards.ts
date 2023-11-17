@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
 
 const employeeCardSchema = new mongoose.Schema({
-
+    coopId:{
+        type: String,
+        unique: true,
+        default: "655321a339c1307c069616e9",
+        required: true
+    },
     empNo:{
         type: String,
         unique: true,
@@ -26,6 +31,6 @@ const employeeCardSchema = new mongoose.Schema({
 
 })
 
-const EmployeeCardModel = mongoose.model("EmployeeCardRecords",employeeCardSchema);
+const EmployeeCardModel = mongoose.model("employeecardrecords",employeeCardSchema, {collection :"employeecardrecords" }.collection);
 
 export default EmployeeCardModel;

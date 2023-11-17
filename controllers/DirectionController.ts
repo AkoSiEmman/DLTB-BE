@@ -67,6 +67,8 @@ export async function GetAllDirectionPerCoopIdController(request: Request, respo
 
         const directions = await directionRepo.GetAllPerCoopId(request.params.id);
 
+        console.log(directions);
+        
         if(Object(directions).length === 0){
             response.status(200).json({messages : [{
                 code: "1",

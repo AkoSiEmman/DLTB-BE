@@ -20,6 +20,27 @@ class VehicleServices {
         
     }
 
+    async GetAllVehiclePerCoopId(coopId : string){
+        try{
+
+            const allVehicles = await VehicleRepository.GetAllDataPerCoopId(coopId);
+
+            if(Object(allVehicles).length > 0){
+                return {status: 0, message: "OK", response: allVehicles}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+
+           
+        }catch(e){
+
+            console.log(`Error in getting vehicle services: ${e}`)
+
+            return {status: 500, message: e, response: {}}
+
+        }
+    }
+
     async AddVehicle ( vehicle : IVehicle){
 
         try{

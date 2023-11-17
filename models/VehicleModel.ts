@@ -2,6 +2,13 @@ import mongoose from "mongoose";
 
 const vehicleSchema = new mongoose.Schema({
 
+    coopId:{
+        type: String,
+        unique: true,
+        default: "655321a339c1307c069616e9",
+        required: true
+    },
+
     vehicle_no: {
         type: String,
         unique: true,
@@ -26,6 +33,6 @@ const vehicleSchema = new mongoose.Schema({
 
 })
 
-const VehicleModel = mongoose.model("VehicleRecords", vehicleSchema);
+const VehicleModel = mongoose.model("vehiclerecords", vehicleSchema, {collection : "vehiclerecords"}.collection);
 
 export default VehicleModel;

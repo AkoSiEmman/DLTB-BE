@@ -42,6 +42,38 @@ export async function CreateNewEmployeeCardController(request: Request, response
 
 }
 
+
+export async function GetAllEmployeeCardPerCoopId(request: Request, response: Response){
+
+    const responseDate = GetCurrentDateSTR();
+
+    
+    try{
+
+        const employeeCards = await EmployeeCardService.GetAllCardPerCoopId(request.params.id);
+
+        response.status(200).json({messages : [{
+            code: employeeCards.status,
+            message: employeeCards.message,
+            dateTime: responseDate,
+            }],
+            response: employeeCards.response
+        })
+
+
+    }catch(e){
+        console.error("Error in controller: "+e);
+        response.status(500).json({messages : [{
+            code: "1",
+            message: ""+e,
+            dateTime: responseDate,
+            }],
+            response: {}
+        })
+    }
+
+}
+
 export async function GetAllEmployeeCardController(request: Request, response: Response){
 
     const responseDate = GetCurrentDateSTR();

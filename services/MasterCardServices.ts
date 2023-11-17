@@ -19,6 +19,22 @@ class MasterCardServices{
 
     }
 
+    async GetAllMasterCardByCoopId( coopId : string){
+        
+        try{
+
+            const masterCards = await MasterCardRepository.GetCardByCoopId(coopId);
+
+            return masterCards;
+
+        }catch(e){
+            console.error("Error in master card services: "+e)
+            return false;
+        }
+
+    }
+
+
     async CreateNewMasterCard( masterCard : IMasterCard ){
 
         try{

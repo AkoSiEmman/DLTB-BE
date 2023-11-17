@@ -21,6 +21,8 @@ class EmployeeCardService{
 
     }
 
+  
+
     async RegisterNewEmployeeCard( newEmployeeCard : IEmployeeCard){
 
         try{
@@ -36,6 +38,28 @@ class EmployeeCardService{
 
         }
 
+    }
+
+    async GetAllCardPerCoopId( coopId : string ){
+        
+        try{
+
+            const data = await EmployeeCardRepository.GetAllDatPerCoopId(coopId);
+
+            if(Object(data).length > 0){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+
+           
+        }catch(e){
+
+            console.log(`Error in getting services: ${e}`)
+
+            return {status: 500, message: e, response: {}}
+
+        }
     }
 
 }

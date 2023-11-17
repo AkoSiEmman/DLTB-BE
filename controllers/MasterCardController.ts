@@ -3,6 +3,50 @@ import { GetCurrentDateSTR } from "../common/GetCurrentDate";
 import MasterCardServices from "../services/MasterCardServices";
 import MasterCardRepository from "../repositories/MasterCardRepository";
 
+export async function GetAllMasterCardByCoopIdController(request: Request, response: Response){
+
+    const responseDate = GetCurrentDateSTR();
+
+    try{
+
+        const masterCards = await MasterCardServices.GetAllMasterCardByCoopId(request.params.id);
+
+        if(Object(masterCards).length > 0){
+            response.status(200).json({messages : [{
+                code: "0",
+                message: "OK",
+                dateTime: responseDate,
+                }],
+                response: masterCards
+            })
+        }else{
+            response.status(201).json({messages : [{
+                code: "1",
+                message: "Invalid Coop Id",
+                dateTime: responseDate,
+                }],
+                response: {}
+            })
+        }
+
+       
+
+    }catch(e){
+
+        console.error("Error in getting all master card controller: "+e);
+
+        response.status(500).json({messages : [{
+            code: "212",
+            message: "Error in getting mastercard: "+e,
+            dateTime: responseDate,
+            }],
+            response: {}
+        })
+
+    }
+
+}
+
 export async function GetAllMasterCardController(request: Request, response: Response){
 
     const responseDate = GetCurrentDateSTR();
