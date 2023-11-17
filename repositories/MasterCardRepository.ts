@@ -76,12 +76,14 @@ class MasterCardRepository{
     async UpdateMasterCardBalanceByCardId( cardId : string, decreaseAmount : Number, increaseAmount : Number ){
 
         try{
+            console.log(`INCREASE ${increaseAmount}`)
+            console.log(`DECREASE ${decreaseAmount}`)
 
             const increaseBalancePerId = await masterCardModel.updateOne({"cardId": cardId}, {$inc: {"balance": increaseAmount}} , {new: true});
 
             const decreaseBalancePerId = await  masterCardModel.updateOne({"cardId": cardId}, {$inc: {"balance": -decreaseAmount}} , {new: true});
 
-            return decreaseBalancePerId;
+            return true;
 
         }catch(e){
 

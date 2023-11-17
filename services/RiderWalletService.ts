@@ -99,11 +99,17 @@ class RiderWalletService {
                             return {status: 1, message: "Card does is not valid", response: {}}
                         }
 
+                        const getBalancePerRiderId : number = await RiderWalletRepository.GetBalancePerRiderId(riderId);
 
-                        const updateBalancePerRiderId = await RiderWalletRepository.UpdateRiderWalletByRiderId(riderId, decreaseAmount, increaseAmount);
+                        if(getBalancePerRiderId >= decreaseAmount && getBalancePerRiderId !== undefined){
+                            const updateBalancePerRiderId = await RiderWalletRepository.
+                            UpdateRiderWalletByRiderId(riderId, increaseAmount, decreaseAmount);
+                            return {status: 0, message: `Rider ${riderId} balance has been updated`, response: {}}
 
-                        return {status: 0, message: `Rider ${riderId} balance has been updated`, response: {}}
+                        }else{
+                            return {status: 1, message: "Invalid amount", response: {}}
 
+                        }
                     }else{
                         console.log("PUMASOK DITO")
                         return {status: 1, message: "Card is not valid", response: {}}

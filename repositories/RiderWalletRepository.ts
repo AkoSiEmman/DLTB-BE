@@ -83,6 +83,9 @@ class RiderWalletRepository{
 
         try{
 
+            console.log(`INCREASE ${increaseAmount}`)
+            console.log(`DECREASE ${decreaseAmount}`)
+
             const fckShet = await RiderWalletModel.findOne({"riderId" : riderId});
 
             const increaseBalancePerId = await RiderWalletModel.findOneAndUpdate({"riderId": riderId}, {$inc: {"balance": increaseAmount}} , {new: true});
@@ -98,6 +101,22 @@ class RiderWalletRepository{
 
         }
 
+    }
+
+    async GetBalancePerRiderId(riderId : String){
+        try{
+            let balance = 0;
+            const fckShet = await RiderWalletModel.findOne({"riderId" : riderId});
+            
+            if(typeof fckShet?.balance === 'number'){
+                balance = fckShet.balance;
+            }
+
+            return balance;
+        }catch(e){
+            console.log(`Error in repository ${e}`);
+            return 0;
+        }
     }
 
     async GetRiderWalletByRiderId(riderId : String){
