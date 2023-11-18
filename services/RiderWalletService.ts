@@ -86,7 +86,7 @@ class RiderWalletService {
 
                     const riderIdPerCardId : any = await RiderRepository.GetRiderByCardId(cardId);              
     
-                    if(typeof riderIdPerCardId[0] !== undefined){
+                    if(typeof riderIdPerCardId[0] === undefined){
                         return {status: 1, message: "Card is not valid", response: {}}
                     }
 
