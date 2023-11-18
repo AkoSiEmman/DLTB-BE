@@ -54,17 +54,17 @@ class RiderWalletService {
                 
                     const findCardIdInMasterCard : IMasterCard | string | boolean = await MasterCardRepository.FindCardIdInMasterCard(cardId);
 
+                    const currentBalance  = await MasterCardRepository.GetCurrentBalancePerCardId(cardId);
+                    
+                    if(this.isMasterCard(findCardIdInMasterCard) && findCardIdInMasterCard.balance >= 0 && currentBalance !== null){
 
-
-                    if(this.isMasterCard(findCardIdInMasterCard) && findCardIdInMasterCard.balance >= 0){
-
-                        if(this.isMasterCard(findCardIdInMasterCard) && findCardIdInMasterCard.balance >= decreaseAmount){
+                        if(this.isMasterCard(findCardIdInMasterCard) && findCardIdInMasterCard.balance >= decreaseAmount && currentBalance){
                         
                             const updateBalance = await MasterCardRepository.UpdateMasterCardBalanceByCardId(cardId, decreaseAmount, increaseAmount);
 
-                            const newBalance : number = await findCardIdInMasterCard.balance;
+                            const newBalance  = await MasterCardRepository.GetCurrentBalancePerCardId(cardId);
                             return {status: 0, message: "OK", response: {
-                                "previousBalance" : findCardIdInMasterCard.balance,
+                                "previousBalance" : currentBalance,
                                 "newBalance" : newBalance
                             }}
 
@@ -76,21 +76,22 @@ class RiderWalletService {
 
                         
                     }else{
-                        return {status: 1, message: "Card is not yet registered", response: {}}
+                        return {status: 1, message: "Card is not valid", response: {}}
                     }
 
                 }
 
                 if(cardType === "discounted" || cardType === "regular"){
                     
-                   
 
-                    const riderIdPerCardId : any = await RiderRepository.GetRiderByCardId(cardId);  
+                    const riderIdPerCardId : any = await RiderRepository.GetRiderByCardId(cardId);              
+    
+                    if(typeof riderIdPerCardId[0] !== undefined){
+                        return {status: 1, message: "Card is not valid", response: {}}
+                    }
 
-                    
-                  
-                    if(riderIdPerCardId[0]._id !== undefined ){
-
+                    if(riderIdPerCardId[0]._id !== undefined && riderIdPerCardId !== null ){
+                        
                         let riderId : string = riderIdPerCardId[0]._id.toString();
 
                         console.log("rider id ito : "+ riderId)
@@ -111,17 +112,17 @@ class RiderWalletService {
 
                             const newBalancePerRiderId : number = await RiderWalletRepository.GetBalancePerRiderId(riderId);
                             
-                            return {status: 0, message: `Rider ${riderId} balance has been updated`, response: {
+                            return {status: 0, message: `OK`, response: {
                                 "previousBalance" : getBalancePerRiderId,
                                 "newBalance" : newBalancePerRiderId
                             }}
 
                         }else{
-                            return {status: 1, message: "Invalid amount", response: {}}
+                            return {status: 1, message: "Insufficient balance", response: {}}
 
                         }
                     }else{
-                        console.log("PUMASOK DITO")
+                       
                         return {status: 1, message: "Card is not valid", response: {}}
                     }
                 

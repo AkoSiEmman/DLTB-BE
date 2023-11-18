@@ -47,7 +47,7 @@ class RiderRepository{
 
         }catch(e){
             console.log(`Error in repository ${e}`)
-            return e
+            return null
         }
 
     }

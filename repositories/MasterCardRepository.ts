@@ -73,6 +73,29 @@ class MasterCardRepository{
 
     }
 
+    async GetCurrentBalancePerCardId( cardId : string ){
+
+        try{
+
+            const searchCardId : IMasterCard | null = await masterCardModel.findOne({ "cardId": cardId });
+
+
+            if(searchCardId){
+                return searchCardId.balance;
+            }else{
+                return null;
+            }
+
+
+        }catch(e : any){
+            console.log(`Error in repository ${e}`)
+
+            let errorMessage: string = e.message;
+            return null;
+        }
+
+    }
+
     async UpdateMasterCardBalanceByCardId( cardId : string, decreaseAmount : Number, increaseAmount : Number ){
 
         try{

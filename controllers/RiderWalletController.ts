@@ -53,23 +53,27 @@ export async function GetRiderWalletPerIdController ( request : Request, respons
 
         const riderWallet = await RiderWalletService.GetRiderWalletCardIdPerId(request.params.cardId);
 
-        if(riderWallet.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: GetCurrentDateSTR,
-                }],
-                response : riderWallet.response
-            })
-        }else{
-            response.status(201).json({messages : [{
+       
+           
+            if(riderWallet.status === 500 ){
+
+            response.status(500).json({messages : [{
                 code: riderWallet.status,
                 message: riderWallet.message,
                 dateTime: GetCurrentDateSTR,
                 }],
                 response: riderWallet.response
             })
-        }
+
+            }else{
+                response.status(200).json({messages : [{
+                    code: "0",
+                    message: "OK",
+                    dateTime: GetCurrentDateSTR,
+                    }],
+                    response : riderWallet.response
+                })    
+            }
 
 
 
@@ -165,7 +169,7 @@ export async function UpdateRiderWalletBalanceController( request : Request, res
         }
 
         if(updateRiderWallet?.status === 500){
-            response.status(201).json({messages : [{
+            response.status(500).json({messages : [{
                 code: "500",
                 message: "INTERNAL SERVER ERROR",
                 dateTime: GetCurrentDateSTR(),
