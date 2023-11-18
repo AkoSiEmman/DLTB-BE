@@ -62,7 +62,11 @@ class RiderWalletService {
                         
                             const updateBalance = await MasterCardRepository.UpdateMasterCardBalanceByCardId(cardId, decreaseAmount, increaseAmount);
 
-                            return {status: 0, message: "OK", response: updateBalance}
+                            const newBalance : number = await findCardIdInMasterCard.balance;
+                            return {status: 0, message: "OK", response: {
+                                "previousBalance" : findCardIdInMasterCard.balance,
+                                "newBalance" : newBalance
+                            }}
 
                         }else{
 
@@ -92,11 +96,11 @@ class RiderWalletService {
                         console.log("rider id ito : "+ riderId)
 
                         if(cardType === "discounted" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SND"){
-                            return {status: 1, message: "Card does is not valid", response: {}}
+                            return {status: 1, message: "Card is not valid", response: {}}
                         }
 
                         if(cardType === "regular" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SNR"){
-                            return {status: 1, message: "Card does is not valid", response: {}}
+                            return {status: 1, message: "Card is not valid", response: {}}
                         }
 
                         const getBalancePerRiderId : number = await RiderWalletRepository.GetBalancePerRiderId(riderId);
@@ -104,7 +108,13 @@ class RiderWalletService {
                         if(getBalancePerRiderId >= decreaseAmount && getBalancePerRiderId !== undefined){
                             const updateBalancePerRiderId = await RiderWalletRepository.
                             UpdateRiderWalletByRiderId(riderId, increaseAmount, decreaseAmount);
-                            return {status: 0, message: `Rider ${riderId} balance has been updated`, response: {}}
+
+                            const newBalancePerRiderId : number = await RiderWalletRepository.GetBalancePerRiderId(riderId);
+                            
+                            return {status: 0, message: `Rider ${riderId} balance has been updated`, response: {
+                                "previousBalance" : getBalancePerRiderId,
+                                "newBalance" : newBalancePerRiderId
+                            }}
 
                         }else{
                             return {status: 1, message: "Invalid amount", response: {}}
@@ -117,7 +127,7 @@ class RiderWalletService {
                 
                 }
 
-                return {status: 1, message: "Card does is not valid", response: {}}
+                return {status: 1, message: "Card is not valid", response: {}}
 
             }else{
                 return {status: 1, message: "Invalid fields", response: {}}

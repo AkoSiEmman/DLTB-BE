@@ -104,19 +104,25 @@ class RiderWalletRepository{
     }
 
     async GetBalancePerRiderId(riderId : String){
+
         try{
+
             let balance = 0;
-            const fckShet = await RiderWalletModel.findOne({"riderId" : riderId});
+            const data = await RiderWalletModel.findOne({"riderId" : riderId});
             
-            if(typeof fckShet?.balance === 'number'){
-                balance = fckShet.balance;
+            if(typeof data?.balance === 'number'){
+                balance = data.balance;
             }
 
             return balance;
+
         }catch(e){
+
             console.log(`Error in repository ${e}`);
             return 0;
+
         }
+        
     }
 
     async GetRiderWalletByRiderId(riderId : String){

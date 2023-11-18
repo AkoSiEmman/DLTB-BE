@@ -146,17 +146,17 @@ export async function UpdateRiderWalletBalanceController( request : Request, res
 
         if(updateRiderWallet?.status === 0 ){
             response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
+                code: updateRiderWallet.status,
+                message: updateRiderWallet.message,
                 dateTime: GetCurrentDateSTR(),
                 }],
-                response : {}
+                response : updateRiderWallet.response
             })
         }
 
         if(updateRiderWallet?.status === 1){
             response.status(201).json({messages : [{
-                code: "1",
+                code: updateRiderWallet.status,
                 message: updateRiderWallet.message,
                 dateTime: GetCurrentDateSTR(),
                 }],

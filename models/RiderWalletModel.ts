@@ -9,6 +9,7 @@ export interface IRiderWallet extends Document{
     currencyId: String,
     address: String,
     privateKey: String,
+    previousBalance: String,
     balance: number
 
 }
@@ -18,6 +19,17 @@ const riderWalletSchema = new mongoose.Schema({
     riderId : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Rider',
+        required: true,
+        index: true
+    },
+
+    previousBalance:{
+        type: Number,
+        index: true,
+    },
+
+    newBalance:{
+        type: Number,
         required: true,
         index: true
     },
