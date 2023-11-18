@@ -86,6 +86,8 @@ class RiderWalletService {
 
                         return {status: 0, message: "OK", response: {"balance" : getBalancePerRiderId}}
 
+                    }else{
+                        return {status: 1, message: "Card is not valid", response: {}}
                     }
 
 
