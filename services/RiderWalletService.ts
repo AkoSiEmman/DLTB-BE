@@ -67,13 +67,17 @@ class RiderWalletService {
                 }
 
                 if(cardType === "regular" || cardType === "discounted"){
+                  
+                    const riderIdPerCardId : any = await RiderRepository.GetRiderByCardId(cardId);  
+                    console.log(riderIdPerCardId)
+                    if(typeof riderIdPerCardId === null || Object(riderIdPerCardId).length === 0){
+                        return {status: 1, message: "Card is not valid", response: {}}
+                    }
 
-                    const riderIdPerCardId : any = await RiderRepository.GetRiderByCardId(cardId);   
-
-                    if(riderIdPerCardId[0]._id !== undefined && riderIdPerCardId !== null ){
-                    
+                    if(typeof riderIdPerCardId[0]._id !== undefined && riderIdPerCardId[0]._id !== undefined && riderIdPerCardId !== null ){
+                       
                         let riderId : string = riderIdPerCardId[0]._id.toString();
-
+                     
                         if(cardType === "discounted" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SND"){
                             return {status: 1, message: "Card is not valid", response: {}}
                         }
@@ -87,10 +91,11 @@ class RiderWalletService {
                         return {status: 0, message: "OK", response: {"balance" : getBalancePerRiderId}}
 
                     }else{
+                       
                         return {status: 1, message: "Card is not valid", response: {}}
                     }
 
-
+                   
                 }
 
     
@@ -99,7 +104,8 @@ class RiderWalletService {
             }
 
         }catch(e){
-
+            console.log(`Error in rider wallet services: ${e}`);
+            return {status: 500, message: e, response: {}}
         }
 
     }
