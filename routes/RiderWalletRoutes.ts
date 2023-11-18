@@ -9,7 +9,7 @@ const RiderWalletRouter = Router();
 
 RiderWalletRouter.get("/riderwallet", CheckTokenMiddleware, GetAllRiderWalletController)
 
-RiderWalletRouter.get("/riderwallet/:cardId", CheckTokenMiddleware, GetRiderWalletPerIdController);
+// RiderWalletRouter.get("/riderwallet/:cardId", CheckTokenMiddleware, GetRiderWalletPerIdController);
 
 RiderWalletRouter.post("/riderwallet" , CheckTokenMiddleware, AddRiderWalletController)
 
