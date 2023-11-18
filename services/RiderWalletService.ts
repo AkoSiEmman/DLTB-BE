@@ -43,6 +43,65 @@ class RiderWalletService {
         return (card as IRiderWallet).balance !== undefined;
     }
 
+
+    async GetBalancePerCardId( cardId : string, cardType : string){
+        
+        try{
+
+            if(cardType === "regular" || cardType === "discounted" || cardType === "mastercard"){
+
+                if(cardType === "mastercard"){
+
+                    const findCardIdInMasterCard : IMasterCard | string | boolean = await MasterCardRepository.FindCardIdInMasterCard(cardId);
+
+                    if(this.isMasterCard(findCardIdInMasterCard)){
+
+                        return {status: 0, message: "OK", response: {"balance" : findCardIdInMasterCard.balance}}
+
+                    }else{
+
+                        return {status: 1, message: "Card is not valid", response: {}}
+
+                    }
+
+                }
+
+                if(cardType === "regular" || cardType === "discounted"){
+
+                    const riderIdPerCardId : any = await RiderRepository.GetRiderByCardId(cardId);   
+
+                    if(riderIdPerCardId[0]._id !== undefined && riderIdPerCardId !== null ){
+                    
+                        let riderId : string = riderIdPerCardId[0]._id.toString();
+
+                        if(cardType === "discounted" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SND"){
+                            return {status: 1, message: "Card is not valid", response: {}}
+                        }
+
+                        if(cardType === "regular" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SNR"){
+                            return {status: 1, message: "Card is not valid", response: {}}
+                        }
+
+                        const getBalancePerRiderId : number = await RiderWalletRepository.GetBalancePerRiderId(riderId);
+
+                        return {status: 0, message: "OK", response: {"balance" : getBalancePerRiderId}}
+
+                    }
+
+
+                }
+
+    
+            }else{
+                return {status: 1, message: "Invalid Card Type", response: {}}
+            }
+
+        }catch(e){
+
+        }
+
+    }
+
     async UpdateRiderWalletByCardId( cardId : string, decreaseAmount : number, increaseAmount : number, cardType : String ){
 
         try{

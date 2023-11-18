@@ -2,7 +2,7 @@
 
 import { Router } from "express";
 import { CheckTokenMiddleware } from "../middlewares/CheckTokenMiddleware";
-import { AddRiderWalletController, GetAllRiderWalletController, GetRiderWalletPerIdController, UpdateRiderWalletBalanceController } from "../controllers/RiderWalletController";
+import { AddRiderWalletController, GetAllRiderWalletController, GetRiderWalletBalanceController, GetRiderWalletPerIdController, UpdateRiderWalletBalanceController } from "../controllers/RiderWalletController";
 
 
 const RiderWalletRouter = Router();
@@ -14,5 +14,7 @@ RiderWalletRouter.get("/riderwallet/:cardId", CheckTokenMiddleware, GetRiderWall
 RiderWalletRouter.post("/riderwallet" , CheckTokenMiddleware, AddRiderWalletController)
 
 RiderWalletRouter.put("/riderwallet", CheckTokenMiddleware, UpdateRiderWalletBalanceController)
+
+RiderWalletRouter.get("/riderwallet/balance/:cardId/:cardType" ,CheckTokenMiddleware, GetRiderWalletBalanceController);
 
 export default RiderWalletRouter;

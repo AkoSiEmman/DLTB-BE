@@ -137,6 +137,60 @@ export async function AddRiderWalletController( request : Request, response : Re
 
 }
 
+export async function GetRiderWalletBalanceController(request : Request, response : Response){
+
+    try{
+
+      
+    
+        const riderWalletBalance = await RiderWalletService.GetBalancePerCardId(request.params.cardId, request.params.cardType);
+
+        if(riderWalletBalance?.status === 0 ){
+            response.status(200).json({messages : [{
+                code: riderWalletBalance.status,
+                message: riderWalletBalance.message,
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response : riderWalletBalance.response
+            })
+        }
+
+        if(riderWalletBalance?.status === 1){
+            response.status(201).json({messages : [{
+                code: riderWalletBalance.status,
+                message: riderWalletBalance.message,
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response : riderWalletBalance.response
+            })
+        }
+
+        if(riderWalletBalance?.status === 500){
+            response.status(500).json({messages : [{
+                code: "500",
+                message: "INTERNAL SERVER ERROR",
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response : riderWalletBalance.response
+            })
+        }
+
+
+    }catch(e){
+            
+            console.error("Error in controller: "+e);
+            response.status(500).json({messages : [{
+                code: "1",
+                message: ""+e,
+                dateTime: GetCurrentDateSTR(),
+                }],
+                response: {}
+            })
+    }
+
+
+}
+
 export async function UpdateRiderWalletBalanceController( request : Request, response : Response){
 
     const increaseAmountValue : number = request.body.increaseAmount? request.body.increaseAmount : 0;
