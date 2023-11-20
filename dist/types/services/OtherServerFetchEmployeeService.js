@@ -31,11 +31,12 @@ function GetAllEmployeesFromOtherServer(token) {
             const requestGetEmployeeFromOtherServer = yield axios_1.default.post("https://fms.dltbbus.com.ph/fmi/data/v1/databases/dltb%20company%20database/layouts/dltb_id/_find", bodyParameters, config);
             requestGetEmployeeFromOtherServer.data.response.data.map((employee) => __awaiter(this, void 0, void 0, function* () {
                 const AllowedToAddTheUser = yield EmployeeRepository_1.employeeRepo.CheckIfEmployeePerNoExist(employee.fieldData.empNo);
+                const data = employee.fieldData;
                 if (AllowedToAddTheUser) {
-                    const AddUser = yield EmployeeRepository_1.employeeRepo.AddEmployee(employee);
+                    const AddUser = yield EmployeeRepository_1.employeeRepo.AddEmployee(data);
                 }
                 else {
-                    const UpdateUser = yield EmployeeRepository_1.employeeRepo.UpdateEmployeePerEmpNo(employee);
+                    const UpdateUser = yield EmployeeRepository_1.employeeRepo.UpdateEmployeePerEmpNo(data);
                 }
             }));
             return requestGetEmployeeFromOtherServer.data.response.data;

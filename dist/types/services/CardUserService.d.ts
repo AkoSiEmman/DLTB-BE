@@ -27,17 +27,17 @@ import { ICardUser } from "../repositories/CardUserRepository";
 declare class CardUserService {
     AddCardUserService(newCardUser: ICardUser): Promise<boolean>;
     GetCardUserByUsername(username: string): Promise<false | (import("mongoose").Document<unknown, {}, {
+        username: string;
+        password: string;
         dateCreated: Date;
-        username?: string | undefined;
-        password?: string | undefined;
-        recordId?: string | undefined;
-        cardId?: string | undefined;
+        cardId: string;
+        recordId: string;
     }> & Omit<{
+        username: string;
+        password: string;
         dateCreated: Date;
-        username?: string | undefined;
-        password?: string | undefined;
-        recordId?: string | undefined;
-        cardId?: string | undefined;
+        cardId: string;
+        recordId: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }, never>) | null>;

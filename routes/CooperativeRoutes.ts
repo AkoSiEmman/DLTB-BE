@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CheckTokenMiddleware } from "../dist/types/middlewares/CheckTokenMiddleware";
+import { CheckTokenMiddleware } from "../middlewares/CheckTokenMiddleware";
 import { AddCooperativeController, GetAllCooperativeController } from "../controllers/CooperativeController";
 
 const CooperativeRouter = Router();

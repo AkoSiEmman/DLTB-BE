@@ -23,8 +23,8 @@ declare const TORTroubleModel: mongoose.Model<{
         device_id?: string | undefined;
     }>;
     recordId?: string | undefined;
-    modId?: string | undefined;
     portalId?: any;
+    modId?: string | undefined;
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
@@ -49,8 +49,8 @@ declare const TORTroubleModel: mongoose.Model<{
         device_id?: string | undefined;
     }>;
     recordId?: string | undefined;
-    modId?: string | undefined;
     portalId?: any;
+    modId?: string | undefined;
 }> & Omit<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
@@ -75,8 +75,8 @@ declare const TORTroubleModel: mongoose.Model<{
         device_id?: string | undefined;
     }>;
     recordId?: string | undefined;
-    modId?: string | undefined;
     portalId?: any;
+    modId?: string | undefined;
 } & {
     _id: mongoose.Types.ObjectId;
 }, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
@@ -103,8 +103,8 @@ declare const TORTroubleModel: mongoose.Model<{
         device_id?: string | undefined;
     }>;
     recordId?: string | undefined;
-    modId?: string | undefined;
     portalId?: any;
+    modId?: string | undefined;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
@@ -129,8 +129,8 @@ declare const TORTroubleModel: mongoose.Model<{
         device_id?: string | undefined;
     }>;
     recordId?: string | undefined;
-    modId?: string | undefined;
     portalId?: any;
+    modId?: string | undefined;
 }>> & Omit<mongoose.FlatRecord<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
@@ -155,8 +155,8 @@ declare const TORTroubleModel: mongoose.Model<{
         device_id?: string | undefined;
     }>;
     recordId?: string | undefined;
-    modId?: string | undefined;
     portalId?: any;
+    modId?: string | undefined;
 }> & {
     _id: mongoose.Types.ObjectId;
 }, never>>>;

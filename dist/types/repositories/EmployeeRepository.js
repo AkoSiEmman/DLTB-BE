@@ -40,13 +40,7 @@ class EmployeeRepository {
     AddEmployee(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const newEmployee = {
-                    "portalData": data.portalData,
-                    "recordId": data.recordId,
-                    "modId": data.modId,
-                    "fieldData": data.fieldData
-                };
-                const employeeData = new EmployeeModel_1.default(newEmployee);
+                const employeeData = new EmployeeModel_1.default(data);
                 const employeeDataSave = yield employeeData.save();
                 return true;
             }
@@ -59,7 +53,7 @@ class EmployeeRepository {
     UpdateEmployeePerEMPNo(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const employee = yield EmployeeModel_1.default.findOneAndReplace({ 'fieldData[0].empNo': data.fieldData.empNo }, data);
+                const employee = yield EmployeeModel_1.default.findOneAndReplace({ 'empNo': data.empNo }, data);
             }
             catch (e) {
                 console.error("Error in employee repository: " + e);
@@ -70,7 +64,7 @@ class EmployeeRepository {
     GetEmployeePerEmpNo(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const employee = yield EmployeeModel_1.default.findOne({ 'fieldData[0].empNo': id });
+                const employee = yield EmployeeModel_1.default.findOne({ 'empNo': id });
                 return employee;
             }
             catch (e) {
@@ -83,7 +77,7 @@ class EmployeeRepository {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let ifAllowedToAdd = false;
-                const employee = yield EmployeeModel_1.default.findOne({ 'fieldData.empNo': id });
+                const employee = yield EmployeeModel_1.default.findOne({ 'empNo': id });
                 if (employee === null) {
                     ifAllowedToAdd = true;
                 }
@@ -103,8 +97,20 @@ class EmployeeRepository {
     UpdateEmployeePerEmpNo(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const updateEmployeeData = yield EmployeeModel_1.default.findOneAndUpdate({ 'fieldData.empNo': data.empNo }, data);
+                const updateEmployeeData = yield EmployeeModel_1.default.findOneAndUpdate({ 'empNo': data.empNo }, data);
                 return true;
+            }
+            catch (e) {
+                console.error("Repository error: " + e);
+                return false;
+            }
+        });
+    }
+    GetAllPerCoopId(coopId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const employee = yield EmployeeModel_1.default.find({ 'coopId': coopId });
+                return employee;
             }
             catch (e) {
                 console.error("Repository error: " + e);

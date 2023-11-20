@@ -40,6 +40,18 @@ class StationService {
             }
         });
     }
+    GetAllDataPerCoopId(coopId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const data = yield StationRepository_1.default.GetAllPerCoopId(coopId);
+                return { status: 0, message: "OK", response: data };
+            }
+            catch (e) {
+                console.error("Error in services: " + e);
+                return { status: 500, message: e, response: {} };
+            }
+        });
+    }
 }
 exports.default = new StationService();
 //# sourceMappingURL=StationService.js.map

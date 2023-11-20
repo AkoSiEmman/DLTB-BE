@@ -90,6 +90,18 @@ class UserRepository {
             }
         });
     }
+    GetUserByEmail(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const user = yield UserModel_1.default.findOne({ "email": email });
+                return user;
+            }
+            catch (e) {
+                console.log(`Error in repository: ${e}`);
+                return null;
+            }
+        });
+    }
 }
 exports.default = new UserRepository();
 //# sourceMappingURL=UserRepository.js.map

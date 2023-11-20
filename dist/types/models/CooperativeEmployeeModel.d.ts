@@ -1,10 +1,20 @@
-import mongoose from "mongoose";
-export interface ICooperativeEmployee extends mongoose.Document {
+import mongoose, { Document } from "mongoose";
+export interface ICooperativeEmployeeSchema {
     firstName: string;
     middleName: string;
     lastName: string;
     position: string;
     companyName: string;
+    email: string;
+    password: string;
+}
+export interface ICooperativeEmployee extends Document {
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    position: string;
+    companyName: string;
+    email: string;
     password: string;
     createdAt: Date;
     updatedAt: Date;
@@ -14,6 +24,7 @@ declare const CooperativeEmployeeModel: mongoose.Model<{
     lastName: string;
     firstName: string;
     middleName: string;
+    email: string;
     createdAt: Date;
     position: string;
     companyName: string;
@@ -23,6 +34,7 @@ declare const CooperativeEmployeeModel: mongoose.Model<{
     lastName: string;
     firstName: string;
     middleName: string;
+    email: string;
     createdAt: Date;
     position: string;
     companyName: string;
@@ -32,6 +44,7 @@ declare const CooperativeEmployeeModel: mongoose.Model<{
     lastName: string;
     firstName: string;
     middleName: string;
+    email: string;
     createdAt: Date;
     position: string;
     companyName: string;
@@ -43,6 +56,7 @@ declare const CooperativeEmployeeModel: mongoose.Model<{
     lastName: string;
     firstName: string;
     middleName: string;
+    email: string;
     createdAt: Date;
     position: string;
     companyName: string;
@@ -52,6 +66,7 @@ declare const CooperativeEmployeeModel: mongoose.Model<{
     lastName: string;
     firstName: string;
     middleName: string;
+    email: string;
     createdAt: Date;
     position: string;
     companyName: string;
@@ -61,6 +76,7 @@ declare const CooperativeEmployeeModel: mongoose.Model<{
     lastName: string;
     firstName: string;
     middleName: string;
+    email: string;
     createdAt: Date;
     position: string;
     companyName: string;

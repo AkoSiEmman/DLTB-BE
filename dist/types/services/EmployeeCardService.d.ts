@@ -18,6 +18,15 @@ declare class EmployeeCardService {
         message: unknown;
         response: {};
     }>;
+    GetAllCardPerCoopId(coopId: string): Promise<{
+        status: number;
+        message: string;
+        response: unknown;
+    } | {
+        status: number;
+        message: unknown;
+        response: {};
+    }>;
 }
 declare const _default: EmployeeCardService;
 export default _default;

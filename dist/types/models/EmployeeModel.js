@@ -5,6 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const employeeSchema = new mongoose_1.default.Schema({
+    coopId: {
+        type: String,
+        index: true,
+        default: "655321a339c1307c069616e9"
+    },
     lastName: {
         type: String,
         default: '',
@@ -88,17 +93,8 @@ const employeeSchema = new mongoose_1.default.Schema({
         default: '',
         index: true,
         required: false
-    }
-});
-const employeeDataSchema = new mongoose_1.default.Schema({
-    recordId: {
-        type: String
     },
-    modId: {
-        type: String
-    },
-    fieldData: [employeeSchema],
 });
-const EmployeeModel = mongoose_1.default.model('EmployeeRecords', employeeDataSchema);
+const EmployeeModel = mongoose_1.default.model('EmployeeRecordsv2', employeeSchema);
 exports.default = EmployeeModel;
 //# sourceMappingURL=EmployeeModel.js.map

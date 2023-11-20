@@ -17,7 +17,19 @@ class MasterCardRepository {
     GetAllMasterCard() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const masterCard = MasterCardModel_1.default.find({});
+                const masterCard = yield MasterCardModel_1.default.find({});
+                return masterCard;
+            }
+            catch (e) {
+                console.error("Error in master card repository: " + e);
+                return false;
+            }
+        });
+    }
+    GetCardByCoopId(coopId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const masterCard = yield MasterCardModel_1.default.find({ "coopId": coopId });
                 return masterCard;
             }
             catch (e) {
@@ -57,12 +69,32 @@ class MasterCardRepository {
             }
         });
     }
+    GetCurrentBalancePerCardId(cardId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const searchCardId = yield MasterCardModel_1.default.findOne({ "cardId": cardId });
+                if (searchCardId) {
+                    return searchCardId.balance;
+                }
+                else {
+                    return null;
+                }
+            }
+            catch (e) {
+                console.log(`Error in repository ${e}`);
+                let errorMessage = e.message;
+                return null;
+            }
+        });
+    }
     UpdateMasterCardBalanceByCardId(cardId, decreaseAmount, increaseAmount) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                console.log(`INCREASE ${increaseAmount}`);
+                console.log(`DECREASE ${decreaseAmount}`);
                 const increaseBalancePerId = yield MasterCardModel_1.default.updateOne({ "cardId": cardId }, { $inc: { "balance": increaseAmount } }, { new: true });
                 const decreaseBalancePerId = yield MasterCardModel_1.default.updateOne({ "cardId": cardId }, { $inc: { "balance": -decreaseAmount } }, { new: true });
-                return decreaseBalancePerId;
+                return true;
             }
             catch (e) {
                 console.log(`Error in repository ${e}`);

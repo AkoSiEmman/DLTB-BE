@@ -38,6 +38,23 @@ class EmployeeCardService {
             }
         });
     }
+    GetAllCardPerCoopId(coopId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const data = yield EmployeeCardRepository_1.default.GetAllDatPerCoopId(coopId);
+                if (Object(data).length > 0) {
+                    return { status: 0, message: "OK", response: data };
+                }
+                else {
+                    return { status: 1, message: "Invalid Coop Id", response: {} };
+                }
+            }
+            catch (e) {
+                console.log(`Error in getting services: ${e}`);
+                return { status: 500, message: e, response: {} };
+            }
+        });
+    }
 }
 exports.default = new EmployeeCardService();
 //# sourceMappingURL=EmployeeCardService.js.map

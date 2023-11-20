@@ -21,14 +21,33 @@ declare class RiderWalletService {
     }>;
     isMasterCard(card: IMasterCard | string | boolean): card is IMasterCard;
     isRiderCard(card: IRiderWallet | string | boolean): card is IRiderWallet;
-    UpdateRiderWalletByCardId(cardId: string, decreaseAmount: number, increaseAmount: number, cardType: String): Promise<{
+    GetBalancePerCardId(cardId: string, cardType: string): Promise<{
         status: number;
         message: string;
-        response: unknown;
+        response: {
+            balance: number;
+        };
     } | {
         status: number;
         message: unknown;
-        response: {};
+        response: {
+            balance?: undefined;
+        };
+    } | undefined>;
+    UpdateRiderWalletByCardId(cardId: string, decreaseAmount: number, increaseAmount: number, cardType: String): Promise<{
+        status: number;
+        message: string;
+        response: {
+            previousBalance: number;
+            newBalance: number | null;
+        };
+    } | {
+        status: number;
+        message: unknown;
+        response: {
+            previousBalance?: undefined;
+            newBalance?: undefined;
+        };
     }>;
     GetRiderWalletCardIdPerId(cardId: string): Promise<{
         status: number;

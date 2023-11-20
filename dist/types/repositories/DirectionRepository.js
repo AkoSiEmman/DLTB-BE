@@ -40,6 +40,31 @@ class Directions {
             }
         });
     }
+    UpdateDataToCoopId() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield DirectionModel_1.default.updateMany({}, { coopId: "655321a339c1307c069616e9" });
+                console.log("Successfully updated all direction records to have a coopId.");
+                return true;
+            }
+            catch (e) {
+                console.error(`Error in repository ${e}`);
+                return false;
+            }
+        });
+    }
+    GetAllPerCoopId(coopId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const employee = yield DirectionModel_1.default.find({ 'coopId': coopId });
+                return employee;
+            }
+            catch (e) {
+                console.error("Repository error: " + e);
+                return false;
+            }
+        });
+    }
 }
 exports.directionRepo = new Directions();
 //# sourceMappingURL=DirectionRepository.js.map

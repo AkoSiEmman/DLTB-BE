@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 declare const DispatchModel: mongoose.Model<{
-    date: Date;
     designation: string;
+    date: Date;
     route: string;
     bound: string;
     coopName: string;
@@ -14,8 +14,8 @@ declare const DispatchModel: mongoose.Model<{
     dispatcherName: string;
     trip: string;
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
-    date: Date;
     designation: string;
+    date: Date;
     route: string;
     bound: string;
     coopName: string;
@@ -28,8 +28,8 @@ declare const DispatchModel: mongoose.Model<{
     dispatcherName: string;
     trip: string;
 }> & Omit<{
-    date: Date;
     designation: string;
+    date: Date;
     route: string;
     bound: string;
     coopName: string;
@@ -44,8 +44,8 @@ declare const DispatchModel: mongoose.Model<{
 } & {
     _id: mongoose.Types.ObjectId;
 }, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
-    date: Date;
     designation: string;
+    date: Date;
     route: string;
     bound: string;
     coopName: string;
@@ -58,8 +58,8 @@ declare const DispatchModel: mongoose.Model<{
     dispatcherName: string;
     trip: string;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
-    date: Date;
     designation: string;
+    date: Date;
     route: string;
     bound: string;
     coopName: string;
@@ -72,8 +72,8 @@ declare const DispatchModel: mongoose.Model<{
     dispatcherName: string;
     trip: string;
 }>> & Omit<mongoose.FlatRecord<{
-    date: Date;
     designation: string;
+    date: Date;
     route: string;
     bound: string;
     coopName: string;

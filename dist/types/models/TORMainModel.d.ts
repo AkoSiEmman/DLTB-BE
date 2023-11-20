@@ -1,9 +1,14 @@
 import mongoose from "mongoose";
 declare const TORMainModel: mongoose.Model<{
+    portalId: any[];
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
         dateCreated: Date;
+        device_id: string;
+        control_no: string;
+        tor_no: string;
+        date_of_trip: string;
         bus_no: string;
         route_code: string;
         emp_no_driver_1: string;
@@ -93,19 +98,19 @@ declare const TORMainModel: mongoose.Model<{
         tellers_name: string;
         coding: string;
         remarks: string;
-        device_id?: string | undefined;
-        control_no?: string | undefined;
-        tor_no?: string | undefined;
-        date_of_trip?: string | undefined;
     }>;
-    portalId: any[];
     recordId?: string | undefined;
     modId?: string | undefined;
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
+    portalId: any[];
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
         dateCreated: Date;
+        device_id: string;
+        control_no: string;
+        tor_no: string;
+        date_of_trip: string;
         bus_no: string;
         route_code: string;
         emp_no_driver_1: string;
@@ -195,19 +200,19 @@ declare const TORMainModel: mongoose.Model<{
         tellers_name: string;
         coding: string;
         remarks: string;
-        device_id?: string | undefined;
-        control_no?: string | undefined;
-        tor_no?: string | undefined;
-        date_of_trip?: string | undefined;
     }>;
-    portalId: any[];
     recordId?: string | undefined;
     modId?: string | undefined;
 }> & Omit<{
+    portalId: any[];
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
         dateCreated: Date;
+        device_id: string;
+        control_no: string;
+        tor_no: string;
+        date_of_trip: string;
         bus_no: string;
         route_code: string;
         emp_no_driver_1: string;
@@ -297,21 +302,21 @@ declare const TORMainModel: mongoose.Model<{
         tellers_name: string;
         coding: string;
         remarks: string;
-        device_id?: string | undefined;
-        control_no?: string | undefined;
-        tor_no?: string | undefined;
-        date_of_trip?: string | undefined;
     }>;
-    portalId: any[];
     recordId?: string | undefined;
     modId?: string | undefined;
 } & {
     _id: mongoose.Types.ObjectId;
 }, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
+    portalId: any[];
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
         dateCreated: Date;
+        device_id: string;
+        control_no: string;
+        tor_no: string;
+        date_of_trip: string;
         bus_no: string;
         route_code: string;
         emp_no_driver_1: string;
@@ -401,19 +406,19 @@ declare const TORMainModel: mongoose.Model<{
         tellers_name: string;
         coding: string;
         remarks: string;
-        device_id?: string | undefined;
-        control_no?: string | undefined;
-        tor_no?: string | undefined;
-        date_of_trip?: string | undefined;
     }>;
-    portalId: any[];
     recordId?: string | undefined;
     modId?: string | undefined;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
+    portalId: any[];
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
         dateCreated: Date;
+        device_id: string;
+        control_no: string;
+        tor_no: string;
+        date_of_trip: string;
         bus_no: string;
         route_code: string;
         emp_no_driver_1: string;
@@ -503,19 +508,19 @@ declare const TORMainModel: mongoose.Model<{
         tellers_name: string;
         coding: string;
         remarks: string;
-        device_id?: string | undefined;
-        control_no?: string | undefined;
-        tor_no?: string | undefined;
-        date_of_trip?: string | undefined;
     }>;
-    portalId: any[];
     recordId?: string | undefined;
     modId?: string | undefined;
 }>> & Omit<mongoose.FlatRecord<{
+    portalId: any[];
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
         route: string;
         dateCreated: Date;
+        device_id: string;
+        control_no: string;
+        tor_no: string;
+        date_of_trip: string;
         bus_no: string;
         route_code: string;
         emp_no_driver_1: string;
@@ -605,12 +610,7 @@ declare const TORMainModel: mongoose.Model<{
         tellers_name: string;
         coding: string;
         remarks: string;
-        device_id?: string | undefined;
-        control_no?: string | undefined;
-        tor_no?: string | undefined;
-        date_of_trip?: string | undefined;
     }>;
-    portalId: any[];
     recordId?: string | undefined;
     modId?: string | undefined;
 }> & {

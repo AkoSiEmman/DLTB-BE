@@ -26,6 +26,18 @@ class MasterCardServices {
             }
         });
     }
+    GetAllMasterCardByCoopId(coopId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const masterCards = yield MasterCardRepository_1.default.GetCardByCoopId(coopId);
+                return masterCards;
+            }
+            catch (e) {
+                console.error("Error in master card services: " + e);
+                return false;
+            }
+        });
+    }
     CreateNewMasterCard(masterCard) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

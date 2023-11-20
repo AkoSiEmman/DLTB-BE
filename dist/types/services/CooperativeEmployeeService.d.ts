@@ -1,4 +1,4 @@
-import { ICooperativeEmployee } from "../models/CooperativeEmployeeModel";
+import { ICooperativeEmployeeSchema } from "../models/CooperativeEmployeeModel";
 declare class CooperativeEmployeeService {
     GetAllCooperativeEmployee(): Promise<{
         status: number;
@@ -9,7 +9,7 @@ declare class CooperativeEmployeeService {
         message: unknown;
         response: {};
     }>;
-    AddCooperativeEmployee(data: ICooperativeEmployee): Promise<{
+    AddCooperativeEmployee(data: ICooperativeEmployeeSchema): Promise<{
         status: number;
         message: string;
         response: unknown;

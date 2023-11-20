@@ -59,6 +59,8 @@ class RiderWalletRepository {
         return __awaiter(this, void 0, void 0, function* () {
             const newRiderId = new mongodb_1.ObjectId(riderId);
             try {
+                console.log(`INCREASE ${increaseAmount}`);
+                console.log(`DECREASE ${decreaseAmount}`);
                 const fckShet = yield RiderWalletModel_1.default.findOne({ "riderId": riderId });
                 const increaseBalancePerId = yield RiderWalletModel_1.default.findOneAndUpdate({ "riderId": riderId }, { $inc: { "balance": increaseAmount } }, { new: true });
                 const decreaseBalancePerId = yield RiderWalletModel_1.default.findOneAndUpdate({ "riderId": riderId }, { $inc: { "balance": -decreaseAmount } }, { new: true });
@@ -67,6 +69,22 @@ class RiderWalletRepository {
             catch (e) {
                 console.log(`Error in repository ${e}`);
                 return e;
+            }
+        });
+    }
+    GetBalancePerRiderId(riderId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let balance = 0;
+                const data = yield RiderWalletModel_1.default.findOne({ "riderId": riderId });
+                if (typeof (data === null || data === void 0 ? void 0 : data.balance) === 'number') {
+                    balance = data.balance;
+                }
+                return balance;
+            }
+            catch (e) {
+                console.log(`Error in repository ${e}`);
+                return 0;
             }
         });
     }

@@ -59,33 +59,6 @@ class TORMainService {
             }
         });
     }
-    CreateTORMAinToOtherServerService(tor) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let torTemp = JSON.parse(JSON.stringify(tor));
-                delete torTemp._id;
-                console.log("NEW TOR");
-                console.log(torTemp);
-                const newTor = {
-                    "fieldData": torTemp
-                };
-                const token = yield (0, SessionService_1.TORGenerateSessionService)();
-                const config = {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                };
-                const addNewTorInOtherServer = yield axios_1.default.post("https://s037817.fmphost.com/fmi/data/v1/databases/filipay_torData/layouts/tor_main/records", newTor, config);
-                const responseAddNewTorInOtherServer = yield addNewTorInOtherServer.data;
-                const deleteToken = yield (0, SessionService_1.TOREndSessionService)(token);
-                return true;
-            }
-            catch (e) {
-                console.error("Error in creating new tor main to other service: " + e);
-                return false;
-            }
-        });
-    }
     CreateTORMainService(fieldData) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -161,15 +134,11 @@ class TORMainService {
                         if (torMain.fieldData && Array.isArray(torMain.fieldData) && torMain.fieldData.length > 0) {
                             for (const fieldData of torMain.fieldData) {
                                 if (yield this.CheckIfUUIDAllowedToInsertService(fieldData)) {
-                                    const request = yield this.CreateTORMAinToOtherServerService(fieldData);
                                 }
                                 else {
                                     console.log("UUID NOT ALLOWED TO INSERT");
                                 }
                             }
-                        }
-                        else {
-                            console.log("SHET");
                         }
                     }
                 }

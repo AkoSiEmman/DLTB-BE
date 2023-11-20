@@ -102,7 +102,6 @@ interface ITORMAIN {
 declare class TORMainService {
     GetAllTORMain(): Promise<{}>;
     GetAllTORMainFromServer(): Promise<any>;
-    CreateTORMAinToOtherServerService(tor: any): Promise<boolean>;
     CreateTORMainService(fieldData: ITORMAIN): Promise<boolean>;
     UpdateTORMainServiceToOtherServer(tor: ITORMAIN, recordId: string): Promise<boolean>;
     UpdateTORMainService(tor: ITORMAIN): Promise<boolean>;

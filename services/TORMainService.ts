@@ -265,7 +265,6 @@ class TORMainService{
     }
 
 
-    e
 
     async CreateTORMainService(fieldData : ITORMAIN) {
 
@@ -363,7 +362,7 @@ class TORMainService{
                     if (torMain.fieldData && Array.isArray(torMain.fieldData) && torMain.fieldData.length > 0) {
                         for (const fieldData of torMain.fieldData) {
                             if (await this.CheckIfUUIDAllowedToInsertService(fieldData)) {
-                                const request = await this.CreateTORMAinToOtherServerService(fieldData);
+                                // const request = await this.CreateTORMAinToOtherServerService(fieldData);
                             } else {
                                 console.log("UUID NOT ALLOWED TO INSERT");
                             }

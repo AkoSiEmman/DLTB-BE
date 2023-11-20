@@ -26,6 +26,23 @@ class VehicleServices {
             }
         });
     }
+    GetAllVehiclePerCoopId(coopId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const allVehicles = yield VehicleRepository_1.default.GetAllDataPerCoopId(coopId);
+                if (Object(allVehicles).length > 0) {
+                    return { status: 0, message: "OK", response: allVehicles };
+                }
+                else {
+                    return { status: 1, message: "Invalid Coop Id", response: {} };
+                }
+            }
+            catch (e) {
+                console.log(`Error in getting vehicle services: ${e}`);
+                return { status: 500, message: e, response: {} };
+            }
+        });
+    }
     AddVehicle(vehicle) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

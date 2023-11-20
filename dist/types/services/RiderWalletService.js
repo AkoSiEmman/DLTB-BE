@@ -46,45 +46,108 @@ class RiderWalletService {
     isRiderCard(card) {
         return card.balance !== undefined;
     }
+    GetBalancePerCardId(cardId, cardType) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (cardType === "regular" || cardType === "discounted" || cardType === "mastercard") {
+                    if (cardType === "mastercard") {
+                        const findCardIdInMasterCard = yield MasterCardRepository_1.default.FindCardIdInMasterCard(cardId);
+                        if (this.isMasterCard(findCardIdInMasterCard)) {
+                            return { status: 0, message: "OK", response: { "balance": findCardIdInMasterCard.balance } };
+                        }
+                        else {
+                            return { status: 1, message: "Card is not valid", response: {} };
+                        }
+                    }
+                    if (cardType === "regular" || cardType === "discounted") {
+                        const riderIdPerCardId = yield RiderRepository_1.default.GetRiderByCardId(cardId);
+                        console.log(riderIdPerCardId);
+                        if (typeof riderIdPerCardId === null || Object(riderIdPerCardId).length === 0) {
+                            return { status: 1, message: "Card is not valid", response: {} };
+                        }
+                        if (typeof riderIdPerCardId[0]._id !== undefined && riderIdPerCardId[0]._id !== undefined && riderIdPerCardId !== null) {
+                            let riderId = riderIdPerCardId[0]._id.toString();
+                            if (cardType === "discounted" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SND") {
+                                return { status: 1, message: "Card is not valid", response: {} };
+                            }
+                            if (cardType === "regular" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SNR") {
+                                return { status: 1, message: "Card is not valid", response: {} };
+                            }
+                            const getBalancePerRiderId = yield RiderWalletRepository_1.default.GetBalancePerRiderId(riderId);
+                            return { status: 0, message: "OK", response: { "balance": getBalancePerRiderId } };
+                        }
+                        else {
+                            return { status: 1, message: "Card is not valid", response: {} };
+                        }
+                    }
+                }
+                else {
+                    return { status: 1, message: "Invalid Card Type", response: {} };
+                }
+            }
+            catch (e) {
+                console.log(`Error in rider wallet services: ${e}`);
+                return { status: 500, message: e, response: {} };
+            }
+        });
+    }
     UpdateRiderWalletByCardId(cardId, decreaseAmount, increaseAmount, cardType) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 if (cardId !== undefined && decreaseAmount !== null && increaseAmount !== null && cardType !== undefined) {
                     if (cardType === "mastercard") {
                         const findCardIdInMasterCard = yield MasterCardRepository_1.default.FindCardIdInMasterCard(cardId);
-                        if (this.isMasterCard(findCardIdInMasterCard) && findCardIdInMasterCard.balance >= 0) {
-                            if (this.isMasterCard(findCardIdInMasterCard) && findCardIdInMasterCard.balance >= decreaseAmount) {
+                        const currentBalance = yield MasterCardRepository_1.default.GetCurrentBalancePerCardId(cardId);
+                        if (this.isMasterCard(findCardIdInMasterCard) && findCardIdInMasterCard.balance >= 0 && currentBalance !== null) {
+                            if (this.isMasterCard(findCardIdInMasterCard) && findCardIdInMasterCard.balance >= decreaseAmount && currentBalance) {
                                 const updateBalance = yield MasterCardRepository_1.default.UpdateMasterCardBalanceByCardId(cardId, decreaseAmount, increaseAmount);
-                                return { status: 0, message: "OK", response: updateBalance };
+                                const newBalance = yield MasterCardRepository_1.default.GetCurrentBalancePerCardId(cardId);
+                                return { status: 0, message: "OK", response: {
+                                        "previousBalance": currentBalance,
+                                        "newBalance": newBalance
+                                    } };
                             }
                             else {
                                 return { status: 1, message: "Insufficient balance", response: {} };
                             }
                         }
                         else {
-                            return { status: 1, message: "Card is not yet registered", response: {} };
+                            return { status: 1, message: "Card is not valid", response: {} };
                         }
                     }
                     if (cardType === "discounted" || cardType === "regular") {
                         const riderIdPerCardId = yield RiderRepository_1.default.GetRiderByCardId(cardId);
-                        if (riderIdPerCardId[0]._id !== undefined) {
+                        if (typeof riderIdPerCardId[0] === undefined) {
+                            return { status: 1, message: "Card is not valid", response: {} };
+                        }
+                        if (riderIdPerCardId[0]._id !== undefined && riderIdPerCardId !== null) {
                             let riderId = riderIdPerCardId[0]._id.toString();
                             console.log("rider id ito : " + riderId);
                             if (cardType === "discounted" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SND") {
-                                return { status: 1, message: "Card does is not valid", response: {} };
+                                return { status: 1, message: "Card is not valid", response: {} };
                             }
                             if (cardType === "regular" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SNR") {
-                                return { status: 1, message: "Card does is not valid", response: {} };
+                                return { status: 1, message: "Card is not valid", response: {} };
                             }
-                            const updateBalancePerRiderId = yield RiderWalletRepository_1.default.UpdateRiderWalletByRiderId(riderId, decreaseAmount, increaseAmount);
-                            return { status: 0, message: `Rider ${riderId} balance has been updated`, response: {} };
+                            const getBalancePerRiderId = yield RiderWalletRepository_1.default.GetBalancePerRiderId(riderId);
+                            if (getBalancePerRiderId >= decreaseAmount && getBalancePerRiderId !== undefined) {
+                                const updateBalancePerRiderId = yield RiderWalletRepository_1.default.
+                                    UpdateRiderWalletByRiderId(riderId, increaseAmount, decreaseAmount);
+                                const newBalancePerRiderId = yield RiderWalletRepository_1.default.GetBalancePerRiderId(riderId);
+                                return { status: 0, message: `OK`, response: {
+                                        "previousBalance": getBalancePerRiderId,
+                                        "newBalance": newBalancePerRiderId
+                                    } };
+                            }
+                            else {
+                                return { status: 1, message: "Insufficient balance", response: {} };
+                            }
                         }
                         else {
-                            console.log("PUMASOK DITO");
                             return { status: 1, message: "Card is not valid", response: {} };
                         }
                     }
-                    return { status: 1, message: "Card does is not valid", response: {} };
+                    return { status: 1, message: "Card is not valid", response: {} };
                 }
                 else {
                     return { status: 1, message: "Invalid fields", response: {} };

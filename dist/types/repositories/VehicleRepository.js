@@ -26,6 +26,18 @@ class VehicleRepository {
             }
         });
     }
+    GetAllDataPerCoopId(coopId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const vehicles = yield VehicleModel_1.default.find({ "coopId": coopId });
+                return vehicles;
+            }
+            catch (e) {
+                console.log(`Error in getting vehicles ${e}`);
+                return e;
+            }
+        });
+    }
     AddVehicle(vehicle) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

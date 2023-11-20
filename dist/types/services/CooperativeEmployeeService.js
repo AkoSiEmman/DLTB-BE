@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const Bcrypt_1 = require("../common/Bcrypt");
 const CooperativeEmployeeRepository_1 = __importDefault(require("../repositories/CooperativeEmployeeRepository"));
 class CooperativeEmployeeService {
     GetAllCooperativeEmployee() {
@@ -29,8 +30,10 @@ class CooperativeEmployeeService {
     AddCooperativeEmployee(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const newEmployee = yield CooperativeEmployeeRepository_1.default.AddCooperativeEmployee(data);
-                return { status: 0, message: "OK", response: newEmployee };
+                const hashedPassword = yield (0, Bcrypt_1.GenerateHashPassword)(data.password);
+                const userAccount = Object.assign(Object.assign({}, data), { "password": hashedPassword });
+                const saveUser = yield CooperativeEmployeeRepository_1.default.AddCooperativeEmployee(userAccount);
+                return { status: 0, message: "OK", response: saveUser };
             }
             catch (e) {
                 console.log(`Error in getting vehicle services: ${e}`);

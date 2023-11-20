@@ -37,7 +37,7 @@ class DeviceService{
 
             const data = await DeviceRepository.GetCoopIdPerDeviceId(coopId);
 
-            if(data !== null ){
+            if(data !== null  && data !== "" ){
                 let dataId : string = data?.coopId;
                 const coops = await CooperativeRepository.GetDataPerId(dataId);
                 return {status: 0, message: "OK", response: coops}

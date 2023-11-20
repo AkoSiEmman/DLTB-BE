@@ -8,12 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateEmployeeFilipayServerController = exports.AddNewEmployeeFilipayServerController = exports.GetAllEmployeesFilipayServerController = exports.GetAllEmployeesController = void 0;
+exports.UpdateEmployeeFilipayServerController = exports.AddNewEmployeeFilipayServerController = exports.GetEmployeeDataPerCoopIdController = exports.GetAllEmployeesFilipayServerController = exports.GetAllEmployeesController = void 0;
 const SessionService_1 = require("../services/SessionService");
 const GetCurrentDate_1 = require("../common/GetCurrentDate");
 const OtherServerFetchEmployeeService_1 = require("../services/OtherServerFetchEmployeeService");
 const FetchFilipayServerServices_1 = require("../services/FetchFilipayServerServices");
+const EmployeeService_1 = __importDefault(require("../services/EmployeeService"));
 let employeeToken = false;
 function GetAllEmployeesController(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -57,7 +61,7 @@ function GetAllEmployeesFilipayServerController(request, response) {
                         message: "OK",
                         dateTime: responseDate,
                     }],
-                response: [requestForEmployeeList]
+                response: requestForEmployeeList
             });
         }
         catch (e) {
@@ -72,6 +76,41 @@ function GetAllEmployeesFilipayServerController(request, response) {
     });
 }
 exports.GetAllEmployeesFilipayServerController = GetAllEmployeesFilipayServerController;
+function GetEmployeeDataPerCoopIdController(request, response) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const requestForEmployeeList = yield EmployeeService_1.default.GetDataPerCoopId(request.params.id);
+            if (Object(requestForEmployeeList.response).length === 0) {
+                response.status(200).json({ messages: [{
+                            code: "1",
+                            message: "Invalid Coop Id",
+                            dateTime: (0, GetCurrentDate_1.GetCurrentDateSTR)(),
+                        }],
+                    response: {}
+                });
+            }
+            else {
+                response.status(200).json({ messages: [{
+                            code: "0",
+                            message: "OK",
+                            dateTime: (0, GetCurrentDate_1.GetCurrentDateSTR)(),
+                        }],
+                    response: requestForEmployeeList.response
+                });
+            }
+        }
+        catch (e) {
+            response.status(500).json({ messages: [{
+                        code: "212",
+                        message: "Error in getting all employees: " + e,
+                        dateTime: (0, GetCurrentDate_1.GetCurrentDateSTR)(),
+                    }],
+                response: {}
+            });
+        }
+    });
+}
+exports.GetEmployeeDataPerCoopIdController = GetEmployeeDataPerCoopIdController;
 function AddNewEmployeeFilipayServerController(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         const responseDate = (0, GetCurrentDate_1.GetCurrentDateSTR)();

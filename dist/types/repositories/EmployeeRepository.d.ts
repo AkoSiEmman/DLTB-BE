@@ -21,18 +21,17 @@
 /// <reference types="mongoose/types/utility" />
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { StringExpressionOperatorReturningObject } from "mongoose";
-export interface IEmployeeData {
-    portalData: [];
-    recordId: number;
-    modId: number;
-    fieldData: {
+import { IEmployeeData } from "../models/EmployeeModel";
+declare class EmployeeRepository {
+    GetAllEmployee(): Promise<false | (import("mongoose").Document<unknown, {}, {
+        coopId: string;
         lastName: string;
         firstName: string;
         middleName: string;
         nameSuffix: string;
-        empNo: string;
+        empNo: number;
         empStatus: string;
         empType: string;
         idName: string;
@@ -41,89 +40,58 @@ export interface IEmployeeData {
         idSignature: string;
         JTI_RFID: string;
         accessPrivileges: string;
-        JTI_RFID_RequestDate: StringExpressionOperatorReturningObject;
-    };
-}
-declare class EmployeeRepository {
-    GetAllEmployee(): Promise<false | (import("mongoose").Document<unknown, {}, {
-        fieldData: import("mongoose").Types.DocumentArray<{
-            lastName: string;
-            firstName: string;
-            empNo: number;
-            idName: string;
-            middleName?: string | undefined;
-            nameSuffix?: string | undefined;
-            empStatus?: string | undefined;
-            empType?: string | undefined;
-            designation?: string | undefined;
-            idPicture?: string | undefined;
-            idSignature?: string | undefined;
-            JTI_RFID?: string | undefined;
-            accessPrivileges?: string | undefined;
-            JTI_RFID_RequestDate?: string | undefined;
-        }>;
-        recordId?: string | undefined;
-        modId?: string | undefined;
+        JTI_RFID_RequestDate: string;
     }> & Omit<{
-        fieldData: import("mongoose").Types.DocumentArray<{
-            lastName: string;
-            firstName: string;
-            empNo: number;
-            idName: string;
-            middleName?: string | undefined;
-            nameSuffix?: string | undefined;
-            empStatus?: string | undefined;
-            empType?: string | undefined;
-            designation?: string | undefined;
-            idPicture?: string | undefined;
-            idSignature?: string | undefined;
-            JTI_RFID?: string | undefined;
-            accessPrivileges?: string | undefined;
-            JTI_RFID_RequestDate?: string | undefined;
-        }>;
-        recordId?: string | undefined;
-        modId?: string | undefined;
+        coopId: string;
+        lastName: string;
+        firstName: string;
+        middleName: string;
+        nameSuffix: string;
+        empNo: number;
+        empStatus: string;
+        empType: string;
+        idName: string;
+        designation: string;
+        idPicture: string;
+        idSignature: string;
+        JTI_RFID: string;
+        accessPrivileges: string;
+        JTI_RFID_RequestDate: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }, never>)[]>;
     UpdateEmployeeById(id: string, data: IEmployeeData): Promise<(import("mongoose").Document<unknown, {}, {
-        fieldData: import("mongoose").Types.DocumentArray<{
-            lastName: string;
-            firstName: string;
-            empNo: number;
-            idName: string;
-            middleName?: string | undefined;
-            nameSuffix?: string | undefined;
-            empStatus?: string | undefined;
-            empType?: string | undefined;
-            designation?: string | undefined;
-            idPicture?: string | undefined;
-            idSignature?: string | undefined;
-            JTI_RFID?: string | undefined;
-            accessPrivileges?: string | undefined;
-            JTI_RFID_RequestDate?: string | undefined;
-        }>;
-        recordId?: string | undefined;
-        modId?: string | undefined;
+        coopId: string;
+        lastName: string;
+        firstName: string;
+        middleName: string;
+        nameSuffix: string;
+        empNo: number;
+        empStatus: string;
+        empType: string;
+        idName: string;
+        designation: string;
+        idPicture: string;
+        idSignature: string;
+        JTI_RFID: string;
+        accessPrivileges: string;
+        JTI_RFID_RequestDate: string;
     }> & Omit<{
-        fieldData: import("mongoose").Types.DocumentArray<{
-            lastName: string;
-            firstName: string;
-            empNo: number;
-            idName: string;
-            middleName?: string | undefined;
-            nameSuffix?: string | undefined;
-            empStatus?: string | undefined;
-            empType?: string | undefined;
-            designation?: string | undefined;
-            idPicture?: string | undefined;
-            idSignature?: string | undefined;
-            JTI_RFID?: string | undefined;
-            accessPrivileges?: string | undefined;
-            JTI_RFID_RequestDate?: string | undefined;
-        }>;
-        recordId?: string | undefined;
-        modId?: string | undefined;
+        coopId: string;
+        lastName: string;
+        firstName: string;
+        middleName: string;
+        nameSuffix: string;
+        empNo: number;
+        empStatus: string;
+        empType: string;
+        idName: string;
+        designation: string;
+        idPicture: string;
+        idSignature: string;
+        JTI_RFID: string;
+        accessPrivileges: string;
+        JTI_RFID_RequestDate: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }, never>) | null | undefined>;
@@ -132,6 +100,41 @@ declare class EmployeeRepository {
     GetEmployeePerEmpNo(id: number): Promise<any>;
     CheckIfEmployeePerNoExist(id: IEmployeeData): Promise<boolean>;
     UpdateEmployeePerEmpNo(data: any): Promise<boolean>;
+    GetAllPerCoopId(coopId: string): Promise<false | (import("mongoose").Document<unknown, {}, {
+        coopId: string;
+        lastName: string;
+        firstName: string;
+        middleName: string;
+        nameSuffix: string;
+        empNo: number;
+        empStatus: string;
+        empType: string;
+        idName: string;
+        designation: string;
+        idPicture: string;
+        idSignature: string;
+        JTI_RFID: string;
+        accessPrivileges: string;
+        JTI_RFID_RequestDate: string;
+    }> & Omit<{
+        coopId: string;
+        lastName: string;
+        firstName: string;
+        middleName: string;
+        nameSuffix: string;
+        empNo: number;
+        empStatus: string;
+        empType: string;
+        idName: string;
+        designation: string;
+        idPicture: string;
+        idSignature: string;
+        JTI_RFID: string;
+        accessPrivileges: string;
+        JTI_RFID_RequestDate: string;
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>)[]>;
 }
 export declare const employeeRepo: EmployeeRepository;
 export {};

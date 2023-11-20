@@ -22,7 +22,7 @@ const cooperativeEmployeeSchema = new mongoose_1.default.Schema({
     },
     position: {
         type: String,
-        required: true,
+        default: "Admin",
         index: true
     },
     companyName: {
@@ -33,6 +33,12 @@ const cooperativeEmployeeSchema = new mongoose_1.default.Schema({
     password: {
         type: String,
         required: true,
+        index: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
         index: true
     },
     createdAt: {

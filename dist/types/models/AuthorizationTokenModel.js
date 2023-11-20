@@ -14,6 +14,6 @@ const authorizationTokenSchema = new mongoose_1.default.Schema({
         default: Date.now()
     }
 });
-const AuthorizationTokenModel = mongoose_1.default.model('AuthorizationTokenRecords', authorizationTokenSchema);
+const AuthorizationTokenModel = mongoose_1.default.model('authorizationtokenrecords', authorizationTokenSchema, { collection: "authorizationtokenrecords" }.collection);
 exports.default = AuthorizationTokenModel;
 //# sourceMappingURL=AuthorizationTokenModel.js.map

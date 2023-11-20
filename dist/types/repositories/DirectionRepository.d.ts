@@ -24,30 +24,53 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 interface IDirections {
+    coopId: string;
     bound: string;
     origin: string;
     destination: string;
-    route_code: string;
+    code: string;
 }
 declare class Directions {
     GetAllDirections(): Promise<false | (import("mongoose").Document<unknown, {}, {
+        coopId: string;
         createdAt: Date;
         updatedAt: Date;
-        route_code: string;
         bound: string;
         origin: string;
         destination: string;
+        code: string;
     }> & Omit<{
+        coopId: string;
         createdAt: Date;
         updatedAt: Date;
-        route_code: string;
         bound: string;
         origin: string;
         destination: string;
+        code: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }, never>)[]>;
     AddNewDirection(direction: IDirections): Promise<boolean>;
+    UpdateDataToCoopId(): Promise<boolean>;
+    GetAllPerCoopId(coopId: string): Promise<false | (import("mongoose").Document<unknown, {}, {
+        coopId: string;
+        createdAt: Date;
+        updatedAt: Date;
+        bound: string;
+        origin: string;
+        destination: string;
+        code: string;
+    }> & Omit<{
+        coopId: string;
+        createdAt: Date;
+        updatedAt: Date;
+        bound: string;
+        origin: string;
+        destination: string;
+        code: string;
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>)[]>;
 }
 export declare const directionRepo: Directions;
 export {};

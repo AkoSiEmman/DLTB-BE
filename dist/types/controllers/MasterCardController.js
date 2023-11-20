@@ -12,9 +12,46 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AddNewMasterCardController = exports.GetAllMasterCardController = void 0;
+exports.AddNewMasterCardController = exports.GetAllMasterCardController = exports.GetAllMasterCardByCoopIdController = void 0;
 const GetCurrentDate_1 = require("../common/GetCurrentDate");
 const MasterCardServices_1 = __importDefault(require("../services/MasterCardServices"));
+function GetAllMasterCardByCoopIdController(request, response) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const responseDate = (0, GetCurrentDate_1.GetCurrentDateSTR)();
+        try {
+            const masterCards = yield MasterCardServices_1.default.GetAllMasterCardByCoopId(request.params.id);
+            if (Object(masterCards).length > 0) {
+                response.status(200).json({ messages: [{
+                            code: "0",
+                            message: "OK",
+                            dateTime: responseDate,
+                        }],
+                    response: masterCards
+                });
+            }
+            else {
+                response.status(201).json({ messages: [{
+                            code: "1",
+                            message: "Invalid Coop Id",
+                            dateTime: responseDate,
+                        }],
+                    response: {}
+                });
+            }
+        }
+        catch (e) {
+            console.error("Error in getting all master card controller: " + e);
+            response.status(500).json({ messages: [{
+                        code: "212",
+                        message: "Error in getting mastercard: " + e,
+                        dateTime: responseDate,
+                    }],
+                response: {}
+            });
+        }
+    });
+}
+exports.GetAllMasterCardByCoopIdController = GetAllMasterCardByCoopIdController;
 function GetAllMasterCardController(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         const responseDate = (0, GetCurrentDate_1.GetCurrentDateSTR)();

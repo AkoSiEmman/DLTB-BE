@@ -34,8 +34,8 @@ declare const TORViolationModel: mongoose.Model<{
         offboard_km_post: string;
     }>;
     recordId?: string | undefined;
-    modId?: string | undefined;
     portalId?: any;
+    modId?: string | undefined;
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
@@ -71,8 +71,8 @@ declare const TORViolationModel: mongoose.Model<{
         offboard_km_post: string;
     }>;
     recordId?: string | undefined;
-    modId?: string | undefined;
     portalId?: any;
+    modId?: string | undefined;
 }> & Omit<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
@@ -108,8 +108,8 @@ declare const TORViolationModel: mongoose.Model<{
         offboard_km_post: string;
     }>;
     recordId?: string | undefined;
-    modId?: string | undefined;
     portalId?: any;
+    modId?: string | undefined;
 } & {
     _id: mongoose.Types.ObjectId;
 }, never>, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
@@ -147,8 +147,8 @@ declare const TORViolationModel: mongoose.Model<{
         offboard_km_post: string;
     }>;
     recordId?: string | undefined;
-    modId?: string | undefined;
     portalId?: any;
+    modId?: string | undefined;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
@@ -184,8 +184,8 @@ declare const TORViolationModel: mongoose.Model<{
         offboard_km_post: string;
     }>;
     recordId?: string | undefined;
-    modId?: string | undefined;
     portalId?: any;
+    modId?: string | undefined;
 }>> & Omit<mongoose.FlatRecord<{
     fieldData: mongoose.Types.DocumentArray<{
         UUID: string;
@@ -221,8 +221,8 @@ declare const TORViolationModel: mongoose.Model<{
         offboard_km_post: string;
     }>;
     recordId?: string | undefined;
-    modId?: string | undefined;
     portalId?: any;
+    modId?: string | undefined;
 }> & {
     _id: mongoose.Types.ObjectId;
 }, never>>>;

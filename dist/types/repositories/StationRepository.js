@@ -36,6 +36,18 @@ class StationRepository {
             }
         });
     }
+    GetAllPerCoopId(coopId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const employee = yield StationModel_1.default.find({ 'coopId': coopId });
+                return employee;
+            }
+            catch (e) {
+                console.error("Repository error: " + e);
+                return false;
+            }
+        });
+    }
 }
 exports.default = new StationRepository();
 //# sourceMappingURL=StationRepository.js.map

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AddStationController = exports.GetAllStationController = void 0;
+exports.GetAllStationPerCoopIdController = exports.AddStationController = exports.GetAllStationController = void 0;
 const GetCurrentDate_1 = require("../common/GetCurrentDate");
 const StationService_1 = __importDefault(require("../services/StationService"));
 function GetAllStationController(request, response) {
@@ -87,4 +87,39 @@ function AddStationController(request, response) {
     });
 }
 exports.AddStationController = AddStationController;
+function GetAllStationPerCoopIdController(request, response) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const data = yield StationService_1.default.GetAllDataPerCoopId(request.params.id);
+            if (Object(data.response).length === 0) {
+                response.status(200).json({ messages: [{
+                            code: "1",
+                            message: "Invalid Coop Id",
+                            dateTime: (0, GetCurrentDate_1.GetCurrentDateSTR)(),
+                        }],
+                    response: {}
+                });
+            }
+            else {
+                response.status(200).json({ messages: [{
+                            code: "0",
+                            message: "OK",
+                            dateTime: (0, GetCurrentDate_1.GetCurrentDateSTR)(),
+                        }],
+                    response: data.response
+                });
+            }
+        }
+        catch (e) {
+            response.status(500).json({ messages: [{
+                        code: "212",
+                        message: "Error in getting all employees: " + e,
+                        dateTime: (0, GetCurrentDate_1.GetCurrentDateSTR)(),
+                    }],
+                response: {}
+            });
+        }
+    });
+}
+exports.GetAllStationPerCoopIdController = GetAllStationPerCoopIdController;
 //# sourceMappingURL=StationController.js.map

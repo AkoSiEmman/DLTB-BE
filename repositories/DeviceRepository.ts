@@ -36,7 +36,7 @@ class DeviceRepository{
         
         try{
 
-            const findCoopId = await DeviceModel.findOne({"deviceId" : deviceId})
+            const findCoopId : IDevice | null = await DeviceModel.findOne({"deviceId" : deviceId})
 
             return findCoopId;
 

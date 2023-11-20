@@ -9,6 +9,15 @@ declare class VehicleServices {
         message: unknown;
         response: {};
     }>;
+    GetAllVehiclePerCoopId(coopId: string): Promise<{
+        status: number;
+        message: string;
+        response: unknown;
+    } | {
+        status: number;
+        message: unknown;
+        response: {};
+    }>;
     AddVehicle(vehicle: IVehicle): Promise<{
         status: number;
         message: string;

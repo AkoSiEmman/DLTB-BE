@@ -5,6 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const masterSchema = new mongoose_1.default.Schema({
+    coopId: {
+        type: String,
+        unique: true,
+        default: "655321a339c1307c069616e9",
+        required: true
+    },
     riderId: {
         type: String,
         unique: true,
@@ -19,6 +25,10 @@ const masterSchema = new mongoose_1.default.Schema({
         type: Number,
         default: 0.00,
         required: true,
+    },
+    cardType: {
+        type: String,
+        default: "mastercard"
     },
     createdAt: {
         type: Date,

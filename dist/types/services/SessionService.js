@@ -18,13 +18,17 @@ function EmployeeGenerateSessionService() {
     return __awaiter(this, void 0, void 0, function* () {
         let usernameCred = "filipay";
         let passwordCred = "";
+        let baseUrl = "";
         if (process.env.PASSWORD) {
             passwordCred = process.env.PASSWORD;
+        }
+        if (process.env.DLTB_SEARCH_SESSION_EMPLOYEE) {
+            baseUrl = process.env.DLTB_SEARCH_SESSION_EMPLOYEE;
         }
         console.log("Username credentials " + usernameCred);
         console.log("Password credential " + passwordCred);
         try {
-            const generateSession = yield axios_1.default.post(" ", {}, {
+            const generateSession = yield axios_1.default.post(baseUrl, {}, {
                 auth: {
                     username: usernameCred,
                     password: passwordCred,

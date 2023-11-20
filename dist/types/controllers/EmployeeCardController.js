@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetAllEmployeeCardController = exports.CreateNewEmployeeCardController = void 0;
+exports.GetAllEmployeeCardController = exports.GetAllEmployeeCardPerCoopId = exports.CreateNewEmployeeCardController = void 0;
 const GetCurrentDate_1 = require("../common/GetCurrentDate");
 const EmployeeCardService_1 = __importDefault(require("../services/EmployeeCardService"));
 function CreateNewEmployeeCardController(request, response) {
@@ -52,6 +52,32 @@ function CreateNewEmployeeCardController(request, response) {
     });
 }
 exports.CreateNewEmployeeCardController = CreateNewEmployeeCardController;
+function GetAllEmployeeCardPerCoopId(request, response) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const responseDate = (0, GetCurrentDate_1.GetCurrentDateSTR)();
+        try {
+            const employeeCards = yield EmployeeCardService_1.default.GetAllCardPerCoopId(request.params.id);
+            response.status(200).json({ messages: [{
+                        code: employeeCards.status,
+                        message: employeeCards.message,
+                        dateTime: responseDate,
+                    }],
+                response: employeeCards.response
+            });
+        }
+        catch (e) {
+            console.error("Error in controller: " + e);
+            response.status(500).json({ messages: [{
+                        code: "1",
+                        message: "" + e,
+                        dateTime: responseDate,
+                    }],
+                response: {}
+            });
+        }
+    });
+}
+exports.GetAllEmployeeCardPerCoopId = GetAllEmployeeCardPerCoopId;
 function GetAllEmployeeCardController(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         const responseDate = (0, GetCurrentDate_1.GetCurrentDateSTR)();

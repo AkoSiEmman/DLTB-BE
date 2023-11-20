@@ -26,6 +26,18 @@ class EmployeeCardRepository {
             }
         });
     }
+    GetAllDatPerCoopId(coopId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const employeeCards = yield EmployeeCards_1.default.find({ "coopId": coopId });
+                return employeeCards;
+            }
+            catch (e) {
+                console.error("Error in employee repository: " + e);
+                return e;
+            }
+        });
+    }
     RegisterEmployeeCard(employeeCard) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
