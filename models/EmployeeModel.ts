@@ -1,6 +1,6 @@
 import mongoose, { StringExpressionOperatorReturningObject, Document } from "mongoose";
 
-export interface IEmployeeData extends Document {
+export interface IEmployeeData  {
 
         coopId: string,
 
@@ -30,7 +30,7 @@ export interface IEmployeeData extends Document {
 
         accessPrivileges: string,
 
-        JTI_RFID_RequestDate: StringExpressionOperatorReturningObject
+        JTI_RFID_RequestDate: Date
 
 }
 
@@ -81,14 +81,14 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         default: '',
         index: true,
-        required: false,
+        required: true,
     },
 
     empType:{
         type: String,
         default: '',
         index: true,
-        required: false,
+        required: true,
     },
 
     idName:{
@@ -102,7 +102,7 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         default: '',
         index: true,
-        required: false,
+        required: true,
     },
 
     idPicture:{
@@ -123,21 +123,21 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         default: '',
         index: true,
-        required: false
+        required: true
     },
 
     accessPrivileges:{
         type: String,
         default: '',
         index: true,
-        required: false,
+        required: true,
     },
 
     JTI_RFID_RequestDate:{
-        type: String,
-        default: '',
+        type: Date,
+        default: new Date(),
         index: true,
-        required: false
+
     },
 });
 

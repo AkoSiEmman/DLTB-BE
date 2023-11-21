@@ -131,6 +131,25 @@ class EmployeeRepository{
         }
 
     }
+
+    async FindByCoopIdAndEmpNo(coopId : string, empNo : number){
+        
+        try{
+       
+            const employee = await EmployeeModel.findOne({'empNo' :empNo, 'coopId' : coopId})
+
+            if(employee){
+                return employee;
+            }else{
+                return null;
+            }
+
+        }catch(e){
+            
+            console.error("Repository error: "+e);
+            return null;
+        }
+    }
 }
 
 export const employeeRepo = new EmployeeRepository();

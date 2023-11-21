@@ -1,3 +1,4 @@
+import { ConvertCurrentDateOnly } from "../common/GetCurrentDate";
 import { IEmployeeData } from "../models/EmployeeModel";
 import { employeeRepo } from "../repositories/EmployeeRepository";
 
@@ -8,9 +9,24 @@ class EmployeeService{
         
         try{
             
-            const newData = await employeeRepo.AddEmployee(data);
+            
 
-            return {status: 0, message: "OK", response: newData}
+            let ifAllowed  = await employeeRepo.FindByCoopIdAndEmpNo(data.coopId, data.empNo);
+
+            if(ifAllowed === null){
+
+                const convertedDate = {...data, "JTI_RFID_RequestDate" : await ConvertCurrentDateOnly(data.JTI_RFID_RequestDate)}
+
+                const newData = await employeeRepo.AddEmployee(convertedDate);
+
+                return {status: 0, message: "OK", response: newData}
+                
+
+            }else{
+                return {status: 1, message: "Employee no already exist!", response: {}}
+            }
+
+           
 
         }catch(e){
 

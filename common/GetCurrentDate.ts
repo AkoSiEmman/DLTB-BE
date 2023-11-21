@@ -11,6 +11,18 @@ try{
    
 }
 
+export function ConvertCurrentDateOnly( date : Date ) : string{
+    try{
+    
+        const DateNow = moment(date);
+    
+        return DateNow.format('ddd MMM-DD-YYYY, hh:mm A');
+    
+    }catch(e){
+        return "Error in getting the current date: "+e;
+    }
+}
+
 export function GetCurrentDate() : moment.Moment | unknown{
 
     try{
