@@ -30,7 +30,7 @@ export interface IEmployeeData  {
 
         accessPrivileges: string,
 
-        JTI_RFID_RequestDate: Date
+        JTI_RFID_RequestDate: string
 
 }
 
@@ -134,24 +134,12 @@ const employeeSchema = new mongoose.Schema({
     },
 
     JTI_RFID_RequestDate:{
-        type: Date,
-        default: new Date(),
+        type: String,
+        default: '',
         index: true,
 
     },
 });
-
-// const employeeDataSchema = new mongoose.Schema({
-//         recordId: {
-//         type: String
-//        },
-//        modId:{
-//         type: String
-//        },
-//        fieldData: [employeeSchema],
-// })
-
-
 
 const EmployeeModel = mongoose.model('EmployeeRecordsv2', employeeSchema);
 export default EmployeeModel;

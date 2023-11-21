@@ -15,7 +15,9 @@ class EmployeeService{
 
             if(ifAllowed === null){
 
-                const convertedDate = {...data, "JTI_RFID_RequestDate" : await ConvertCurrentDateOnly(data.JTI_RFID_RequestDate)}
+                let convertDate = new Date(ConvertCurrentDateOnly(data.JTI_RFID_RequestDate))
+
+                const convertedDate  = {...data, "JTI_RFID_RequestDate" : ""+convertDate}
 
                 const newData = await employeeRepo.AddEmployee(convertedDate);
 

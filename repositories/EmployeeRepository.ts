@@ -29,14 +29,7 @@ class EmployeeRepository{
     async AddEmployee( data : IEmployeeData){
 
         try{
-        //    const newEmployee = {
-        //         "portalData" : data.portalData,
-        //         "recordId": data.recordId,
-        //          "modId" : data.modId,
-        //         "fieldData" : data.fieldData 
-        //     }
 
-            // console.log(data);
             const employeeData = new EmployeeModel(data);
             const employeeDataSave = await employeeData.save();
 

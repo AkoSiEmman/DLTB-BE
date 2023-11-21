@@ -11,7 +11,7 @@ try{
    
 }
 
-export function ConvertCurrentDateOnly( date : Date ) : string{
+export function ConvertCurrentDateOnly( date : string ) : string{
     try{
     
         const DateNow = moment(date);
