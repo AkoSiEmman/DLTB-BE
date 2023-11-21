@@ -38,14 +38,26 @@ export async function AddNewDirectionController(request: Request, response: Resp
 
     try{
 
-        const newDirection = directionRepo.AddNewDirection(request.body);
-        response.status(200).json({messages : [{
-            code: "0",
-            message: "OK",
-            dateTime: responseDate,
-        }],
-            response:{}
-        });
+        const newDirection = await directionRepo.AddNewDirection(request.body);
+
+        if(newDirection === true){
+            response.status(200).json({messages : [{
+                code: "0",
+                message: "OK",
+                dateTime: responseDate,
+            }],
+                response:{}
+            });
+        }else{
+            response.status(200).json({messages : [{
+                code: "1",
+                message: "Invalid Fields",
+                dateTime: responseDate,
+            }],
+                response:{}
+            });
+        }
+       
 
     }catch(e){
         console.error("Error in controller");
