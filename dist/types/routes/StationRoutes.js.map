@@ -1,1 +1,0 @@
-{"version":3,"file":"StationRoutes.js","sourceRoot":"","sources":["../../../routes/StationRoutes.ts"],"names":[],"mappings":";;AAAA,qCAAiC;AACjC,8EAA2E;AAC3E,wEAAmI;AAEnI,MAAM,aAAa,GAAG,IAAA,gBAAM,GAAE,CAAC;AAI/B,aAAa,CAAC,GAAG,CAAC,cAAc,EAAE,2CAAoB,EAAE,oDAAgC,CAAC,CAAC;AAE1F,aAAa,CAAC,IAAI,CAAC,UAAU,EAAE,2CAAoB,EAAE,wCAAoB,CAAC,CAAA;AAE1E,kBAAe,aAAa,CAAC"}

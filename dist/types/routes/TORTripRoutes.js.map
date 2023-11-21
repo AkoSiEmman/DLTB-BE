@@ -1,1 +1,0 @@
-{"version":3,"file":"TORTripRoutes.js","sourceRoot":"","sources":["../../../routes/TORTripRoutes.ts"],"names":[],"mappings":";;AAAA,qCAAiC;AACjC,8EAA2E;AAC3E,wEAAoG;AAEpG,MAAM,aAAa,GAAG,IAAA,gBAAM,GAAE,CAAC;AAE/B,aAAa,CAAC,GAAG,CAAC,WAAW,EAAE,2CAAoB,EAAE,2CAAuB,CAAC,CAAA;AAC7E,aAAa,CAAC,IAAI,CAAC,WAAW,EAAG,2CAAoB,EAAE,2CAAuB,CAAE,CAAC;AAEjF,kBAAe,aAAa,CAAC"}

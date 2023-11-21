@@ -6,6 +6,10 @@ export interface ICooperative extends Document{
 
     cooperativeCodeName : string,
 
+    minimumFare : number,
+
+    first_km : number,
+
     createdAt: Date,
 
 }
@@ -26,6 +30,18 @@ const cooperativeSchema = new mongoose.Schema({
         unique: true,
         index: true
 
+    },
+
+    minimumFare:{
+        type: Number,
+        required: true,
+        index: true,
+    },
+    
+    first_km:{
+        type : Number,
+        required: true,
+        index: true,
     },
 
     createdAt:{

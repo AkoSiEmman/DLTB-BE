@@ -1,1 +1,0 @@
-{"version":3,"file":"DeviceRoutes.js","sourceRoot":"","sources":["../../../routes/DeviceRoutes.ts"],"names":[],"mappings":";;AAAA,qCAA8B;AAC9B,8EAA2E;AAC3E,sEAA4H;AAE5H,MAAM,YAAY,GAAG,IAAA,gBAAM,GAAE,CAAC;AAI9B,YAAY,CAAC,IAAI,CAAC,SAAS,EAAE,2CAAoB,EAAE,sCAAmB,CAAC,CAAC;AAExE,YAAY,CAAC,GAAG,CAAC,kBAAkB,EAAE,2CAAoB,EAAE,+CAA4B,CAAC,CAAA;AAExF,kBAAe,YAAY,CAAC"}

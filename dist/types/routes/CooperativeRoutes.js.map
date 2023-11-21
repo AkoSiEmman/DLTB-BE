@@ -1,1 +1,0 @@
-{"version":3,"file":"CooperativeRoutes.js","sourceRoot":"","sources":["../../../routes/CooperativeRoutes.ts"],"names":[],"mappings":";;AAAA,qCAAiC;AACjC,8EAA2E;AAC3E,gFAA6G;AAE7G,MAAM,iBAAiB,GAAG,IAAA,gBAAM,GAAE,CAAC;AAEnC,iBAAiB,CAAC,GAAG,CAAC,cAAc,EAAE,2CAAoB,EAAE,mDAA2B,CAAC,CAAC;AAEzF,iBAAiB,CAAC,IAAI,CAAC,cAAc,EAAE,2CAAoB,EAAE,gDAAwB,CAAC,CAAC;AAEvF,kBAAe,iBAAiB,CAAC"}
