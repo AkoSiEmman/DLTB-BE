@@ -22,7 +22,7 @@ class MasterCardRepository{
 
     async GetCardByCoopId(coopId: string){
         try{
-
+            const update = await this.UpdateField();
             const masterCard : any = await masterCardModel.find({"coopId" : coopId});
 
             return masterCard;
@@ -117,6 +117,14 @@ class MasterCardRepository{
 
     }
 
+    async  UpdateField() {
+        try {
+          await masterCardModel.updateMany({}, { $rename: { 'cardId': 'cardID' } });
+          console.log('Field updated successfully.');
+        } catch (error) {
+          console.error('Error updating field:', error);
+        }
+      }
 
 
 }

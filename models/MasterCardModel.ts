@@ -2,7 +2,7 @@ import mongoose , {Document} from "mongoose";
 
 export interface IMasterCard extends Document {
     coopId: string,
-    cardId: string,
+    cardID: string,
     riderId : String,
     balance: number,
     cardType: string,
@@ -25,7 +25,7 @@ const masterSchema = new mongoose.Schema({
         required: true,
     },
 
-    cardId:{
+    cardID:{
         type: String,
         unique: true,
         required: true,
