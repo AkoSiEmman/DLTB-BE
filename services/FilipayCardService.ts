@@ -18,7 +18,7 @@ class FilipayCardService{
         try {
             const employeeCards = await EmployeeCardRepository.GetAllEmployeeCard();
     
-            if (employeeCards.length !== 0) {
+            if (Object(employeeCards).length !== 0 && employeeCards !== null) {
                 const cards: any[] = [];
     
                 await Promise.all(

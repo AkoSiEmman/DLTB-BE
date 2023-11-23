@@ -11,7 +11,7 @@ export interface IEmployeeCard{
 
 class EmployeeCardRepository{
 
-    async GetAllEmployeeCard() : Promise<IEmployeeCard[] | null>{
+    async GetAllEmployeeCard() {
 
         try{
 

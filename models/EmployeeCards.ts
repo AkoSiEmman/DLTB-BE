@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
 const employeeCardSchema = new mongoose.Schema({
+
+    
     coopId:{
         type: String,
         unique: true,

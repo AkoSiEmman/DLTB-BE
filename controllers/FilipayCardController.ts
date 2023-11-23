@@ -12,11 +12,11 @@ export async function GetFilipayCardController(request : Request, response : Res
 
       
             response.status(201).json({messages : [{
-                code: data.status,
-                message: data.message,
+                code: data?.status,
+                message: data?.message,
                 dateTime: GetCurrentDateSTR(),
                 }],
-                response: data.response
+                response: data?.response
             })
  
 
