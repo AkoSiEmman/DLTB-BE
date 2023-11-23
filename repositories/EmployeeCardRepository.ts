@@ -1,31 +1,27 @@
 import EmployeeCardModel from "../models/EmployeeCards"
+import { IRider } from "../models/RiderModel";
 
 export interface IEmployeeCard{
-    coopId: String,
-    empNo : String,
-    cardId : String, 
+    id : string,
+    coopId: string,
+    empNo : string,
+    cardId : string, 
 
 }
 
 class EmployeeCardRepository{
 
-    async GetAllEmployeeCard(){
+    async GetAllEmployeeCard() : Promise<IEmployeeCard[] | null>{
 
         try{
 
             const employeeCards = await EmployeeCardModel.find({});
 
-            // employeeCards.map(async (station : any) => {
-               
-            //     const updatedStation = await EmployeeCardModel.findOneAndUpdate({_id : station.id} , station, {returnNewDocument: true});
-                
-            // });
-
             return employeeCards;
 
         }catch(e){
             console.error("Error in employee repository: "+e)
-            return e
+            return null;
         }
 
     }
@@ -67,6 +63,31 @@ class EmployeeCardRepository{
 
     }
   
+    async SwapEmpNoToCardId() {
+        try {
+          const cards = await EmployeeCardModel.find({});
+      
+          if (cards && cards.length > 0) {
+            const updatePromises = cards.map(async (card) => {
+              const empNo = card.cardId;
+              const cardId = card.empNo;
+      
+              // Use updateOne without await, just return the promise
+              return EmployeeCardModel.updateOne({ "_id": card._id }, { "empNo": cardId, "cardId": empNo });
+            });
+      
+            // Wait for all update operations to complete
+            await Promise.all(updatePromises);
+      
+            console.log("Swap successful");
+          } else {
+            console.log("No cards found");
+          }
+        } catch (e) {
+          console.error("Error in repository:", e);
+        }
+      }
+      
 
 }
 

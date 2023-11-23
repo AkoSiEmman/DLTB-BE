@@ -46,6 +46,7 @@ import UserRouter from "./routes/UserRoutes";
 import EmailOTPRouter from "./routes/EmailOTPRoutes";
 import DeviceRouter from "./routes/DeviceRoutes";
 import CooperativeRouter from "./routes/CooperativeRoutes";
+import FilipayCardRouter from "./routes/FilipayCardRoutes";
 
 
 //////////////////////////////////////////////////
@@ -123,7 +124,10 @@ app.use(urlBackend, UserRouter);
 app.use(urlBackend, EmailOTPRouter);
 
 app.use(urlBackend, DeviceRouter);
+
 app.use(urlBackend, CooperativeRouter);
+
+app.use(urlBackend, FilipayCardRouter);
 
 /////////////////////////
 // DATABASE CONNECTION

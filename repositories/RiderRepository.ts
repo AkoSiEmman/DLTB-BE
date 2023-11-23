@@ -37,11 +37,11 @@ class RiderRepository{
 
     
 
-    async GetRiderByCardId(cardId : String){
+    async GetRiderByCardId(cardId : String) : Promise<any>{
 
         try{
 
-            const rider = await RiderModel.find({"cardId" : cardId})
+            const rider = await RiderModel.findOne({"cardId" : cardId})
 
             return rider;
 
@@ -52,6 +52,20 @@ class RiderRepository{
 
     }
 
+    async GetRiderByEmployeeNo(empNo : number) : Promise<any>{
+
+        try{
+
+            const rider = await RiderModel.findOne({"empNo" : empNo})
+
+            return rider;
+
+        }catch(e){
+            console.log(`Error in repository ${e}`)
+            return null
+        }
+
+    }
 }
 
 export default new RiderRepository();

@@ -43,7 +43,7 @@ class EmployeeCardService{
     async GetAllCardPerCoopId( coopId : string ){
         
         try{
-
+            // const swap = await EmployeeCardRepository.SwapEmpNoToCardId();
             const data = await EmployeeCardRepository.GetAllDatPerCoopId(coopId);
 
             if(Object(data).length > 0){

@@ -1,10 +1,10 @@
-import mongoose  from "mongoose";
+import mongoose, {Document}  from "mongoose";
 import { connectToFilipayDB } from "../databases/DbConnection";
 
 const filipayUrl : string = process.env.DB_FILIPAY_CONNECTION_STRING ? process.env.DB_FILIPAY_CONNECTION_STRING : '';
 
 
-export interface IRider{
+export interface IRider extends Document{
 
     name: String,
     emailStatus: String,
@@ -19,7 +19,6 @@ export interface IRider{
 
 const riderSchema = new mongoose.Schema({
 
-    
     name :{
         type: String,
         required: true,
