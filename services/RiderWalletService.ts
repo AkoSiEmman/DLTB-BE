@@ -67,22 +67,23 @@ class RiderWalletService {
                 }
 
                 if(cardType === "regular" || cardType === "discounted"){
-                  
+                   
                     const riderIdPerCardId : any = await RiderRepository.GetRiderByCardId(cardId);  
-                    console.log(riderIdPerCardId)
+                    console.log(riderIdPerCardId._id)
+                    
                     if(typeof riderIdPerCardId === null || Object(riderIdPerCardId).length === 0){
                         return {status: 1, message: "Card is not valid", response: {}}
                     }
-
-                    if(typeof riderIdPerCardId[0]._id !== undefined && riderIdPerCardId[0]._id !== undefined && riderIdPerCardId !== null ){
+             
+                    if(typeof riderIdPerCardId._id !== undefined && riderIdPerCardId._id !== undefined && riderIdPerCardId !== null && riderIdPerCardId._id !== null ){
                        
-                        let riderId : string = riderIdPerCardId[0]._id.toString();
+                        let riderId : string = riderIdPerCardId._id.toString();
                      
-                        if(cardType === "discounted" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SND"){
+                        if(cardType === "discounted" && riderIdPerCardId.sNo.substring(0, 3).toUpperCase() !== "SND"){
                             return {status: 1, message: "Card is not valid", response: {}}
                         }
 
-                        if(cardType === "regular" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SNR"){
+                        if(cardType === "regular" && riderIdPerCardId.sNo.substring(0, 3).toUpperCase() !== "SNR"){
                             return {status: 1, message: "Card is not valid", response: {}}
                         }
 
@@ -102,7 +103,7 @@ class RiderWalletService {
             }else{
                 return {status: 1, message: "Invalid Card Type", response: {}}
             }
-
+            
         }catch(e){
             console.log(`Error in rider wallet services: ${e}`);
             return {status: 500, message: e, response: {}}
@@ -113,7 +114,7 @@ class RiderWalletService {
     async UpdateRiderWalletByCardId( cardId : string, decreaseAmount : number, increaseAmount : number, cardType : String ){
 
         try{
-
+           
             if(cardId !== undefined  && decreaseAmount !== null && increaseAmount !== null && cardType !== undefined ){
 
                 
@@ -152,22 +153,23 @@ class RiderWalletService {
                     
 
                     const riderIdPerCardId : any = await RiderRepository.GetRiderByCardId(cardId);              
-    
-                    if(typeof riderIdPerCardId[0] === undefined){
+                    console.log("PUMASOK DITO")
+                    console.log(riderIdPerCardId.sNo)
+                    if(typeof riderIdPerCardId === undefined){
                         return {status: 1, message: "Card is not valid", response: {}}
                     }
 
-                    if(riderIdPerCardId[0]._id !== undefined && riderIdPerCardId !== null ){
+                    if(riderIdPerCardId._id !== undefined && riderIdPerCardId !== null ){
                         
-                        let riderId : string = riderIdPerCardId[0]._id.toString();
+                        let riderId : string = riderIdPerCardId._id.toString();
 
                         console.log("rider id ito : "+ riderId)
 
-                        if(cardType === "discounted" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SND"){
+                        if(cardType === "discounted" && riderIdPerCardId.sNo.substring(0, 3).toUpperCase() !== "SND"){
                             return {status: 1, message: "Card is not valid", response: {}}
                         }
 
-                        if(cardType === "regular" && riderIdPerCardId[0].sNo.substring(0, 3).toUpperCase() !== "SNR"){
+                        if(cardType === "regular" && riderIdPerCardId.sNo.substring(0, 3).toUpperCase() !== "SNR"){
                             return {status: 1, message: "Card is not valid", response: {}}
                         }
 
@@ -193,6 +195,8 @@ class RiderWalletService {
                         return {status: 1, message: "Card is not valid", response: {}}
                     }
                 
+                }else{
+                    return {status: 1, message: "Card is not valid", response: {}}
                 }
 
                 return {status: 1, message: "Card is not valid", response: {}}

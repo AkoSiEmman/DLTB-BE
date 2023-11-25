@@ -87,45 +87,11 @@ const userSchema = new mongoose.Schema({
         default : false,
     },
 
-    isAllowedToTorMain:{
-        type: Boolean,
+    pageCode:{
+        type: String,
         index: true,
-        default : true,
-    },
-    isAllowedToTorTicket:{
-        type: Boolean,
-        index: true,
-        default : true,
-    },
-    isAllowedToTorFuel:{
-        type: Boolean,
-        index: true,
-        default : true,
-    },
-    isAllowedToTorRemittance:{
-        type: Boolean,
-        index: true,
-        default : true,
-    },
-    isAllowedToTorTrip:{
-        type: Boolean,
-        index: true,
-        default : true,
-    },
-    isAllowedToTorInspection:{
-        type: Boolean,
-        index: true,
-        default : true,
-    },
-    isAllowedToTorViolation:{
-        type: Boolean,
-        index: true,
-        default : true,
-    },
-    isAllowedToTorTrouble:{
-        type: Boolean,
-        index: true,
-        default : true,
+        default: "dash, empCard, masCard, rou, sta, veh, emp, dev, coop, user, tMain, tTicket, tFuel, tRem, tTrip, tIns, tVio, tTro"
+        // required: true,
     },
 
     role:{

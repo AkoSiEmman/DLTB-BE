@@ -11,7 +11,7 @@ export async function GetFilipayCardController(request : Request, response : Res
         const data = await FilipayCardService.GetAllData();
 
       
-            response.status(201).json({messages : [{
+            response.status(200).json({messages : [{
                 code: data?.status,
                 message: data?.message,
                 dateTime: GetCurrentDateSTR(),

@@ -28,7 +28,7 @@ class EmailOTPService{
 
         try{
 
-         const user : IUser | null = await UserRepository.GetUserByEmail(email);
+         const user : any = await UserRepository.GetUserByEmail(email);
 
            if(user?.email !== undefined){
 

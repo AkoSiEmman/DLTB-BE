@@ -3,7 +3,7 @@ import mongoose , {Document} from "mongoose";
 export interface IMasterCard extends Document {
     coopId: string,
     cardID: string,
-    riderId : String,
+    empNo : number,
     balance: number,
     cardType: string,
     createdAt: Date,
@@ -14,13 +14,11 @@ const masterSchema = new mongoose.Schema({
 
     coopId:{
         type: String,
-        unique: true,
-        default: "655321a339c1307c069616e9",
         required: true
     },
     
-    riderId:{
-        type: String,
+    empNo:{
+        type: Number,
         unique: true,
         required: true,
     },
