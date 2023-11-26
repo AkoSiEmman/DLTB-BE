@@ -84,6 +84,47 @@ export async function GetAllUserController(request : Request, response: Response
 
 }
 
+export async function GetUserByCompanyIdController( request : Request, response : Response){
+
+    try{
+
+        const user = await UserService.GetAllByCompanyId(request.params.id)
+
+        if(user.status === 0 ){
+            response.status(200).json({messages : [{
+                code: "0",
+                message: "OK",
+                dateTime: GetCurrentDateSTR,
+                }],
+                response : user.response
+            })
+        }else{
+            response.status(201).json({messages : [{
+                code: user.status,
+                message: user.message,
+                dateTime: GetCurrentDateSTR,
+                }],
+                response: user.response
+            })
+        }
+
+    }catch(e){
+
+        console.error("Error in controller: "+e);
+
+        response.status(500).json({messages : [{
+            code: "1",
+            message: ""+e,
+            dateTime: GetCurrentDateSTR,
+            }],
+            response: {}
+        })
+
+    }
+
+}
+
+
 export async function GetUserByIdController( request : Request, response : Response){
 
     try{

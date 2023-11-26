@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { CheckTokenMiddleware } from "../middlewares/CheckTokenMiddleware";
-import { AddUserContorller, GetAllUserController, GetUserByIdController, UpdateUserByIdController } from "../controllers/UserController";
+import { AddUserContorller, GetAllUserController, GetUserByCompanyIdController, GetUserByIdController, UpdateUserByIdController } from "../controllers/UserController";
 
 const UserRouter = Router();
 
 
-UserRouter.get("/user", CheckTokenMiddleware , GetAllUserController)
+// UserRouter.get("/user", CheckTokenMiddleware , GetAllUserController)
 
-UserRouter.get("/user/:id", CheckTokenMiddleware , GetUserByIdController)
+UserRouter.get("/user/:id", CheckTokenMiddleware , GetUserByCompanyIdController)
 
 UserRouter.post("/user", CheckTokenMiddleware, AddUserContorller);
 

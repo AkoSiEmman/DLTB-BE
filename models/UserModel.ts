@@ -14,6 +14,8 @@ export interface IUser {
 
     role: string,
 
+    companyId: string,
+
     company : string,
 
     password : string,
@@ -75,6 +77,12 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
 
+    companyId:{
+        type : String,
+        index: true,
+        required: true,
+    },
+
     company :{
         type: String,
         index: true,
@@ -90,7 +98,7 @@ const userSchema = new mongoose.Schema({
     pageCode:{
         type: String,
         index: true,
-        default: "dash, empCard, masCard, rou, sta, veh, emp, dev, coop, user, tMain, tTicket, tFuel, tRem, tTrip, tIns, tVio, tTro"
+        default: "dash, empCard, masCard, rou, sta, veh, emp, dev, coop, user, tMain, tTicket, tFuel, tRem, tTrip, tIns, tVio, tTro, "
         // required: true,
     },
 

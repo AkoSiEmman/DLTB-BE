@@ -20,6 +20,19 @@ class UserRepository {
 
     }
 
+    async GetCardByCoopId(coopId: string){
+        try{
+          
+            const data : any = await UserModel.find({"companyId" : coopId});
+
+            return data;
+
+        }catch(e){
+            console.error("Error in master card repository: "+e);
+            return false;
+        }
+    }
+
     async GetUserById (id : String){
 
         try{

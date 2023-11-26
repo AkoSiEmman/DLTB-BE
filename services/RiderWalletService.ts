@@ -67,7 +67,7 @@ class RiderWalletService {
                 }
 
                 if(cardType === "regular" || cardType === "discounted"){
-                   
+                   console.log("pumasok dito")
                     const riderIdPerCardId : any = await RiderRepository.GetRiderByCardId(cardId);  
                     console.log(riderIdPerCardId._id)
                     

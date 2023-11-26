@@ -56,6 +56,20 @@ class UserService{
 
     }
 
+    async GetAllByCompanyId( companyId: string){
+        try{
+
+            const data = await UserRepository.GetCardByCoopId(companyId);
+
+            return {status: 0, message: "OK", response: data}
+
+        }catch(e){
+            console.log(`Error in repository: ${e}`)
+
+            return {status: 500, message: e, response: {}}
+        }
+    }
+
     async AddUser(user : IUser){
 
         try{
@@ -64,9 +78,15 @@ class UserService{
 
             const userAccount = {...user , "password" : hashedPassword}
 
-           const saveUser = await UserRepository.AddUser(userAccount)
-
+           const saveUser : any = await UserRepository.AddUser(userAccount)
+            console.log(saveUser.errors)
+           if(saveUser.errors){
+            return {status: 1, message: saveUser.properties.message, response: saveUser}
+           }else{
             return {status: 0, message: "OK", response: saveUser}
+           }
+
+            
         }catch(e){
             console.log(`Error in adding vehicle: ${e}`);
             return {status: 500, message: e, response: {}}
