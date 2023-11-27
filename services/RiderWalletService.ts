@@ -54,6 +54,11 @@ class RiderWalletService {
 
                     const findCardIdInMasterCard : IMasterCard | string | boolean = await MasterCardRepository.FindCardIdInMasterCard(cardId);
 
+                    if(!findCardIdInMasterCard){
+                        console.log(`pumasok dito ${findCardIdInMasterCard}`)
+                        return {status: 1, message: "Card is not yet registered", response: {}}
+                    }
+
                     if(this.isMasterCard(findCardIdInMasterCard)){
 
                         return {status: 0, message: "OK", response: {"balance" : findCardIdInMasterCard.balance}}
@@ -69,7 +74,10 @@ class RiderWalletService {
                 if(cardType === "regular" || cardType === "discounted"){
                    console.log("pumasok dito")
                     const riderIdPerCardId : any = await RiderRepository.GetRiderByCardId(cardId);  
-                    console.log(riderIdPerCardId._id)
+                    
+                    if(!riderIdPerCardId){
+                        return {status: 1, message: "Card is not yet registered", response: {}}
+                    }
                     
                     if(typeof riderIdPerCardId === null || Object(riderIdPerCardId).length === 0){
                         return {status: 1, message: "Card is not valid", response: {}}
@@ -111,7 +119,7 @@ class RiderWalletService {
 
     }
 
-    async UpdateRiderWalletByCardId( cardId : string, decreaseAmount : number, increaseAmount : number, cardType : String ){
+    async UpdateRiderWalletByCardId( cardId : string, decreaseAmount : number, increaseAmount : number, cardType : String, isNegative : boolean ){
 
         try{
            
@@ -123,27 +131,48 @@ class RiderWalletService {
                     const findCardIdInMasterCard : IMasterCard | string | boolean = await MasterCardRepository.FindCardIdInMasterCard(cardId);
 
                     const currentBalance  = await MasterCardRepository.GetCurrentBalancePerCardId(cardId);
+
+                    if(typeof isNegative !== "boolean"){
+                        return {status: 1, message: "Invalid fields for isNegative", response: {}}
+                    }
                     
-                    if(this.isMasterCard(findCardIdInMasterCard) && findCardIdInMasterCard.balance >= 0 && currentBalance !== null){
-
-                        if(this.isMasterCard(findCardIdInMasterCard) && findCardIdInMasterCard.balance >= decreaseAmount && currentBalance){
+                    if(this.isMasterCard(findCardIdInMasterCard) ){
                         
+                        // decrease = 0
+                        // increase = 1000
+                        console.log("HERE")
+                        if(decreaseAmount <=  findCardIdInMasterCard.balance || isNegative === true || decreaseAmount === 0){
                             const updateBalance = await MasterCardRepository.UpdateMasterCardBalanceByCardId(cardId, decreaseAmount, increaseAmount);
-
+    
                             const newBalance  = await MasterCardRepository.GetCurrentBalancePerCardId(cardId);
                             return {status: 0, message: "OK", response: {
                                 "previousBalance" : currentBalance,
                                 "newBalance" : newBalance
                             }}
-
                         }else{
-
+    
                             return {status: 1, message: "Insufficient balance", response: {}}
 
                         }
+                           
+                        
+
+
+                        // if(isNegative === true){
+                        //     const updateBalance = await MasterCardRepository.UpdateMasterCardBalanceByCardId(cardId, decreaseAmount, increaseAmount);
+    
+                        //     const newBalance  = await MasterCardRepository.GetCurrentBalancePerCardId(cardId);
+                        //     return {status: 0, message: "OK", response: {
+                        //         "previousBalance" : currentBalance,
+                        //         "newBalance" : newBalance
+                        //     }}
+                        // }
+
+                       
 
                         
                     }else{
+                    
                         return {status: 1, message: "Card is not valid", response: {}}
                     }
 
@@ -153,30 +182,31 @@ class RiderWalletService {
                     
 
                     const riderIdPerCardId : any = await RiderRepository.GetRiderByCardId(cardId);              
-                    console.log("PUMASOK DITO")
-                    console.log(riderIdPerCardId.sNo)
-                    if(typeof riderIdPerCardId === undefined){
+                    
+                    if(typeof riderIdPerCardId === undefined || typeof riderIdPerCardId._id === undefined){
+                       
                         return {status: 1, message: "Card is not valid", response: {}}
                     }
-
+                
                     if(riderIdPerCardId._id !== undefined && riderIdPerCardId !== null ){
                         
                         let riderId : string = riderIdPerCardId._id.toString();
 
-                        console.log("rider id ito : "+ riderId)
-
                         if(cardType === "discounted" && riderIdPerCardId.sNo.substring(0, 3).toUpperCase() !== "SND"){
+                           
                             return {status: 1, message: "Card is not valid", response: {}}
                         }
 
                         if(cardType === "regular" && riderIdPerCardId.sNo.substring(0, 3).toUpperCase() !== "SNR"){
+                            console.log(`TEST : ${riderIdPerCardId}`)
                             return {status: 1, message: "Card is not valid", response: {}}
                         }
 
                         const getBalancePerRiderId : number = await RiderWalletRepository.GetBalancePerRiderId(riderId);
+            
 
-                        if(getBalancePerRiderId >= decreaseAmount && getBalancePerRiderId !== undefined){
-                            const updateBalancePerRiderId = await RiderWalletRepository.
+                        if(decreaseAmount <=  getBalancePerRiderId|| isNegative === true || decreaseAmount === 0){
+                               const updateBalancePerRiderId = await RiderWalletRepository.
                             UpdateRiderWalletByRiderId(riderId, increaseAmount, decreaseAmount);
 
                             const newBalancePerRiderId : number = await RiderWalletRepository.GetBalancePerRiderId(riderId);
@@ -185,11 +215,12 @@ class RiderWalletService {
                                 "previousBalance" : getBalancePerRiderId,
                                 "newBalance" : newBalancePerRiderId
                             }}
-
                         }else{
+    
                             return {status: 1, message: "Insufficient balance", response: {}}
 
                         }
+
                     }else{
                        
                         return {status: 1, message: "Card is not valid", response: {}}
@@ -198,8 +229,6 @@ class RiderWalletService {
                 }else{
                     return {status: 1, message: "Card is not valid", response: {}}
                 }
-
-                return {status: 1, message: "Card is not valid", response: {}}
 
             }else{
                 return {status: 1, message: "Invalid fields", response: {}}

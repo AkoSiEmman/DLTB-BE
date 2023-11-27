@@ -3,7 +3,12 @@ import mongoose  from "mongoose";
 
 
 const torSchema = new mongoose.Schema({
+    coopId:{
+        
+        type: String,
+        index:true,
 
+    },
     UUID:{
         type: String,
         index: true,
@@ -592,22 +597,24 @@ const torSchema = new mongoose.Schema({
 })
 
 
-const torMainSchema = new mongoose.Schema({
+// const torMainSchema = new mongoose.Schema({
 
-    portalId: [],
+//     portalId: [],
 
-    recordId:{
-        type: String,
-    },
+//     recordId:{
+//         type: String,
+//     },
 
-    modId:{
-        type: String,
-    },
+//     modId:{
+//         type: String,
+//     },
 
-    fieldData: [torSchema]
+//     fieldData: [torSchema]
 
 
-})
+// })
 
-const TORMainModel = mongoose.model('TORMainRecords', torMainSchema)
+const TORMainModel = mongoose.model('tormainrecords', torSchema,{collections :"tormainrecords"}.collections);
 export default TORMainModel;
+
+

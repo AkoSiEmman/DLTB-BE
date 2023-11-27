@@ -59,7 +59,7 @@ class VehicleRepository{
 
         }catch(e){
             console.log(`Error in adding vehicle ${e}`);
-            return e;
+            return null;
         }
 
     }

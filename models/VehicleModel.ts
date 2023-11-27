@@ -4,9 +4,9 @@ const vehicleSchema = new mongoose.Schema({
 
     coopId:{
         type: String,
-        unique: true,
+
         default: "655321a339c1307c069616e9",
-        required: true
+      
     },
 
     vehicle_no: {

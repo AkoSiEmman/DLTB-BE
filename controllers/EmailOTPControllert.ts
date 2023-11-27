@@ -11,23 +11,13 @@ export async function GetAllEmailOTPController( request : Request, response : Re
 
         const data = await EmailOTPService.GetAllData();
         
-        if(data.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: GetCurrentDateSTR(),
-                }],
-                response : data
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: data.status,
-                message: data.message,
-                dateTime: data,
-                }],
-                response: data
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: GetCurrentDateSTR(),
+            }],
+            response : data
+        })
 
     }catch(e){
 
@@ -51,23 +41,13 @@ export async function AddEmailController( request : Request, response : Response
 
         const data = await EmailOTPService.AddData(request.body.email);
 
-        if(data.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: GetCurrentDateSTR(),
-                }],
-                response : data.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: data.status,
-                message: data.message,
-                dateTime: GetCurrentDateSTR,
-                }],
-                response: data.response
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: GetCurrentDateSTR(),
+            }],
+            response : data.response
+        })
 
 
     }catch(e){
@@ -94,24 +74,13 @@ export async function CheckOTPController( request : Request, response : Response
 
         const data = await EmailOTPService.ValidateOtp(otp, email);
 
-        if(data.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: GetCurrentDateSTR(),
-                }],
-                response : data.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: data.status,
-                message: data.message,
-                dateTime: GetCurrentDateSTR,
-                }],
-                response: data.response
-            })
-        }
-
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: GetCurrentDateSTR(),
+            }],
+            response : data.response
+        })
 
     }catch(e){
         console.error("Error in controller: "+e);

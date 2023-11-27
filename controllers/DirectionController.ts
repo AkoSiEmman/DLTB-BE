@@ -40,23 +40,13 @@ export async function AddNewDirectionController(request: Request, response: Resp
 
         const newDirection = await directionRepo.AddNewDirection(request.body);
 
-        if(newDirection === true){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-            }],
-                response:{}
-            });
-        }else{
-            response.status(200).json({messages : [{
-                code: "1",
-                message: "Invalid Fields",
-                dateTime: responseDate,
-            }],
-                response:{}
-            });
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+        }],
+            response:{}
+        });
        
 
     }catch(e){
@@ -80,18 +70,16 @@ export async function GetAllDirectionPerCoopIdController(request: Request, respo
         const directions = await directionRepo.GetAllPerCoopId(request.params.id);
 
         console.log(directions);
-        
-        if(Object(directions).length === 0){
+
+        if(directions === null){
             response.status(200).json({messages : [{
                 code: "1",
-                message: "Invalid Coop Id",
+                message: "Invalid coop id",
                 dateTime: GetCurrentDateSTR(),
             }],
             response: {}
             });
         }else{
-          
-    
             response.status(200).json({messages : [{
                 code: "0",
                 message: "OK",
@@ -100,6 +88,7 @@ export async function GetAllDirectionPerCoopIdController(request: Request, respo
             response: directions
             });
         }
+         
     
 
 

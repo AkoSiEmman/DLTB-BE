@@ -107,6 +107,45 @@ class TORRemittanceService{
         }
 
     }
+
+
+    async GetAllDataPerCoopId(coopId : string){
+
+        try{
+
+            const data = await TORRemittanceRepository.GetDataPerCoopId(coopId);
+
+            
+            if(data !== null){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+            
+        }catch(e){
+            console.error(`Error in services: ${e}`);
+            return {status: 500, message: e, response: {}}
+        }
+
+    }
+
+    async GetDataPerCoopIdAndDateRange(coopId : string, fromDate : string, toDate : string){
+        try{
+
+            const data = await TORRemittanceRepository.GetDataPerCoopIdAndDateRange(coopId, fromDate, toDate)
+
+            if(data !== null){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+
+        }catch(e){
+            console.error(`Error in services: ${e}`);
+            return {status: 500, message: e, response: {}}
+        }
+    }
+
     /////////////////////////////////////
  
     async GenerateSession(){

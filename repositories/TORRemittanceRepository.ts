@@ -1,7 +1,7 @@
 import TORRemittanceModel from "../models/TORRemittanceModel";
 
 export interface IRemittance{
-
+    coopId: string,
     UUID: string,
 
     device_id: string,
@@ -90,10 +90,23 @@ class TORRemittanceRepository{
 
     }
 
+    async GetDataPerCoopId(coopId : string){
+        try{
+
+            const data = await TORRemittanceModel.find({"fieldData.coopId" : coopId})
+
+            return data;
+
+        }catch(e){
+            console.error(`Error in repository ${e}`);
+            return null;
+        }
+    }
+
     async CreateTORRemittance(newTorRemittance : IRemittance){
         
         try{
-
+            console.log(newTorRemittance)
             const torRemittance = new TORRemittanceModel(newTorRemittance);
 
             const saveRemittance = await torRemittance.save();
@@ -106,6 +119,22 @@ class TORRemittanceRepository{
 
     }
 
+    async GetDataPerCoopIdAndDateRange(coopId : string, fromDate : string, toDate : string) {
+        try {
+            const data = await TORRemittanceModel.find({
+                "fieldData.coopId": coopId,
+                "fieldData.dateCreated": {
+                    $gte: new Date(fromDate), // $gte means "greater than or equal to"
+                    $lte: new Date(toDate)    // $lte means "less than or equal to"
+                }
+            });
+    
+            return data;
+        } catch (e) {
+            console.error(`Error in repository: ${e}`);
+            return null;
+        }
+    }
 }
 
 export default new TORRemittanceRepository();

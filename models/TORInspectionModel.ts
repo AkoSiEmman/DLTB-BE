@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
 
 const inspectionSchema = new mongoose.Schema({
+    coopId:{
+        
+        type: String,
+        index:true,
 
+    },
     UUID:{
         type: String,
         index: true,
@@ -116,7 +121,7 @@ const inspectionSchema = new mongoose.Schema({
         type: String,
         index: true,
         default:"",
-        required: true
+        required: false
     },
 
     passenger_count_with_pass:{
@@ -188,7 +193,7 @@ const torInspectionSchema = new mongoose.Schema({
     recordId:{
         type: String,
         index: true,
-        default:""
+        // default:""
     },
 
     modId:{
@@ -196,7 +201,7 @@ const torInspectionSchema = new mongoose.Schema({
         index: true
     },
 
-    fieldData: [inspectionSchema]
+    fieldData: inspectionSchema
 
 })
 

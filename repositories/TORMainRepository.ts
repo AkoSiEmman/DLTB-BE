@@ -3,6 +3,7 @@ import TORMainModel from "../models/TORMainModel";
 interface ITORMAIN{
 
     fieldData : {
+        coopId: string,
         UUID: string,
         
         device_id: string,
@@ -213,6 +214,21 @@ class TORMainRepository{
 
     }
 
+    async GetDataPerCoopId(coopId : string){
+        
+        try{
+
+            const data = await TORMainModel.find({"coopId" : coopId})
+
+            return data;
+
+        }catch(e){
+            console.error(`Error in repository : ${e}`);
+            return null;
+        }
+
+    }
+
     async CreateNewTORMain( newTor : any ){
 
         try{
@@ -256,7 +272,22 @@ class TORMainRepository{
         }
     }
 
-
+    async GetDataPerCoopIdAndDateRange(coopId : string, fromDate : string, toDate : string) {
+        try {
+            const data = await TORMainModel.find({
+                "coopId": coopId,
+                "dateCreated": {
+                    $gte: new Date(fromDate), // $gte means "greater than or equal to"
+                    $lte: new Date(toDate)    // $lte means "less than or equal to"
+                }
+            });
+    
+            return data;
+        } catch (e) {
+            console.error(`Error in repository: ${e}`);
+            return null;
+        }
+    }
     
 
 }

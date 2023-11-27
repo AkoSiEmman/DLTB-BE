@@ -59,6 +59,35 @@ export async function SearchForTORMAINController(request: Request, response: Res
 
 }
 
+export async function GetAllDataPerCoopIdController(request : Request, response: Response){
+
+    try{
+     
+        const data = await TORMainService.GetDataPerCoopId(request.params.id)
+
+        response.status(200).json({messages : [{
+            code: data.status,
+            message: data.message,
+            dateTime: GetCurrentDateSTR(),
+        }],
+        response:data.response
+        });
+
+    }catch(e){
+        console.error("Error in tor main controller: "+e)
+        response.status(500).json({messages : [{
+            code: "500",
+            message: "Error in getting data: "+e,
+            dateTime: GetCurrentDateSTR(),
+            }],
+            response: {}
+        })
+        
+    }
+
+
+}
+
 export async function GetAllTORMainController(request: Request, response: Response){
 
     const responseDate = GetCurrentDateSTR();
@@ -115,6 +144,30 @@ export async function CreateNewTORMAINController(request: Request, response: Res
         response:[{}]
         })
     
+    }
+
+}
+
+export async function GetTORMainByCoopIdAndDateController(request: Request, response: Response){
+
+    try{
+        const data = await TORMainService.GetDataPerCoopIdAndDateRange(request.params.id, request.body.fromDate, request.body.toDate);
+        response.status(200).json({messages : [{
+            code: data.status,
+            message: data.message,
+            dateTime: GetCurrentDateSTR(),
+        }],
+        response: data.response
+        });
+    }catch(e){
+        console.error("Error in tor main controller: "+e)
+        response.status(500).json({messages : [{
+            code: "212",
+            message: "Error in getting employees: "+e,
+            dateTime: GetCurrentDateSTR(),
+            }],
+            response: {}
+        })
     }
 
 }

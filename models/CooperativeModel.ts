@@ -10,6 +10,10 @@ export interface ICooperative extends Document{
 
     first_km : number,
 
+    pricePerKm: number,
+    
+    discountPercent: number,
+
     createdAt: Date,
 
 }
@@ -42,6 +46,18 @@ const cooperativeSchema = new mongoose.Schema({
         type : Number,
         required: true,
         index: true,
+    },
+
+    pricePerKm:{
+        type: Number,
+        required: true,
+        index: true,
+    },
+
+    discountPercent:{
+        type: Number,
+        required: true,
+        index: true
     },
 
     createdAt:{

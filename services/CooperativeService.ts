@@ -9,8 +9,12 @@ class CooperativeService{
         try{
             
             const data = await CooperativeRepository.GetAllData();
-
-            return {status: 0, message: "OK", response: data}
+            if(data !== null){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Error", response: data}
+            }
+           
 
         }catch(e){
 

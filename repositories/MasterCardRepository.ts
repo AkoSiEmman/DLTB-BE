@@ -54,9 +54,9 @@ class MasterCardRepository{
     
         try{
 
-            const searchCardId : IMasterCard | null = await masterCardModel.findOne({ "cardId": cardId });
+            const searchCardId : IMasterCard | null = await masterCardModel.findOne({ "cardID": cardId });
 
-
+            console.log(searchCardId)
             if(searchCardId){
                 return searchCardId;
             }else{
@@ -77,7 +77,7 @@ class MasterCardRepository{
 
         try{
 
-            const searchCardId : IMasterCard | null = await masterCardModel.findOne({ "cardId": cardId });
+            const searchCardId : IMasterCard | null = await masterCardModel.findOne({ "cardID": cardId });
 
 
             if(searchCardId){
@@ -102,10 +102,10 @@ class MasterCardRepository{
             console.log(`INCREASE ${increaseAmount}`)
             console.log(`DECREASE ${decreaseAmount}`)
 
-            const increaseBalancePerId = await masterCardModel.updateOne({"cardId": cardId}, {$inc: {"balance": increaseAmount}} , {new: true});
+            const increaseBalancePerId = await masterCardModel.updateOne({"cardID": cardId}, {$inc: {"balance": increaseAmount}} , {new: true});
 
-            const decreaseBalancePerId = await  masterCardModel.updateOne({"cardId": cardId}, {$inc: {"balance": -decreaseAmount}} , {new: true});
-
+            const decreaseBalancePerId = await  masterCardModel.updateOne({"cardID": cardId}, {$inc: {"balance": -decreaseAmount}} , {new: true});
+            
             return true;
 
         }catch(e){
@@ -119,7 +119,7 @@ class MasterCardRepository{
 
     async  UpdateField() {
         try {
-          await masterCardModel.updateMany({}, { $rename: { 'cardId': 'cardID' } });
+          await masterCardModel.updateMany({}, { $rename: { 'cardID': 'cardID' } });
           console.log('Field updated successfully.');
         } catch (error) {
           console.error('Error updating field:', error);

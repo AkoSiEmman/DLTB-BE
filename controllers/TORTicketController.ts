@@ -2,6 +2,30 @@ import { Request, Response } from "express";
 import { GetCurrentDateSTR } from "../common/GetCurrentDate";
 import TORTicketServices from "../services/TORTicketServices";
 
+export async function GetTORTicketMainByCoopIdAndDateController(request: Request, response: Response){
+
+    try{
+        const data = await TORTicketServices.GetDataPerCoopIdAndDateRange(request.params.id, request.body.fromDate, request.body.toDate);
+        response.status(200).json({messages : [{
+            code: data.status,
+            message: data.message,
+            dateTime: GetCurrentDateSTR(),
+        }],
+        response: data.response
+        });
+    }catch(e){
+        console.error("Error in tor main controller: "+e)
+        response.status(500).json({messages : [{
+            code: "212",
+            message: "Error in getting employees: "+e,
+            dateTime: GetCurrentDateSTR(),
+            }],
+            response: {}
+        })
+    }
+
+}
+
 export async function GetAllTicketController(request: Request, response: Response){
     
     const responseDate = GetCurrentDateSTR();
@@ -74,27 +98,14 @@ export async function CreateTorTicketController(request: Request, response: Resp
 
         const insertTicketToDb = await TORTicketServices.InsertTORTickeToOurDBServices(request.body);
 
-        if(insertTicketToDb.status === 0){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response: {}
-            })
-    
-    
-        }else{
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response: {}
+        })
 
-            response.status(200).json({messages : [{
-                code: "1",
-                message: "UUID must be unique",
-                dateTime: responseDate,
-                }],
-                response: {}
-            })
-
-        }
  }catch(e){
         console.error("Error in controller: "+e);
 
@@ -134,6 +145,36 @@ export async function SyncTORTicketController(request: Request, response: Respon
             code: "212",
             message: "Error in creating tor ticket: "+e,
             dateTime: responseDate,
+            }],
+            response: {}
+        })
+    }
+
+}
+
+
+export async function GetTORTicketPerCoopIdController(request : Request, response : Response){
+
+    try{
+
+        const data = await TORTicketServices.GetDataPerCoopId(request.params.id);
+
+        response.status(200).json({messages : [{
+            code: data.status,
+            message: data.message,
+            dateTime: GetCurrentDateSTR(),
+        }],
+        response: data.response
+        });
+
+    }catch(e){
+
+        console.error("Error in controller: "+e);
+
+        response.status(500).json({messages : [{
+            code: "212",
+            message: "Internal Server Error: "+e,
+            dateTime: GetCurrentDateSTR(),
             }],
             response: {}
         })

@@ -11,23 +11,13 @@ export async function GetAllMasterCardByCoopIdController(request: Request, respo
 
         const masterCards = await MasterCardServices.GetAllMasterCardByCoopId(request.params.id);
 
-        if(Object(masterCards).length > 0){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response: masterCards
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: "1",
-                message: "Invalid Coop Id",
-                dateTime: responseDate,
-                }],
-                response: {}
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response: masterCards
+        })
 
        
 
@@ -55,23 +45,13 @@ export async function GetAllMasterCardController(request: Request, response: Res
 
         const masterCards = await MasterCardServices.GetAllMasterCard();
 
-        if(masterCards){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response: masterCards
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: "1",
-                message: "Failed to get master cards",
-                dateTime: responseDate,
-                }],
-                response: {}
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response: masterCards
+        })
 
        
 
@@ -101,24 +81,13 @@ export async function AddNewMasterCardController(request: Request, response: Res
 
         console.log(newMasterCard)
 
-        if(newMasterCard === true){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response: {}
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: "1",
-                message: newMasterCard,
-                dateTime: responseDate,
-                }],
-                response: {}
-            })
-        }
-
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response: {}
+        })
       
 
     }catch(e){

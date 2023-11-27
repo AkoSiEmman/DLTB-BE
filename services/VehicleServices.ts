@@ -45,9 +45,18 @@ class VehicleServices {
 
         try{
 
-            const saveVehicle = await VehicleRepository.AddVehicle(vehicle);
+            const saveVehicle : any = await VehicleRepository.AddVehicle(vehicle);
 
-            return {status: 0, message: "OK", response: saveVehicle}
+            console.log(saveVehicle?.MongoServerError)
+           if(saveVehicle?.MongoServerError){
+            return {status: 1, message: "Invalid fields", response: {}}
+           }
+            if(saveVehicle === null){
+                return {status: 1, message: "Invalid fields", response: {}}
+            }else{
+                return {status: 0, message: "OK", response: {}}
+            }
+            
         }catch(e){
             console.log(`Error in adding vehicle: ${e}`);
             return {status: 500, message: e, response: {}}

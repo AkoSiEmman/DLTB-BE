@@ -12,7 +12,7 @@ class CooperativeRepository{
         }catch(e){
 
             console.error("Error in  repository: "+e)
-            return false;
+            return null;
 
         }
     }

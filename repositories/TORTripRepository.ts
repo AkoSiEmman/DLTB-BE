@@ -2,6 +2,8 @@ import TORTripModel from "../models/TORTripModel"
 
 export interface ITrip{
 
+    coopId: string,
+
     UUID: string,
 
     device_id: string,
@@ -162,6 +164,37 @@ class TORTripRepository{
         }catch(e){
             console.error("Error in finding and replacing tor: "+e);
             return e;
+        }
+    }
+
+    async GetDataPerCoopId(coopId : string){
+        
+        try{
+
+            const data = await TORTripModel.find({"fieldData.coopId" : coopId});
+
+            return data;
+
+        }catch(e){
+            console.log(`Error in repository ${e}`)
+            return null;
+        }
+    }
+
+    async GetDataPerCoopIdAndDateRange(coopId : string, fromDate : string, toDate : string) {
+        try {
+            const data = await TORTripModel.find({
+                "fieldData.coopId": coopId,
+                "fieldData.dateCreated": {
+                    $gte: new Date(fromDate), // $gte means "greater than or equal to"
+                    $lte: new Date(toDate)    // $lte means "less than or equal to"
+                }
+            });
+    
+            return data;
+        } catch (e) {
+            console.error(`Error in repository: ${e}`);
+            return null;
         }
     }
 

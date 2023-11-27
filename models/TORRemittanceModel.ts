@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
 
 const fuelSchema = new mongoose.Schema({
-    
+    coopId:{
+        
+        type: String,
+        index:true,
+
+    },
     UUID:{
         type: String,
         index: true,
@@ -158,7 +163,7 @@ const torRemittanceSchema = new mongoose.Schema({
         default :""
     },
     
-    fieldData: [fuelSchema]
+    fieldData: fuelSchema
 });
 
 const TORRemittanceModel = mongoose.model("TORRemittanceRecords", torRemittanceSchema);

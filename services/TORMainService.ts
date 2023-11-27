@@ -218,6 +218,40 @@ class TORMainService{
 
     }
 
+    async GetDataPerCoopIdAndDateRange(coopId : string, fromDate : string, toDate : string){
+        try{
+
+            const data = await TORMainRepository.GetDataPerCoopIdAndDateRange(coopId, fromDate, toDate)
+
+            if(data !== null){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+
+        }catch(e){
+            console.error(`Error in services: ${e}`);
+            return {status: 500, message: e, response: {}}
+        }
+    }
+
+    async GetDataPerCoopId(coopId: string){
+        try{
+
+            const data = await TORMainRepository.GetDataPerCoopId(coopId);
+
+            if(data !== null){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+
+        }catch(e){
+            console.error(`Error in services: ${e}`);
+            return {status: 500, message: e, response: {}}
+        }
+    }
+
   
     async GetAllTORMainFromServer(){
 
@@ -269,14 +303,14 @@ class TORMainService{
     async CreateTORMainService(fieldData : ITORMAIN) {
 
         try{
-            const torMain ={
-                portalData: [],
-                recordId: "",
-                modId: "",
-                fieldData: fieldData.fieldData,
-            }
+            // const torMain ={
+            //     portalData: [],
+            //     recordId: "",
+            //     modId: "",
+            //     fieldData: fieldData.fieldData,
+            // }
 
-            const newTorMain = TORMainRepository.CreateNewTORMain(torMain);
+            const newTorMain = TORMainRepository.CreateNewTORMain(fieldData);
             return true;
 
         }catch(e){
@@ -321,7 +355,7 @@ class TORMainService{
 
     }
 
-    async UpdateTORMainService(tor: ITORMAIN){
+    async UpdateTORMainService(tor: any){
 
         try{
 
@@ -422,6 +456,7 @@ class TORMainService{
 
     }
 
+    
 
 }
 

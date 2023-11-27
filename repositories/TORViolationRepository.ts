@@ -2,6 +2,8 @@ import TORViolationModel from "../models/TORViolationModel";
 
 export interface IViolation{
 
+    coopId: string,
+
     UUID: string,
 
     device_id: string,
@@ -86,6 +88,21 @@ class TORViolationRepository{
             console.error("Error in tor violation repository: "+e);
             return e;
 
+        }
+
+    }
+
+    async GetDataPerCoopId(coopId : string){
+
+        try{
+
+            const data = await TORViolationModel.find({"fieldData.coopId" : coopId})
+
+            return data;
+
+        }catch(e){
+            console.error(`Error in repository ${e}`);
+            return null;
         }
 
     }

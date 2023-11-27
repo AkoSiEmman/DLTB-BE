@@ -32,11 +32,11 @@ class DeviceRepository{
 
     }
 
-    async GetCoopIdPerDeviceId(deviceId : string){
+    async GetCoopIdPerDeviceId(coopId : string){
         
         try{
 
-            const findCoopId : IDevice | null = await DeviceModel.findOne({"deviceId" : deviceId})
+            const findCoopId : any = await DeviceModel.find({"coopId" : coopId})
 
             return findCoopId;
 

@@ -10,23 +10,13 @@ export async function GetAllVehicleController(request : Request, response : Resp
 
             const vehicles = await VehicleServices.GetAllVehicle();
 
-            if(vehicles.status === 0 ){
-                response.status(200).json({messages : [{
-                    code: "0",
-                    message: "OK",
-                    dateTime: responseDate,
-                    }],
-                    response : vehicles.response
-                })
-            }else{
-                response.status(201).json({messages : [{
-                    code: vehicles.status,
-                    message: vehicles.message,
-                    dateTime: responseDate,
-                    }],
-                    response: vehicles.response
-                })
-            }
+            response.status(200).json({messages : [{
+                code: "0",
+                message: "OK",
+                dateTime: responseDate,
+                }],
+                response : vehicles.response
+            })
 
         }catch(e){
             
@@ -52,7 +42,7 @@ export async function GetAllVehiclePerCoopIdController(request : Request, respon
             const vehicles = await VehicleServices.GetAllVehiclePerCoopId(request.params.id);
 
           
-                response.status(201).json({messages : [{
+                response.status(200).json({messages : [{
                     code: vehicles.status,
                     message: vehicles.message,
                     dateTime: responseDate,
@@ -84,23 +74,13 @@ export async function AddVehicleController(request : Request, response : Respons
 
         const newVehicle = await VehicleServices.AddVehicle(request.body);
 
-        if(newVehicle.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response : newVehicle.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: newVehicle.status,
-                message: newVehicle.message,
-                dateTime: responseDate,
-                }],
-                response: newVehicle.response
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response : newVehicle?.response
+        })
 
     }catch(e){
 

@@ -2,11 +2,8 @@ import TORTicketModel from "../models/TORTicketModel";
 
 export interface ITORTicket{
 
-    portalData: [],
-    recordId: string,
-    modId: string,
 
-    fieldData:{
+        coopId: string,
         UUID: string,
         device_id: string,
         control_no : string,
@@ -35,7 +32,7 @@ export interface ITORTicket{
         updated_on: Date,
         previous_balance: number,
         current_balance: number
-    }
+   
 
 }
 
@@ -65,7 +62,7 @@ class TORTicketRepository{
 
             const saveTorTicket = await newTorTicket.save();
 
-            return true;
+            return saveTorTicket;
 
         }catch(e){
             console.error("Error in repository: "+e);
@@ -74,11 +71,11 @@ class TORTicketRepository{
 
     }
 
-    async FindOneAndReplaceTORTicket(tor : ITORTicket){
+    async FindOneAndReplaceTORTicket(tor : any){
 
         try{
 
-            const updateTORMain = await TORTicketModel.findOneAndReplace({"fieldData.UUID" : tor.fieldData.UUID} , tor, {upsert: true, new: true});
+            const updateTORMain = await TORTicketModel.findOneAndReplace({"UUID" : tor.UUID} , tor, {upsert: true, new: true});
 
             return true;
 
@@ -106,7 +103,40 @@ class TORTicketRepository{
 
     }
 
+    async GetDataPerCoopId(coopId : string){
 
+        try{
+
+            const data = await TORTicketModel.find({"coopId" : coopId})
+            
+            return data;
+
+        }catch(e){
+            console.log(`Error in repository : ${e}`);
+            return null;
+        }
+
+    }
+
+
+    
+    async GetDataPerCoopIdAndDateRange(coopId : string, fromDate : string, toDate : string) {
+        try {
+            const data = await TORTicketModel.find({
+                "coopId": coopId,
+                "dateCreated": {
+                    $gte: new Date(fromDate), // $gte means "greater than or equal to"
+                    $lte: new Date(toDate)    // $lte means "less than or equal to"
+                }
+            });
+    
+            return data;
+        } catch (e) {
+            console.error(`Error in repository: ${e}`);
+            return null;
+        }
+    }
+    
 }
 
 export default new TORTicketRepository();

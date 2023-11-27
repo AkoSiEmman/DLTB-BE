@@ -10,25 +10,13 @@ export async function CreateNewEmployeeCardController(request: Request, response
     try{
 
         const newEmployeeCard = await EmployeeCardService.RegisterNewEmployeeCard(request.body);
-
-        if(newEmployeeCard.status === 0){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response: newEmployeeCard.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: newEmployeeCard.status,
-                message: newEmployeeCard.message,
-                dateTime: responseDate,
-                }],
-                response: newEmployeeCard.response
-            })
-        }
-
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response: newEmployeeCard.response
+        })
     }catch(e){
         console.error("Error in controller: "+e);
         response.status(500).json({messages : [{
@@ -83,24 +71,13 @@ export async function GetAllEmployeeCardController(request: Request, response: R
 
         const employeeCards = await EmployeeCardService.GetAllEmployeeCard()
 
-        if(employeeCards.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response : employeeCards.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: employeeCards.status,
-                message: employeeCards.message,
-                dateTime: responseDate,
-                }],
-                response: employeeCards.response
-            })
-        }
-
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response : employeeCards.response
+        })
 
     }catch(e){
         console.error("Error in controller: "+e);

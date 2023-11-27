@@ -5,7 +5,8 @@ import { CreateNewTorViolationController, GetAllTorViolationController } from ".
 const TORViolationRouter = Router();
 
 
-TORViolationRouter.get('/tor/violation', CheckTokenMiddleware, GetAllTorViolationController);
+// TORViolationRouter.get('/tor/violation', CheckTokenMiddleware, GetAllTorViolationController);
+TORViolationRouter.get('/tor/violation/:id', CheckTokenMiddleware, GetAllTorViolationController);
 
 TORViolationRouter.post('/tor/violation', CheckTokenMiddleware, CreateNewTorViolationController);
 

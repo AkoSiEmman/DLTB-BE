@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
 
 const violationSchema = new mongoose.Schema({
+    coopId:{
+        
+        type: String,
+        index:true,
 
+    },
     UUID:{
         type: String,
         index: true,

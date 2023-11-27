@@ -9,24 +9,13 @@ export async function GetAllDispatch(request : Request, response : Response){
     try{
 
         const dispatch = await DispatchServices.GetAllDispatch();
-        
-        if(dispatch.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response : dispatch
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: dispatch.status,
-                message: dispatch.message,
-                dateTime: responseDate,
-                }],
-                response: dispatch
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response : dispatch
+        })
 
     }catch(e){
 
@@ -54,23 +43,13 @@ export async function AddDispatchController(request : Request, response : Respon
 
         const dispatch = await DispatchServices.AddDispatch(request.body);
 
-        if(dispatch.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response : dispatch.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: dispatch.status,
-                message: dispatch.message,
-                dateTime: responseDate,
-                }],
-                response: dispatch.response
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response : dispatch.response
+        })
 
 
     }catch(e){

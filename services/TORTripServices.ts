@@ -32,6 +32,43 @@ class TORTripServices{
 
     }
 
+    async GetDataPerCoopId(coopId : string ){
+
+        console.log(coopId)
+        try{
+            const data = await TORTripRepository.GetDataPerCoopId(coopId);
+
+            
+            if(data !== null){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+            
+        }catch(e){
+            console.log(`Error in services ${e}`)
+            return {status: 500, message: e, response: {}}
+        }
+    }
+
+
+    async GetDataPerCoopIdAndDateRange(coopId : string, fromDate : string, toDate : string){
+        try{
+
+            const data = await TORTripRepository.GetDataPerCoopIdAndDateRange(coopId, fromDate, toDate)
+
+            if(data !== null){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+
+        }catch(e){
+            console.error(`Error in services: ${e}`);
+            return {status: 500, message: e, response: {}}
+        }
+    }
+
 }
 
 export default new TORTripServices();

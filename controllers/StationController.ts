@@ -8,23 +8,13 @@ export async function GetAllStationController (request: Request, response: Respo
 
         const allStations = await StationService.GetAllStation();
 
-        if(allStations.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: GetCurrentDateSTR,
-                }],
-                response : allStations.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: allStations.status,
-                message: allStations.message,
-                dateTime: GetCurrentDateSTR,
-                }],
-                response: allStations.response
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: GetCurrentDateSTR,
+            }],
+            response : allStations.response
+        })
 
     }catch(e){
 
@@ -47,23 +37,13 @@ export async function AddStationController( request: Request, response: Response
 
         const newStation = await StationService.AddStation(request.body);
 
-        if(newStation.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: GetCurrentDateSTR,
-                }],
-                response : newStation.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: newStation.status,
-                message: newStation.message,
-                dateTime: GetCurrentDateSTR,
-                }],
-                response: newStation.response
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: GetCurrentDateSTR,
+            }],
+            response : newStation.response
+        })
 
     }catch(e){
         
@@ -84,26 +64,14 @@ export async function GetAllStationPerCoopIdController(request : Request, respon
 
 try{
     const data = await StationService.GetAllDataPerCoopId(request.params.id);
-       
-    if(Object(data.response).length === 0){
-        response.status(200).json({messages : [{
-            code: "1",
-            message: "Invalid Coop Id",
-            dateTime: GetCurrentDateSTR(),
+    response.status(200).json({messages : [{
+        code: data.status,
+        message: data.message,
+        dateTime: GetCurrentDateSTR(),
         }],
-        response: {}
-        });
-    }else{
-      
+        response : data.response
+    })
 
-        response.status(200).json({messages : [{
-            code: "0",
-            message: "OK",
-            dateTime: GetCurrentDateSTR(),
-        }],
-        response: data.response
-        });
-    }
 
    
 

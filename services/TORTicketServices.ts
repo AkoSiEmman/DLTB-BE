@@ -15,6 +15,7 @@ interface ITORTicket{
 }
 
 interface ITicket {
+    coopId: string,
     UUID: string,
     device_id: string,
     control_no : string,
@@ -60,6 +61,25 @@ class TORTicketServices{
         }
     
 
+    }
+
+
+    async GetDataPerCoopId(coopId : string){
+        try{
+
+            const data = await TORTicketRepository.GetDataPerCoopId(coopId);
+
+            
+            if(data !== null){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+            
+        }catch(e){
+            console.error(`Error in services: ${e}`);
+            return {status: 500, message: e, response: {}}
+        }
     }
 
     async SyncGetAllTORTicketService(){ 
@@ -135,7 +155,7 @@ class TORTicketServices{
 
     }
 
-    async  InsertTORTickeToOurDBServices(torTicket : ITORTicket ){
+    async  InsertTORTickeToOurDBServices(torTicket : ITicket ){
 
         try{
 
@@ -150,7 +170,22 @@ class TORTicketServices{
         
     }
 
+    async GetDataPerCoopIdAndDateRange(coopId : string, fromDate : string, toDate : string){
+        try{
 
+            const data = await TORTicketRepository.GetDataPerCoopIdAndDateRange(coopId, fromDate, toDate)
+
+            if(data !== null){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+
+        }catch(e){
+            console.error(`Error in services: ${e}`);
+            return {status: 500, message: e, response: {}}
+        }
+    }
 
 
     async FindAndReplaceTORTicketServices(torTicket : ITORTicket){

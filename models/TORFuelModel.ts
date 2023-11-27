@@ -2,7 +2,10 @@ import mongoose from "mongoose";
 
 
 const torFuel = new mongoose.Schema({
-
+    coopId:{
+        type: String,
+        index: true,
+    },
     UUID: {
         type: String,
         index: true,
@@ -152,7 +155,6 @@ const torFuelSchema = new mongoose.Schema({
     recordId: {
         type: String, 
         index: true,
-        unique: true,
         default: ""
     },
 
@@ -165,6 +167,7 @@ const torFuelSchema = new mongoose.Schema({
     fieldData: [torFuel]
 })
 
-const TORFuelModel = mongoose.model('TORFuelRecords', torFuelSchema);
+const  TORFuelModel  = mongoose.model("torfuelrecords" , torFuelSchema,{ collection: "torfuelrecords" }.collection);
+
 
 export default TORFuelModel;

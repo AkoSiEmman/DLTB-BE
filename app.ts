@@ -12,7 +12,8 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
-
+import http from 'http';
+import socketIo from 'socket.io';
 //////////////////////////////
 // ROUTES
 /////////////////////////////
@@ -47,6 +48,7 @@ import EmailOTPRouter from "./routes/EmailOTPRoutes";
 import DeviceRouter from "./routes/DeviceRoutes";
 import CooperativeRouter from "./routes/CooperativeRoutes";
 import FilipayCardRouter from "./routes/FilipayCardRoutes";
+import BookRouter from "./routes/BookRoutes";
 
 
 //////////////////////////////////////////////////
@@ -129,6 +131,7 @@ app.use(urlBackend, CooperativeRouter);
 
 app.use(urlBackend, FilipayCardRouter);
 
+app.use(urlBackend, BookRouter);
 /////////////////////////
 // DATABASE CONNECTION
 ////////////////////////

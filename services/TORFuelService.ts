@@ -79,21 +79,34 @@ class TORFuelService{
 
     }
 
-    async CreateTORFuelService(torFuel : IFuel){
+    async CreateTORFuelService(torFuel : any){
     
         try{
-
+           
             const newTorFuel = await TORFuelRepository.CreateTORFuel(torFuel);
-
-            if(newTorFuel){
-                return {status: 0, message: "OK"};
-            }else{
-                return {status: 1, message: "FAILED"};
-            }
 
         }catch(e){
             console.error("Error in create tor remittance service: "+e);
             return {status: 500, message: e};
+        }
+
+    }
+
+    async GetAllDataPerCoopId(coopId : string){
+
+        try{
+
+            const data = await TORFuelRepository.GetDataPerCoopId(coopId)
+
+            if(data !== null){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+
+        }catch(e){
+            console.error(`Error in services: ${e}`);
+            return {status: 500, message: e, response: {}}
         }
 
     }
@@ -141,7 +154,22 @@ class TORFuelService{
 
     }
 
+    async GetDataPerCoopIdAndDateRange(coopId : string, fromDate : string, toDate : string){
+        try{
 
+            const data = await TORFuelRepository.GetDataPerCoopIdAndDateRange(coopId, fromDate, toDate)
+
+            if(data !== null){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+
+        }catch(e){
+            console.error(`Error in services: ${e}`);
+            return {status: 500, message: e, response: {}}
+        }
+    }
 
      /////////////////////////////////////
  

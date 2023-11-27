@@ -1,10 +1,12 @@
 import {Router} from 'express'
 import { CheckTokenMiddleware } from '../middlewares/CheckTokenMiddleware';
-import { AddDeviceController, GetAllDeviceController, GetCoopPerDeviceIdController } from '../controllers/DeviceController';
+import { AddDeviceController,  GetAllDevicePerCoopId,  GetCoopPerDeviceIdController } from '../controllers/DeviceController';
 
 const DeviceRouter = Router();
 
-DeviceRouter.get("/device", CheckTokenMiddleware, GetAllDeviceController);
+// DeviceRouter.get("/device", CheckTokenMiddleware, GetAllDeviceController);
+
+DeviceRouter.get("/device/:id", CheckTokenMiddleware, GetAllDevicePerCoopId);
 
 DeviceRouter.post("/device", CheckTokenMiddleware, AddDeviceController);
 

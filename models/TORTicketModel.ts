@@ -1,7 +1,12 @@
 import mongoose from "mongoose"
 
 const torSchema = new mongoose.Schema({
+    coopId:{
+        
+        type: String,
+        index:true,
 
+    },
  UUID:{
     type: String,
     index: true,
@@ -149,13 +154,13 @@ long:{
 created_on:{
     type: Date,
     index: true,
-    default: Date.now
+    default: new Date()
 },
 
 updated_on:{
     type: Date,
     index: true,
-    default: Date.now
+    default: new Date()
 },
 
 previous_balance:{
@@ -176,29 +181,15 @@ dateCreated:{
 },
 })
 
-const torTicketSchema = new mongoose.Schema({
-    portalData: [],
-    recordId: {
-        type: String,
-        index: true,
-        default:"",
-        unique: false
-    },
-    modId:{
-        type: String,
-        index: true,
-        default:""
-    },
-    fieldData: [torSchema],
-})
 
-torTicketSchema.pre("save", function (next) {
-    this.recordId = this._id.toString();
-    next();
-});
 
-const TORTicketModel = mongoose.model('TORTicketRecords', 
-torTicketSchema
-);
+// const TORTicketModel = mongoose.model('TORTicketRecords', 
+// torTicketSchema
+// );
 
+// export default TORTicketModel;
+
+
+
+const TORTicketModel = mongoose.model('torticketrecords', torSchema,{collections :"torticketrecords"}.collections);
 export default TORTicketModel;

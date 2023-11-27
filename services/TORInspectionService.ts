@@ -19,11 +19,12 @@ class TORInspectionService{
 
     }
 
-    async CreateTORInspection(torInspection : IInspection){
+    async CreateTORInspection(torInspection : any){
 
         try{
-
-            const saveNewTorInspection = await TORInspectionRepository.CreateTORInspection(torInspection);
+            console.log("service")
+            console.log(torInspection)
+            const saveNewTorInspection = await TORInspectionRepository.CreateTORInspection(torInspection.fieldData);
 
             return {status: 0, message: "OK", response: saveNewTorInspection}
           
@@ -33,6 +34,23 @@ class TORInspectionService{
             return {status: 500, message: e, response: {}}
         }
 
+    }
+
+
+    async GetDataPerCoopId(coopId: string){
+        try{
+
+            const data = await TORInspectionRepository.GetDataPerCoopId(coopId);
+
+            if(data !== null){
+                return {status: 0, message: "OK", response: data}
+            }else{
+                return {status: 1, message: "Invalid Coop Id", response: {}}
+            }
+        }catch(e){
+            console.log(`Error in services ${e}`);
+            return {status: 500, message: e, response: {}}
+        }
     }
 
 }

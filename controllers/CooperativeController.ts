@@ -9,23 +9,13 @@ export async function GetAllCooperativeController( request: Request, response : 
 
         const allUsers = await CooperativeService.GetData();
 
-        if(allUsers.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: GetCurrentDateSTR(),
-                }],
-                response : allUsers.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: allUsers.status,
-                message: allUsers.message,
-                dateTime: GetCurrentDateSTR(),
-                }],
-                response: allUsers.response
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: GetCurrentDateSTR(),
+            }],
+            response : allUsers.response
+        })
 
     }catch(e){
 

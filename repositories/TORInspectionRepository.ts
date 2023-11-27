@@ -1,7 +1,7 @@
 import TORInspectionModel from "../models/TORInspectionModel";
 
 export interface IInspection{
-
+    coopId: string,
     UUID: string,
     
     device_id: string,
@@ -89,10 +89,11 @@ class TORInspectionRepository{
 
     }
 
-    async CreateTORInspection(fieldData : IInspection){
+    async CreateTORInspection(fieldData: IInspection){
         
         try{
-
+            console.log(fieldData)
+            
             const tor ={
                 "portalId": {},
                 "recordId": "",
@@ -100,9 +101,10 @@ class TORInspectionRepository{
                 fieldData
             }
 
-            const newTorInspection = new TORInspectionModel(tor);
+            console.log(tor)
+            const newTOR = new TORInspectionModel(tor);
 
-            const saveTorInspection = await newTorInspection.save();
+            const saveTorInspection = await newTOR.save();
 
             return saveTorInspection;
 
@@ -113,6 +115,35 @@ class TORInspectionRepository{
             return e;
         }
 
+    }
+
+    async GetDataPerCoopId(coopId : string){
+        try{
+            const data = await TORInspectionModel.find({"fieldData.coopId":coopId});
+
+            return data;
+
+        }catch(e){
+            console.log(`Error in repository: ${e}`)
+            return null;
+        }
+    }
+
+    async GetDataPerCoopIdAndDateRange(coopId : string, fromDate : string, toDate : string) {
+        try {
+            const data = await TORInspectionModel.find({
+                "fieldData.coopId": coopId,
+                "fieldData.dateCreated": {
+                    $gte: new Date(fromDate), // $gte means "greater than or equal to"
+                    $lte: new Date(toDate)    // $lte means "less than or equal to"
+                }
+            });
+    
+            return data;
+        } catch (e) {
+            console.error(`Error in repository: ${e}`);
+            return null;
+        }
     }
 
 }

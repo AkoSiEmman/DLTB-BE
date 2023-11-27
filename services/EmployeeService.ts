@@ -45,6 +45,8 @@ class EmployeeService{
 
             const data = await employeeRepo.GetAllPerCoopId(coopId);
 
+            console.log(`Data : ${data}`)
+
             return {status: 0, message: "OK", response: data}
 
         }catch(e){

@@ -11,24 +11,13 @@ export async function GetAllTORInspectionController(request: Request, response: 
 
         const torInspections = await TORInspectionService.GetAllTORInspection();
 
-        if(torInspections.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response: torInspections.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: torInspections.status,
-                message: torInspections.message,
-                dateTime: responseDate,
-                }],
-                response: torInspections.response
-            })
-        }
-
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response: torInspections.response
+        })
 
     }catch(e){
         console.error("Error in inspection controller: "+e);
@@ -51,23 +40,13 @@ export async function CreateTORInspectionController(request: Request, response: 
 
         const newTORInspection = await TORInspectionService.CreateTORInspection(request.body);
 
-        if(newTORInspection.status === 0){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response: newTORInspection.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: newTORInspection.status,
-                message: newTORInspection.message,
-                dateTime: responseDate,
-                }],
-                response: newTORInspection.response
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response: newTORInspection.response
+        })
 
     }catch(e){
         console.error("Error in inspection controller: "+e);
@@ -80,4 +59,30 @@ export async function CreateTORInspectionController(request: Request, response: 
         })
     }
 
+}
+
+export async function GetTORInspectionPerCoopIdController(request : Request , response : Response){
+    try{
+     
+        const data = await TORInspectionService.GetDataPerCoopId(request.params.id)
+
+        response.status(200).json({messages : [{
+            code: data.status,
+            message: data.message,
+            dateTime: GetCurrentDateSTR(),
+        }],
+        response:data.response
+        });
+
+    }catch(e){
+        console.error("Error in tor main controller: "+e)
+        response.status(500).json({messages : [{
+            code: "500",
+            message: "Error in getting data: "+e,
+            dateTime: GetCurrentDateSTR(),
+            }],
+            response: {}
+        })
+        
+    }
 }

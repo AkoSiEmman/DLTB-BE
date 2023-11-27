@@ -9,23 +9,13 @@ export async function AddCooperativeEmployeeController( request: Request, respon
         const newEmployee = await CooperativeEmployeeService.AddCooperativeEmployee(request.body);
 
 
-        if(newEmployee.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: GetCurrentDateSTR(),
-                }],
-                response : newEmployee.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: newEmployee.status,
-                message: newEmployee.message,
-                dateTime: GetCurrentDateSTR(),
-                }],
-                response: newEmployee.response
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: GetCurrentDateSTR(),
+            }],
+            response : newEmployee.response
+        })
 
     }catch(e){
 
@@ -48,23 +38,13 @@ export async function GetAllCooperativeEmployeeController( request: Request , re
 
         const allCooperativeEmployee = await CooperativeEmployeeService.GetAllCooperativeEmployee();
 
-        if(allCooperativeEmployee.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: GetCurrentDate(),
-                }],
-                response : allCooperativeEmployee.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: allCooperativeEmployee.status,
-                message: allCooperativeEmployee.message,
-                dateTime: GetCurrentDateSTR(),
-                }],
-                response: allCooperativeEmployee.response
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: GetCurrentDate(),
+            }],
+            response : allCooperativeEmployee.response
+        })
 
     }catch(e){
 

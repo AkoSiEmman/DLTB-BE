@@ -74,12 +74,17 @@ class Directions{
 
             const employee = await DirectionModel.find({'coopId' : coopId})
 
-            return employee
+            if(Object(employee).length > 0){
+                return employee
+            }else{
+                return null
+            }
+           
 
         }catch(e){
            
             console.error("Repository error: "+e);
-            return false;
+            return null;
             
         }
 

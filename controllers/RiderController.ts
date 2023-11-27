@@ -12,24 +12,13 @@ export async function GetRiderByCardIdController( request : Request, response : 
 
         const rider = await RiderServices.GetRiderByCardId( request.params.id )
 
-        if(rider.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: rider.message,
-                dateTime: responseDate,
-                }],
-                response : rider.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: rider.status,
-                message: rider.message,
-                dateTime: responseDate,
-                }],
-                response: rider.response
-            })
-        }
-
+        response.status(200).json({messages : [{
+            code: "0",
+            message: rider.message,
+            dateTime: responseDate,
+            }],
+            response : rider.response
+        })
     }catch(e){
 
         
@@ -56,23 +45,13 @@ export async function GetAllRiderController(request : Request, response : Respon
 
         const riders = await RiderServices.GetAllRider();
 
-        if(riders.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response : riders.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: riders.status,
-                message: riders.message,
-                dateTime: responseDate,
-                }],
-                response: riders.response
-            })
-        }
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response : riders.response
+        })
 
     }catch(e){
 
@@ -99,24 +78,13 @@ export async function AddRiderController( request: Request, response : Response)
 
         const newRider = await RiderServices.AddRiderWallet(request.body)
 
-        if(newRider.status === 0 ){
-            response.status(200).json({messages : [{
-                code: "0",
-                message: "OK",
-                dateTime: responseDate,
-                }],
-                response : newRider.response
-            })
-        }else{
-            response.status(201).json({messages : [{
-                code: newRider.status,
-                message: newRider.message,
-                dateTime: responseDate,
-                }],
-                response: newRider.response
-            })
-        }
-
+        response.status(200).json({messages : [{
+            code: "0",
+            message: "OK",
+            dateTime: responseDate,
+            }],
+            response : newRider.response
+        })
 
     }catch(e){
 
